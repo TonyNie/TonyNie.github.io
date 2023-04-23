@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>利用回环设备实现NFS磁盘配额 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/loopdev_and_NFS/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../about_me/" title="关于我" type="text/html">
+<link rel="next" href="../ketten-and-me/" title="我和小咪" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="利用回环设备实现NFS磁盘配额">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/loopdev_and_NFS/">
+<meta property="og:description" content="利用回环设备实现NFS磁盘配额
+嵌入式系统软件开发过程中经常会使用NFS（网络文件系统）共享文件, 如果多人使用，可能需要做配额管理。quota 当然可以，但有点杀机焉用牛刀的感觉。利用unix的回环设备(loop device) 做配额管理，简单、方便，并且不需要对原来的物理文件系统做任何修改。当然，性能上会有损失（没有评估）。
+以Ubuntu12.04 为例， 配置过程如下：
+
+生成回环文件
+">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-08-29T14:45:43+08:00">
+<meta property="article:tag" content="UNIX">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">利用回环设备实现NFS磁盘配额</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2014-08-29T14:45:43+08:00" itemprop="datePublished" title="2014-08-29 14:45">2014-08-29 14:45</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/unix/" rel="tag">UNIX</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <section id="nfs"><h2>利用回环设备实现NFS磁盘配额</h2>
+<p>嵌入式系统软件开发过程中经常会使用NFS（网络文件系统）共享文件, 如果多人使用，可能需要做配额管理。quota 当然可以，但有点杀机焉用牛刀的感觉。利用unix的回环设备(loop device) 做配额管理，简单、方便，并且不需要对原来的物理文件系统做任何修改。当然，性能上会有损失（没有评估）。</p>
+<p>以Ubuntu12.04 为例， 配置过程如下：</p>
+<ol class="arabic simple">
+<li><p>生成回环文件</p></li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><p>sudo dd if=/dev/zero of=tony.img bs=1G count=10</p></li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li><p>配置回环设备</p></li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><p>sudo losetup /dev/loop1 ./tony.img</p></li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li><p>建立文件系统</p></li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><p>sudo mkfs.ext4 /dev/loop1</p></li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="4">
+<li><p>解除回环设备的映射</p></li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><p>sudo losetup -d /dev/loop1</p></li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="5">
+<li><p>开机自动mount回环设备</p></li>
+</ol>
+<blockquote>
+<ul>
+<li>
+<p>编辑 /etc/fstab, 添加新的一行</p>
+<p><em>/media/sda6/share/tony.img /media/sda6/share/tony ext4 loop, 0 0</em></p>
+</li>
+<li>
+<p>挂载回环设备</p>
+<ul class="simple">
+<li><p>sudo mount -a</p></li>
+</ul>
+</li>
+<li>
+<p>利用df命令查看当前文件系统信息, 如过设备被正常挂载, 会有类似信息:</p>
+<blockquote>
+<p><em>/dev/loop0 10G  435M  9.1G   5% /media/sda6/share/tony</em></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="6">
+<li><p>编辑 /etc/exports 将回环设备添加到NFS共享目录</p></li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><p>/media/sda6/share/tony *(rw,no_root_squash)</p></li>
+<li>
+<p>restart NFS server</p>
+<ul>
+<li><p>sudo /etc/init.d/nfs-kernel-server restart</p></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="7">
+<li><p>挂载NFS</p></li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><p>sudo mount -t nfs 172.29.43.183:/media/sda6/share/tony /mnt</p></li>
+<li><p>利用df命令查看NFS的挂载信息</p></li>
+</ul>
+<blockquote>
+<p><em>172.29.43.183:/media/sda6/share/tony   10G  434M  9.1G   5% /media/ipcam_share</em></p>
+</blockquote>
+</blockquote>
+</section>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../about_me/" rel="prev" title="关于我">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../ketten-and-me/" rel="next" title="我和小咪">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

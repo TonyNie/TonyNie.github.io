@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>单元测试之 C 语言 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/c-unit-test/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../ubuntu/" title="Stable Ubuntu 14.04" type="text/html">
+<link rel="next" href="../wuxia/" title="武侠小说中派，帮和教的区别" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="单元测试之 C 语言">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/c-unit-test/">
+<meta property="og:description" content="目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。
+
+如何测试 static 函数
+当产品代码和单元测试代码隔离时， 测试 static 的函数需要些技巧；有同学认为
+可以不对 static 的函数不进行测试，只要对其调用者做单元测试就可以了。但对于嵌套比较
+深的 static 函数来说， 测试用例不是太好构造。
+解决办法：
+
+使用宏来代替 static 关键字， 根据不同的场合">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-11-21T10:44:59+08:00">
+<meta property="article:tag" content="C/C++">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">单元测试之 C 语言</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-11-21T10:44:59+08:00" itemprop="datePublished" title="2015-11-21 10:44">2015-11-21 10:44</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/cc%2B%2B/" rel="tag">C/C++</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。</p>
+<section id="static"><h2>如何测试 static 函数</h2>
+<p>当产品代码和单元测试代码隔离时， 测试 static 的函数需要些技巧；有同学认为
+可以不对 static 的函数不进行测试，只要对其调用者做单元测试就可以了。但对于嵌套比较
+深的 static 函数来说， 测试用例不是太好构造。</p>
+<p>解决办法：</p>
+<ol class="arabic simple">
+<li><p>使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；</p></li>
+<li><p>在单元测试代码中 include 产品代码的源文件</p></li>
+<li><p>利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件</p></li>
+</ol>
+<p>三种方法中我比较推荐第3中方法; 好处时不影响产品代码，又可以具有较好的 coding style; 麻烦的地方在于
+building 过程中定位 warning 或者 error 不是太直接。</p>
+</section><section id="main"><h2>如何处理 main 函数所在的文件</h2>
+<p>如果产品代码和单元测试代码是隔离开来的，通常就各自拥有自己的 main 的函数；
+在 build 单元测试代码时就会出现冲突。</p>
+<p>解决办法：</p>
+<ol class="arabic simple">
+<li><p>修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;</p></li>
+<li><p>利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;</p></li>
+</ol></section>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../ubuntu/" rel="prev" title="Stable Ubuntu 14.04">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../wuxia/" rel="next" title="武侠小说中派，帮和教的区别">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

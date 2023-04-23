@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (文章分类：C/C++)</title><link>http://blog.runxcode.com/</link><description></description><atom:link href="http://blog.runxcode.com/categories/cc%2B%2B.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 05 Sep 2017 07:35:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>单元测试之 C 语言</title><link>http://blog.runxcode.com/posts/c-unit-test.html</link><dc:creator>Tony Nie</dc:creator><description>&lt;div&gt;&lt;p&gt;目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。&lt;/p&gt;
-&lt;div class="section" id="static"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 C/C++)</title><link>http://blog.cloudnie.ort/</link><description></description><atom:link href="http://blog.cloudnie.ort/categories/cc%2B%2B.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sun, 23 Apr 2023 13:40:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>单元测试之 C 语言</title><link>http://blog.cloudnie.ort/posts/c-unit-test/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。&lt;/p&gt;
+&lt;section id="static"&gt;
 &lt;h2&gt;如何测试 static 函数&lt;/h2&gt;
 &lt;p&gt;当产品代码和单元测试代码隔离时， 测试 static 的函数需要些技巧；有同学认为
 可以不对 static 的函数不进行测试，只要对其调用者做单元测试就可以了。但对于嵌套比较
 深的 static 函数来说， 测试用例不是太好构造。&lt;/p&gt;
 &lt;p&gt;解决办法：&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；&lt;/li&gt;
-&lt;li&gt;在单元测试代码中 include 产品代码的源文件&lt;/li&gt;
-&lt;li&gt;利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在单元测试代码中 include 产品代码的源文件&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;三种方法中我比较推荐第3中方法; 好处时不影响产品代码，又可以具有较好的 coding style; 麻烦的地方在于
 building 过程中定位 warning 或者 error 不是太直接。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="main"&gt;
+&lt;/section&gt;
+&lt;section id="main"&gt;
 &lt;h2&gt;如何处理 main 函数所在的文件&lt;/h2&gt;
 &lt;p&gt;如果产品代码和单元测试代码是隔离开来的，通常就各自拥有自己的 main 的函数；
 在 build 单元测试代码时就会出现冲突。&lt;/p&gt;
 &lt;p&gt;解决办法：&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;&lt;/li&gt;
-&lt;li&gt;利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>C/C++</category><guid>http://blog.runxcode.com/posts/c-unit-test.html</guid><pubDate>Sat, 21 Nov 2015 02:44:59 GMT</pubDate></item><item><title>_IOC定义的不严谨性</title><link>http://blog.runxcode.com/posts/cast_int_to_long_unsigned_int.html</link><dc:creator>Tony Nie</dc:creator><description>&lt;div&gt;&lt;blockquote&gt;
-C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.&lt;/blockquote&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d44c3a31afe24102ac785d00f5987657-1"&gt;&lt;/a&gt;int v4l2_ioctl(int requet, void *arg) {
-&lt;a name="rest_code_d44c3a31afe24102ac785d00f5987657-2"&gt;&lt;/a&gt;        if (UVCIOC_CTRL_QUERY == request) {
-&lt;a name="rest_code_d44c3a31afe24102ac785d00f5987657-3"&gt;&lt;/a&gt;        /* do something */
-&lt;a name="rest_code_d44c3a31afe24102ac785d00f5987657-4"&gt;&lt;/a&gt;        }
-&lt;a name="rest_code_d44c3a31afe24102ac785d00f5987657-5"&gt;&lt;/a&gt;}
-&lt;/pre&gt;&lt;p&gt;实际执行过程发现, &lt;em&gt;UVCIOC_CTRL_QUERY == request&lt;/em&gt; 永远为false, 即使request == UVCIOC_CTRL_QUERY.&lt;/p&gt;
-&lt;dl class="docutils"&gt;
+&lt;/section&gt;</description><category>C/C++</category><guid>http://blog.cloudnie.ort/posts/c-unit-test/</guid><pubDate>Sat, 21 Nov 2015 02:44:59 GMT</pubDate></item><item><title>_IOC定义的不严谨性</title><link>http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/</link><dc:creator>CloudNie</dc:creator><description>&lt;blockquote&gt;
+&lt;p&gt;C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1"&gt;&lt;/a&gt;int v4l2_ioctl(int requet, void *arg) {
+&lt;a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2"&gt;&lt;/a&gt;        if (UVCIOC_CTRL_QUERY == request) {
+&lt;a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3"&gt;&lt;/a&gt;        /* do something */
+&lt;a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4"&gt;&lt;/a&gt;        }
+&lt;a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5"&gt;&lt;/a&gt;}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;实际执行过程发现, &lt;em&gt;UVCIOC_CTRL_QUERY == request&lt;/em&gt; 永远为false, 即使request == UVCIOC_CTRL_QUERY.&lt;/p&gt;
+&lt;dl class="simple"&gt;
 &lt;dt&gt;运行环境:&lt;/dt&gt;
-&lt;dd&gt;Ubuntu12.04 x86_64&lt;/dd&gt;
+&lt;dd&gt;&lt;p&gt;Ubuntu12.04 x86_64&lt;/p&gt;
+&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;p&gt;写了一段测试code:
 .. sourcecode:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-int main(int argc, char **argv)
+&lt;pre class="literal-block"&gt;int main(int argc, char **argv)
 {
         int request = UVCIOC_CTRL_QUERY;
 
@@ -47,49 +49,53 @@ int main(int argc, char **argv)
         else
                 fprintf(stdout, "different\n");
         return 0;
-}
-&lt;/pre&gt;
+}&lt;/pre&gt;
 &lt;p&gt;编译, 运行, 得到的结果是 &lt;strong&gt;different&lt;/strong&gt;,
 应该是默认转换出了问题. 查看UVCIOC_CTRL_QUERY的定义, 所用到的宏主要定义在 &lt;em&gt;&amp;lt;linux/uvcvideo.h&amp;gt;&lt;/em&gt; 和 &lt;em&gt;&amp;lt;sys/ioctl.h&amp;gt;&lt;/em&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-1"&gt;&lt;/a&gt;#define _IOC_TYPECHECK(t) (sizeof(t))
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-2"&gt;&lt;/a&gt;# define _IOC_WRITE     1U
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-3"&gt;&lt;/a&gt;# define _IOC_READ      2U
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-4"&gt;&lt;/a&gt;#define _IOC(dir,type,nr,size) \
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-5"&gt;&lt;/a&gt;        (((dir)  &amp;lt;&amp;lt; _IOC_DIRSHIFT) | \
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-6"&gt;&lt;/a&gt;         ((type) &amp;lt;&amp;lt; _IOC_TYPESHIFT) | \
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-7"&gt;&lt;/a&gt;         ((nr)   &amp;lt;&amp;lt; _IOC_NRSHIFT) | \
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-8"&gt;&lt;/a&gt;         ((size) &amp;lt;&amp;lt; _IOC_SIZESHIFT))
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-9"&gt;&lt;/a&gt;#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
-&lt;a name="rest_code_0d519f958f144e2d90ad770f0c360a51-10"&gt;&lt;/a&gt;#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
-&lt;/pre&gt;&lt;p&gt;将UVCIOC_CTRL_QUERY 展开, 得到的定义是:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-1"&gt;&lt;/a&gt;#define _IOC_TYPECHECK(t) (sizeof(t))
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-2"&gt;&lt;/a&gt;# define _IOC_WRITE     1U
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-3"&gt;&lt;/a&gt;# define _IOC_READ      2U
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-4"&gt;&lt;/a&gt;#define _IOC(dir,type,nr,size) \
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-5"&gt;&lt;/a&gt;        (((dir)  &amp;lt;&amp;lt; _IOC_DIRSHIFT) | \
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-6"&gt;&lt;/a&gt;         ((type) &amp;lt;&amp;lt; _IOC_TYPESHIFT) | \
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-7"&gt;&lt;/a&gt;         ((nr)   &amp;lt;&amp;lt; _IOC_NRSHIFT) | \
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-8"&gt;&lt;/a&gt;         ((size) &amp;lt;&amp;lt; _IOC_SIZESHIFT))
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-9"&gt;&lt;/a&gt;#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
+&lt;a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-10"&gt;&lt;/a&gt;#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;将UVCIOC_CTRL_QUERY 展开, 得到的定义是:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;em&gt;(3U &amp;lt;&amp;lt; 30) | ((sizeof(struct uvc_xu_control_query)) &amp;lt;&amp;lt; 16) | ('u' &amp;lt;&amp;lt; 8) | (0x21)&lt;/em&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;(3U &amp;lt;&amp;lt; 30) | ((sizeof(struct uvc_xu_control_query)) &amp;lt;&amp;lt; 16) | ('u' &amp;lt;&amp;lt; 8) | (0x21)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;计算得到的结果为 &lt;em&gt;0xC0107521&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;在64位机器上, sizeof的返回类型为 &lt;em&gt;long unsigned int&lt;/em&gt;. 所以UVCIOC_CTRL_QUERY的类型为 &lt;em&gt;long unsigned int&lt;/em&gt;. 所以UVCIOC_CTRL_QUERY的实际值为 &lt;em&gt;0x00000000C0107521&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;在上述code发生了两次默认转换:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;em&gt;requet = UVCIOC_CTRL_QUERY&lt;/em&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;long unsigned int&lt;/em&gt; 转换为int&lt;/li&gt;
-&lt;li&gt;long unsigned int 的长度为64 bits, int 为32 bits, 直接截断&lt;/li&gt;
-&lt;li&gt;转换后 &lt;em&gt;request=-1072663263(0xC0107521)&lt;/em&gt; , 小于 0&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;requet = UVCIOC_CTRL_QUERY&lt;/em&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;long unsigned int&lt;/em&gt; 转换为int&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;long unsigned int 的长度为64 bits, int 为32 bits, 直接截断&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;转换后 &lt;em&gt;request=-1072663263(0xC0107521)&lt;/em&gt; , 小于 0&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;em&gt;UVCIOC_CTRL_QUERY == request&lt;/em&gt;&lt;ul&gt;
-&lt;li&gt;requet 转换为 &lt;em&gt;long unsigned int&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;转换后为 &lt;em&gt;0xFFFFFFFFC0107521&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UVCIOC_CTRL_QUERY != 0xFFFFFFFFC0107521&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;UVCIOC_CTRL_QUERY == request&lt;/em&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;requet 转换为 &lt;em&gt;long unsigned int&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;转换后为 &lt;em&gt;0xFFFFFFFFC0107521&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;UVCIOC_CTRL_QUERY != 0xFFFFFFFFC0107521&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;em&gt;request&lt;/em&gt; 参数是传给系统调用ioctl的第二个参数, 而ioctl的定义为:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;em&gt;int ioctl(int d, int request, ...)&lt;/em&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;int ioctl(int d, int request, ...)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;所以将 &lt;em&gt;requet&lt;/em&gt; 定义为unsigned int 也不合适.&lt;/p&gt;
 &lt;p&gt;无论在64位还是32位的机器上, _IOC的定义应该为uint32_t, 所以_IOC的定义应该加强制类型转换.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2718ec5269084742a7d2c42f0e48782b-1"&gt;&lt;/a&gt;#define _IOC(dir,type,nr,size) \
-&lt;a name="rest_code_2718ec5269084742a7d2c42f0e48782b-2"&gt;&lt;/a&gt;        (uint32_t) (    \
-&lt;a name="rest_code_2718ec5269084742a7d2c42f0e48782b-3"&gt;&lt;/a&gt;        (((dir)  &amp;lt;&amp;lt; _IOC_DIRSHIFT) | \
-&lt;a name="rest_code_2718ec5269084742a7d2c42f0e48782b-4"&gt;&lt;/a&gt;         ((type) &amp;lt;&amp;lt; _IOC_TYPESHIFT) | \
-&lt;a name="rest_code_2718ec5269084742a7d2c42f0e48782b-5"&gt;&lt;/a&gt;         ((nr)   &amp;lt;&amp;lt; _IOC_NRSHIFT) | \
-&lt;a name="rest_code_2718ec5269084742a7d2c42f0e48782b-6"&gt;&lt;/a&gt;         ((size) &amp;lt;&amp;lt; _IOC_SIZESHIFT)))
-&lt;/pre&gt;&lt;/div&gt;</description><category>C/C++</category><guid>http://blog.runxcode.com/posts/cast_int_to_long_unsigned_int.html</guid><pubDate>Sun, 21 Sep 2014 13:37:36 GMT</pubDate></item></channel></rss>
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1"&gt;&lt;/a&gt;#define _IOC(dir,type,nr,size) \
+&lt;a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2"&gt;&lt;/a&gt;        (uint32_t) (    \
+&lt;a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3"&gt;&lt;/a&gt;        (((dir)  &amp;lt;&amp;lt; _IOC_DIRSHIFT) | \
+&lt;a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4"&gt;&lt;/a&gt;         ((type) &amp;lt;&amp;lt; _IOC_TYPESHIFT) | \
+&lt;a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5"&gt;&lt;/a&gt;         ((nr)   &amp;lt;&amp;lt; _IOC_NRSHIFT) | \
+&lt;a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6"&gt;&lt;/a&gt;         ((size) &amp;lt;&amp;lt; _IOC_SIZESHIFT)))
+&lt;/pre&gt;&lt;/div&gt;</description><category>C/C++</category><guid>http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/</guid><pubDate>Sun, 21 Sep 2014 13:37:36 GMT</pubDate></item></channel></rss>

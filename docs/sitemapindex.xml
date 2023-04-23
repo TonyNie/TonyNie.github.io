@@ -6,115 +6,119 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_c-c%2B%2B.xml</loc>
+  <loc>http://blog.cloudnie.ort/categories/cat_c-c%2B%2B.xml</loc>
   <lastmod>2017-09-05T07:35:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_c.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/cat_c.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_cc%2B%2B.xml</loc>
+  <loc>http://blog.cloudnie.ort/categories/cat_c/c%2B%2B.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/cat_cc%2B%2B.xml</loc>
   <lastmod>2015-11-21T03:19:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_develop-tools.xml</loc>
-  <lastmod>2017-09-05T07:36:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/cat_develop-tools.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_multimedia.xml</loc>
-  <lastmod>2017-09-05T08:12:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/cat_multimedia.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_network.xml</loc>
+  <loc>http://blog.cloudnie.ort/categories/cat_network.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/cat_other.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/cat_unix.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/cat_za-tan.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/cc%2B%2B.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/develop-tools.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/file-system.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/git.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/io.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/kitten.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/multimedia.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/network.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/other.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://blog.cloudnie.ort/categories/repo-git.xml</loc>
   <lastmod>2017-09-05T07:35:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_other.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/repo.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_unix.xml</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/system-call.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/cat_za-tan.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/cc%2B%2B.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/develop-tools.xml</loc>
-  <lastmod>2017-09-05T07:36:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/file-system.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/git.xml</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/io.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/kitten.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/multimedia.xml</loc>
-  <lastmod>2017-09-05T08:12:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/network.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/other.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/repo-git.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/repo.xml</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/system-call.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://blog.runxcode.com/categories/unix-io.xml</loc>
+  <loc>http://blog.cloudnie.ort/categories/unix-io.xml</loc>
   <lastmod>2016-03-06T13:23:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/unix.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/unix.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/categories/za-tan.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/categories/za-tan.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/galleries/me/rss.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/galleries/me/rss.xml</loc>
+  <lastmod>2023-04-23T13:47:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/galleries/rss.xml</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/galleries/rss.xml</loc>
+  <lastmod>2023-04-23T13:47:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/rss.xml</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/rss.xml</loc>
+  <lastmod>2023-04-23T13:40:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://blog.runxcode.com/sitemap.xml</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
+  <loc>http://blog.cloudnie.ort/sitemap.xml</loc>
+  <lastmod>2023-04-23T13:47:00Z</lastmod>
  </sitemap>
 </sitemapindex>

@@ -1,2 +1,4 @@
-Sitemap: http://blog.runxcode.com/sitemapindex.xml
+Sitemap: http://blog.cloudnie.ort/sitemapindex.xml
 
+User-Agent: *
+Host: blog.cloudnie.ort

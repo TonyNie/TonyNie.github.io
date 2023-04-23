@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>tmux 中 ssh-agent forwarding 失效问题 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/tmux/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../wuxia/" title="武侠小说中派，帮和教的区别" type="text/html">
+<link rel="next" href="../inotify-and-sendfile/" title="inotify 失效问题" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="tmux 中 ssh-agent forwarding 失效问题">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/tmux/">
+<meta property="og:description" content="作为程序员，我是比较懒的，对于重复性的劳动深恶痛绝。
+之前 byobu 和 screen 用的不怎么顺手，没有坚持下去；后来转向 tmux，经过一段时间的摸索，发现还是
+蛮好用的。
+目前的工作模式使用一台 Mac book，ssh 到一台或者两台 Ubuntu 做开发工作，利用 tmux 打开好几个终端。
+下班前做 tmux 的 detach 动作, 第二天上班重新 attach 上去。
+问题来了">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-12-04T23:29:38+08:00">
+<meta property="article:tag" content="develop tools">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">tmux 中 ssh-agent forwarding 失效问题</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-12-04T23:29:38+08:00" itemprop="datePublished" title="2015-12-04 23:29">2015-12-04 23:29</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/develop-tools/" rel="tag">develop tools</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>作为程序员，我是比较懒的，对于重复性的劳动深恶痛绝。</p>
+<p>之前 byobu 和 screen 用的不怎么顺手，没有坚持下去；后来转向 tmux，经过一段时间的摸索，发现还是
+蛮好用的。</p>
+<p>目前的工作模式使用一台 Mac book，ssh 到一台或者两台 Ubuntu 做开发工作，利用 tmux 打开好几个终端。
+下班前做 tmux 的 detach 动作, 第二天上班重新 attach 上去。</p>
+<p>问题来了。重新 attach 后 ssh agent forwarding 就无法成功了，导致向 gerrit push 或者 fetch 的动作 fail；
+无耐之下只能将 tmux session 解散，重新组织队伍。 这样无意义的重复劳动是不能接受的。</p>
+<p>阅读 tmux 的帮主手册； google 之，在 <a class="reference external" href="http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach">stackexchange</a> 找到了解决方案，但觉得不够完美(存在安全风险)；</p>
+<p>又花了两个小时了解 ssh-agent forwarding 的原理和流程， 发现一篇好文章: <a class="reference external" href="http://www.unixwiz.net/techtips/ssh-agent-forwarding.html">An_Illustrated_Guide_to_SSH_Agent_Forwarding</a> .</p>
+<p>仔细阅读帮助手册，发现问题出在环境变量 SSH_AUTH_SOCK 上面。</p>
+<p>SSH_AUTH_SOCK 代表一个 unix domain socket 文件，由 sshd 创建 shell 时指定， 是 ssh-client 和 sshd 做 ssh-agent forwarding 的桥梁；shell 退出时失效； 但是 tmux 在 session 保存了该变量。
+当再次 attach 时 （tmux detach, 退出 shell，登录 shell， tmux attach), tmux session 中保存的 SSH_AUTH_SOCK 还是第一次登录时 sshd 分配的，已经失效，应该使用当前登录 shell 环境变量中保存的值。</p>
+<p>但是 tmux 的 update-environment 和 set-environment 在 attach session 好像不会生效，即使重新 load 配置文件也
+没有效果。暂时只能采用 <a class="reference external" href="http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach">stackexchange</a> 的方案。</p>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../wuxia/" rel="prev" title="武侠小说中派，帮和教的区别">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../inotify-and-sendfile/" rel="next" title="inotify 失效问题">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

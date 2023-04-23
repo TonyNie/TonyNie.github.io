@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>FAT32 文件系统时间戳问题 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/file-time-at-fat32/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../virtualbox/" title="VirtualBox 找不到网络界面" type="text/html">
+<link rel="next" href="../talking-from-dead-lock/" title="从一个死锁问题说起" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="FAT32 文件系统时间戳问题">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/file-time-at-fat32/">
+<meta property="og:description" content="最近遇到一个文件创建时间显示异常问题。嵌入系统中 SD 的文件系统默认选择 vfat，
+就是 FAT32；在嵌入式系统中查看文件的创建时间是正常的，但如果将 SD 卡插入到 PC 机
+上面，无论是 Ubuntu 还是 Windows，文件的创建时间都会显示异常，比实际创建时间早8个小时。
+嵌入式系统上的时区为东8区（北京时间）；其他应用获取时间和日期都正常。开始怀疑是 vfat 的问题；
+但在 U">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-07-27T19:56:50+08:00">
+<meta property="article:tag" content="File System">
+<meta property="article:tag" content="UNIX">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">FAT32 文件系统时间戳问题</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2016-07-27T19:56:50+08:00" itemprop="datePublished" title="2016-07-27 19:56">2016-07-27 19:56</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/file-system/" rel="tag">File System</a></li>
+            <li><a class="tag p-category" href="../../categories/unix/" rel="tag">UNIX</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>最近遇到一个文件创建时间显示异常问题。嵌入系统中 SD 的文件系统默认选择 vfat，
+就是 FAT32；在嵌入式系统中查看文件的创建时间是正常的，但如果将 SD 卡插入到 PC 机
+上面，无论是 Ubuntu 还是 Windows，文件的创建时间都会显示异常，比实际创建时间早8个小时。</p>
+<p>嵌入式系统上的时区为东8区（北京时间）；其他应用获取时间和日期都正常。开始怀疑是 vfat 的问题；
+但在 Ubuntu 14.04 上测试没有遇到问题。</p>
+<p>有同事反应说他们之前也碰到过类似的问题，解决办法是调用 <em>settimeofday</em> 时提供时区参数。</p>
+<p>查阅 settimeofday 的在线手册，发现有这样一段话：</p>
+<p>Under  Linux  there are some peculiar "warp clock" semantics associated with the settimeofday() system call if on the
+very first call (after booting) that has a non-NULL tz argument, the tv argument is NULL and the tz_minuteswest field
+is  nonzero.   (The tz_dsttime field should be zero for this case.)  In such a case it is assumed that the CMOS clock
+is on local time, and that it has to be incremented by this amount to get UTC system time.  No doubt it is a bad idea
+to use this feature</p>
+<p>查看内核中关于时间的代码，发现 CMOS Clock 存储的是本地时间；而内核对此一无所知。因此需要某种手段来告知内核。内核为此还
+定义了一个全局的变量 <em>sys_tz</em> 来记录时区信息。在呼叫 <em>settimeofday</em> 时，如果时区参数不为空，内核就会修改 <em>sys_tz</em> 变量。</p>
+<p>因此怀疑 FAT32 中记录的文件创建时间是 locale time，不是 UTC 时间。查阅 FAT32 的代码发现，在创建文件节点时，会呼叫
+<em>fat_time_unix2fat</em> 时将 UTC 时间转换为本地时间。在转换的过程中，使用了 <em>sys_tz</em> 保存的时区信息或者
+挂载文件系统时指定的时区信息。</p>
+<p>内核也建议在系统上电之后，应尽快设置 <em>sys_tz</em>.</p>
+<p>解决方案：系统启动后，利用 <em>hwclock</em> 设置内核的 <em>sys_tz</em> 变量。</p>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../virtualbox/" rel="prev" title="VirtualBox 找不到网络界面">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../talking-from-dead-lock/" rel="next" title="从一个死锁问题说起">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (文章分类：杂谈)</title><link>http://blog.runxcode.com/</link><description></description><atom:link href="http://blog.runxcode.com/categories/cat_za-tan.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 05 Sep 2017 07:35:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>武侠小说中派，帮和教的区别</title><link>http://blog.runxcode.com/posts/wuxia.html</link><dc:creator>Tony Nie</dc:creator><description>&lt;div&gt;&lt;p&gt;武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？&lt;/p&gt;
-&lt;div class="section" id="id1"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 杂谈)</title><link>http://blog.cloudnie.ort/</link><description></description><atom:link href="http://blog.cloudnie.ort/categories/cat_za-tan.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sun, 23 Apr 2023 13:40:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>武侠小说中派，帮和教的区别</title><link>http://blog.cloudnie.ort/posts/wuxia/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？&lt;/p&gt;
+&lt;section id="section-1"&gt;
 &lt;h2&gt;派&lt;/h2&gt;
 &lt;p&gt;派是以某一种或一类武功为基础而形成的组织；成员修习本组织的特色武功，比如武当派，少林派，华山派，
 峨眉派, 逍遥派等等， 这些派都有独特的武功绝技， 比如武当的太极拳和太极剑， 少林的七十二绝技，
 华山剑法，峨眉剑法，逍遥派的北冥神功; 总部多位于山上, 首领为掌门。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
+&lt;/section&gt;
+&lt;section id="section-2"&gt;
 &lt;h2&gt;帮&lt;/h2&gt;
 &lt;p&gt;帮是以某一种谋生手段为基础为形成的组织; 成员以相同的职业为生, 比如丐帮的弟子，以乞讨为生;
 盐帮，以贩卖盐为生计；帮内的成员的武功比较杂，但帮主通常具有武功绝技; 总部多位于城市或者乡镇，
 首领为帮主。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id3"&gt;
+&lt;/section&gt;
+&lt;section id="section-3"&gt;
 &lt;h2&gt;教&lt;/h2&gt;
 &lt;p&gt;教是以某一种信仰而形成的组织, 成员在信仰上比较统一；比如全真教，明教等等；全真教的弟子会
 修习全真教的武功，所以教全真派也说的过去；明教的弟子武功就比较杂乱，但教主具有独特的武功绝技，
 九阳神功，而四大护法的武功路数完全不一样; 总部通常位于偏远的地区， 首领为教主。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id4"&gt;
+&lt;/section&gt;
+&lt;section id="section-4"&gt;
 &lt;h2&gt;其他&lt;/h2&gt;
 &lt;p&gt;除了派、帮和教以外，还有门、镖局等等。&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>杂谈</category><guid>http://blog.runxcode.com/posts/wuxia.html</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item></channel></rss>
+&lt;/section&gt;</description><category>杂谈</category><guid>http://blog.cloudnie.ort/posts/wuxia/</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item></channel></rss>

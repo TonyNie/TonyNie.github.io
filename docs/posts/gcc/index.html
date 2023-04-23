@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>gcc 常用实例 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/gcc/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../git/" title="git 常用实例" type="text/html">
+<link rel="next" href="../ftok/" title="ftok 陷阱" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="gcc 常用实例">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/gcc/">
+<meta property="og:description" content="前言
+GCC (the GNU Compiler Collection) 是由GNU组织开发的编译器套件, 可以执行预处理,编译,汇编和链接动作. 这篇文章首先向大家介绍如何生成C语言的可执行文件, 共享库(动态库) 以及静态库, 然后介绍一下gcc常用的选项.
+
+
+例子
+
+以下的例子都在Ubuntu13.10 上使用gcc 4.8.1 测试通过. 假设有三个文件
+
+
+main.c 定义main函">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-03-22T22:10:59+08:00">
+<meta property="article:tag" content="develop tools">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">gcc 常用实例</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-03-22T22:10:59+08:00" itemprop="datePublished" title="2015-03-22 22:10">2015-03-22 22:10</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/develop-tools/" rel="tag">develop tools</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <section id="section-1"><h2>前言</h2>
+<p><a class="reference external" href="http://gcc.gnu.org/">GCC</a> (the GNU Compiler Collection) 是由GNU组织开发的编译器套件, 可以执行预处理,编译,汇编和链接动作. 这篇文章首先向大家介绍如何生成C语言的可执行文件, 共享库(动态库) 以及静态库, 然后介绍一下gcc常用的选项.</p>
+</section><section id="section-2"><h2>例子</h2>
+<ol class="arabic">
+<li>
+<p>以下的例子都在Ubuntu13.10 上使用gcc 4.8.1 测试通过. 假设有三个文件</p>
+<blockquote>
+<ul class="simple">
+<li><p>main.c 定义main函数</p></li>
+<li><p>a.c 定义add 函数</p></li>
+<li><p>b.c 定义sub 函数</p></li>
+</ul>
+</blockquote>
+</li>
+<li><dl class="simple">
+<dt>可执行文件</dt>
+<dd>
+<p>gcc -o test main.c a.c b.c</p>
+</dd>
+</dl></li>
+<li>
+<p>共享库</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>生成共享库</dt>
+<dd>
+<p>gcc -shared -o libmymath.so a.c b.c</p>
+</dd>
+</dl></li>
+<li><dl class="simple">
+<dt>使用共享库</dt>
+<dd>
+<p>gcc -o test main.c -L. -lmymath</p>
+</dd>
+</dl></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>静态库</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>生成静态库</dt>
+<dd><ol class="arabic simple">
+<li><p>gcc -c a.c b.c</p></li>
+<li><p>ar crv libmymath.a a.o b.o</p></li>
+</ol></dd>
+</dl></li>
+<li><dl class="simple">
+<dt>使用静态库</dt>
+<dd>
+<p>gcc -o test main.c -static -L. -lmymath</p>
+</dd>
+</dl></li>
+<li><p>注意: 当ld的搜索默认搜索路径即包含共享库又包含静态库时, 默认选择链接共享库；若需要链接静态库, 则需要加上-static选项</p></li>
+</ul>
+</blockquote>
+</li>
+</ol></section><section id="section-3"><h2>选项</h2>
+<ol class="arabic">
+<li>
+<p>-I(大写的i) 添加路径到预处理器的搜索目录</p>
+<blockquote>
+<ul>
+<li>
+<p>使用方法 -IPATH</p>
+<blockquote>
+<ul class="simple">
+<li><p>gcc -I. -o test main.c a.c b.c</p></li>
+<li><p>gcc -I/home/tony/work/myheaer -o test main.c</p></li>
+</ul>
+</blockquote>
+</li>
+<li><p>注意: 在搜索头文件时, 通过-I添加的目录会优先与系统默认的搜索目录</p></li>
+</ul>
+</blockquote>
+</li>
+<li><dl>
+<dt>-D 预定义宏</dt>
+<dd><ul>
+<li>
+<p>使用方法 -DNAME</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>gcc -DCONFIG_GATE -o test main.c</dt>
+<dd>
+<p>等同于: #define CONFIG_GATE=1</p>
+</dd>
+</dl></li>
+<li><dl class="simple">
+<dt>gcc -DCONFIG_GATE_VALUE=128 -o test main.c</dt>
+<dd>
+<p>等同于: #define CONFIG_GATE_VALU=128</p>
+</dd>
+</dl></li>
+</ul>
+</blockquote>
+</li>
+</ul></dd>
+</dl></li>
+<li>
+<p>-c 执行编译和汇编, 但不执行链接动作, 生成中间文件</p>
+<blockquote>
+<ul class="simple">
+<li><p>gcc -c main.c a.c b.c</p></li>
+<li><p>生成 main.o, a.o, b.o</p></li>
+<li><p>gcc -c main.s a.s b.s</p></li>
+<li><p>生成 main.o, a.o, b.o</p></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>-S 执行编译动作, 但不执行汇编, 生成汇编文件, 通常文件后缀为.s</p>
+<blockquote>
+<ul class="simple">
+<li><p>gcc -S main.c a.c b.c</p></li>
+<li><p>生成 main.s, a.s, b.s</p></li>
+</ul>
+</blockquote>
+</li>
+<li><dl class="simple">
+<dt>-L 添加路径到链接器的搜索目录</dt>
+<dd>
+<p>gcc -o test main.c -L.</p>
+</dd>
+</dl></li>
+<li><dl class="simple">
+<dt>-l(小写的L) 在指定的library中查找符号表</dt>
+<dd>
+<p>gcc -o test main.c -L. -lmypath</p>
+</dd>
+</dl></li>
+<li><dl class="simple">
+<dt>-Wall 打开所有的编译警告</dt>
+<dd>
+<p>gcc -Wall -o test main.c</p>
+</dd>
+</dl></li>
+<li><dl class="simple">
+<dt>-static 优先选择链接静态库</dt>
+<dd>
+<p>gcc -o test main.c -static -L. -lmymath</p>
+</dd>
+</dl></li>
+<li><dl class="simple">
+<dt>-shared 生成的目标为共享库</dt>
+<dd>
+<p>gcc -shared -o libmymath.so a.c b.c</p>
+</dd>
+</dl></li>
+<li><p>-o 指定生成目标的名字</p></li>
+<li>
+<p>-Wl 传递参数给链接器</p>
+<blockquote>
+<ul class="simple">
+<li><p>gcc -o test main.c -Wl,-Map=out.map -L. -lmymath</p></li>
+<li><p>gcc -o test main.c -Wl,-rpath=/media/code/exercise/gcc -L. -lmymath</p></li>
+</ul>
+</blockquote>
+</li>
+<li><p>rpath 的作用是添加目录到运行时共享库搜索路径</p></li>
+<li><dl class="simple">
+<dt>-g 生成debugging信息, 在使用debug工具比如GCB的时候需要</dt>
+<dd>
+<p>gcc -g -o test main.c a.c .bc</p>
+</dd>
+</dl></li>
+</ol></section><section id="section-4"><h2>结束语</h2>
+<blockquote>
+<p>虽然gcc是一个非常强大的工具, 但当一个工程比较庞大是, 直接使用gcc是不明智的选择.</p>
+<ul class="simple">
+<li><p>对于中等规模的工程,使用makefile来管理是一个不错的选择</p></li>
+<li><p>但对于非常庞大的工程, 比如KDE, 可以使用更高阶的管理工具, 比如 <a class="reference external" href="http://www.cmake.org/">CMake</a> , <a class="reference external" href="http://www.gnu.org/software/automake/">automake</a> 以及 <a class="reference external" href="http://scons.org/">Scons</a></p></li>
+</ul>
+</blockquote>
+</section>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../git/" rel="prev" title="git 常用实例">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../ftok/" rel="next" title="ftok 陷阱">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>_IOC定义的不严谨性 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../write-blog-with-restructuredtext/" title="使用nikola生成静态博客" type="text/html">
+<link rel="next" href="../the-spirit-cat/" title="小咪的奇怪行为" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="_IOC定义的不严谨性">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/">
+<meta property="og:description" content="C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.
+
+int v4l2_ioctl(int requet, void *arg) {
+        if (UVCIOC_CTRL_QUERY == request) {
+        /* do something */
+        }
+}
+
+实际执行过程发现, UVCIOC_CTRL_QUERY">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-09-21T21:37:36+08:00">
+<meta property="article:tag" content="C/C++">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">_IOC定义的不严谨性</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2014-09-21T21:37:36+08:00" itemprop="datePublished" title="2014-09-21 21:37">2014-09-21 21:37</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/cc%2B%2B/" rel="tag">C/C++</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <blockquote>
+<p>C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.</p>
+</blockquote>
+<div class="code"><pre class="code text"><a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1"></a>int v4l2_ioctl(int requet, void *arg) {
+<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2"></a>        if (UVCIOC_CTRL_QUERY == request) {
+<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3"></a>        /* do something */
+<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4"></a>        }
+<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5"></a>}
+</pre></div>
+<p>实际执行过程发现, <em>UVCIOC_CTRL_QUERY == request</em> 永远为false, 即使request == UVCIOC_CTRL_QUERY.</p>
+<dl class="simple">
+<dt>运行环境:</dt>
+<dd>
+<p>Ubuntu12.04 x86_64</p>
+</dd>
+</dl>
+<p>写了一段测试code:
+.. sourcecode:</p>
+<pre class="literal-block">int main(int argc, char **argv)
+{
+        int request = UVCIOC_CTRL_QUERY;
+
+        if (UVCIOC_CTRL_QUERY == request)
+                fprintf(stdout, "equal\n");
+        else
+                fprintf(stdout, "different\n");
+        return 0;
+}</pre>
+<p>编译, 运行, 得到的结果是 <strong>different</strong>,
+应该是默认转换出了问题. 查看UVCIOC_CTRL_QUERY的定义, 所用到的宏主要定义在 <em>&lt;linux/uvcvideo.h&gt;</em> 和 <em>&lt;sys/ioctl.h&gt;</em>.</p>
+<div class="code"><pre class="code text"><a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-1"></a>#define _IOC_TYPECHECK(t) (sizeof(t))
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-2"></a># define _IOC_WRITE     1U
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-3"></a># define _IOC_READ      2U
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-4"></a>#define _IOC(dir,type,nr,size) \
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-5"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-6"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-7"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-8"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT))
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-9"></a>#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
+<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-10"></a>#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
+</pre></div>
+<p>将UVCIOC_CTRL_QUERY 展开, 得到的定义是:</p>
+<blockquote>
+<p><em>(3U &lt;&lt; 30) | ((sizeof(struct uvc_xu_control_query)) &lt;&lt; 16) | ('u' &lt;&lt; 8) | (0x21)</em></p>
+</blockquote>
+<p>计算得到的结果为 <em>0xC0107521</em></p>
+<p>在64位机器上, sizeof的返回类型为 <em>long unsigned int</em>. 所以UVCIOC_CTRL_QUERY的类型为 <em>long unsigned int</em>. 所以UVCIOC_CTRL_QUERY的实际值为 <em>0x00000000C0107521</em></p>
+<p>在上述code发生了两次默认转换:</p>
+<ol class="arabic simple">
+<li>
+<p><em>requet = UVCIOC_CTRL_QUERY</em></p>
+<ul class="simple">
+<li><p><em>long unsigned int</em> 转换为int</p></li>
+<li><p>long unsigned int 的长度为64 bits, int 为32 bits, 直接截断</p></li>
+<li><p>转换后 <em>request=-1072663263(0xC0107521)</em> , 小于 0</p></li>
+</ul>
+</li>
+<li>
+<p><em>UVCIOC_CTRL_QUERY == request</em></p>
+<ul class="simple">
+<li><p>requet 转换为 <em>long unsigned int</em></p></li>
+<li><p>转换后为 <em>0xFFFFFFFFC0107521</em></p></li>
+<li><p><strong>UVCIOC_CTRL_QUERY != 0xFFFFFFFFC0107521</strong></p></li>
+</ul>
+</li>
+</ol>
+<p><em>request</em> 参数是传给系统调用ioctl的第二个参数, 而ioctl的定义为:</p>
+<blockquote>
+<p><em>int ioctl(int d, int request, ...)</em></p>
+</blockquote>
+<p>所以将 <em>requet</em> 定义为unsigned int 也不合适.</p>
+<p>无论在64位还是32位的机器上, _IOC的定义应该为uint32_t, 所以_IOC的定义应该加强制类型转换.</p>
+<div class="code"><pre class="code text"><a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1"></a>#define _IOC(dir,type,nr,size) \
+<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2"></a>        (uint32_t) (    \
+<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
+<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
+<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
+<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT)))
+</pre></div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../write-blog-with-restructuredtext/" rel="prev" title="使用nikola生成静态博客">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../the-spirit-cat/" rel="next" title="小咪的奇怪行为">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

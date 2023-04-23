@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>inet_ntoa不可重入性 | 凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/posts/inet_ntoa/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
+<link rel="prev" href="../ketten-and-me/" title="我和小咪" type="text/html">
+<link rel="next" href="../%20FFmpeg/" title="FFmpeg 之FFM" type="text/html">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="inet_ntoa不可重入性">
+<meta property="og:url" content="http://blog.cloudnie.ort/posts/inet_ntoa/">
+<meta property="og:description" content='inet_ntoa 的不可重入性
+在使用inet_ntoa时， 碰到一个很奇观的现象。
+代码如下：
+fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
+ inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
+ inet\_ntoa(to.sin\_addr), ntoh'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-08-30T14:36:49+08:00">
+<meta property="article:tag" content="Network">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">inet_ntoa不可重入性</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2014-08-30T14:36:49+08:00" itemprop="datePublished" title="2014-08-30 14:36">2014-08-30 14:36</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    CloudNie
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+    
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> 标签:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/network/" rel="tag">Network</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <section id="inet-ntoa"><h2>inet_ntoa 的不可重入性</h2>
+<p>在使用inet_ntoa时， 碰到一个很奇观的现象。</p>
+<p>代码如下：</p>
+<div class="code"><pre class="code text"><a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" href="#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1"></a>fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
+<a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" href="#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2"></a> inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
+<a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" href="#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3"></a> inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
+</pre></div>
+<p>分析输出log， 发现除了to.sin_addr,
+其他参数都是正确的；to.sin_addr的输出值为from.sin_addr值；但使用gdb来debug发现，
+to.sin_addr是正确的，也就是说输出到标准输出设备(stdout)上的值，
+不是to.sin_addr的值。</p>
+<p>查看inet_ntoa的在线手册：</p>
+<blockquote>
+<p><em>The inet_ntoa() function converts the Internet host address in, given in network byte order, to a string in IPv4 dotted-decimal notation. The string is returned in a statically allocated buffer, which subsequent calls will overwrite.</em></p>
+</blockquote>
+<p>很明显， inet_ntoa是不可重入的，每次调用都返回已分配好的一段memory地址，也就是说inet_ntoa的返回值（一个char*指针）是固定的，但memory中包含的内容不一样。
+在上述代码中， 在计算fprintf参数时， inet_ntoa被调用了两次，第一次的调用结果被第二次覆盖住；输出结果也反应了参数的入栈顺序为从右到左。</p>
+<p>结论：</p>
+<ul class="simple">
+<li><p>inet_ntoa 是不可重入的，在多线程的环境下要更加注意</p></li>
+<li><p>每次调用inet_ntoa都会覆盖上次调用的计算结果， 要注意保存结果</p></li>
+</ul>
+<p>另外， 为support IPV6, 推荐使用inet_ntop函数。</p>
+</section>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../ketten-and-me/" rel="prev" title="我和小咪">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a href="../%20FFmpeg/" rel="next" title="FFmpeg 之FFM">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+        
+    
+
+
+        </section></article><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

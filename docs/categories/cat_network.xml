@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (文章分类：Network)</title><link>http://blog.runxcode.com/</link><description></description><atom:link href="http://blog.runxcode.com/categories/cat_network.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 05 Sep 2017 07:35:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>inet_ntoa不可重入性</title><link>http://blog.runxcode.com/posts/inet_ntoa.html</link><dc:creator>Tony Nie</dc:creator><description>&lt;div&gt;&lt;p&gt;在使用inet_ntoa时， 碰到一个很奇观的现象。&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 Network)</title><link>http://blog.cloudnie.ort/</link><description></description><atom:link href="http://blog.cloudnie.ort/categories/cat_network.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sun, 23 Apr 2023 13:40:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>inet_ntoa不可重入性</title><link>http://blog.cloudnie.ort/posts/inet_ntoa/</link><dc:creator>CloudNie</dc:creator><description>&lt;section id="inet-ntoa"&gt;
+&lt;h2&gt;inet_ntoa 的不可重入性&lt;/h2&gt;
+&lt;p&gt;在使用inet_ntoa时， 碰到一个很奇观的现象。&lt;/p&gt;
 &lt;p&gt;代码如下：&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4e9c7149ac394c46a6e394501fcb0cf0-1"&gt;&lt;/a&gt;fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
-&lt;a name="rest_code_4e9c7149ac394c46a6e394501fcb0cf0-2"&gt;&lt;/a&gt; inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
-&lt;a name="rest_code_4e9c7149ac394c46a6e394501fcb0cf0-3"&gt;&lt;/a&gt; inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
-&lt;/pre&gt;&lt;p&gt;分析输出log， 发现除了to.sin_addr,
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" href="http://blog.cloudnie.ort/posts/inet_ntoa/#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1"&gt;&lt;/a&gt;fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
+&lt;a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" href="http://blog.cloudnie.ort/posts/inet_ntoa/#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2"&gt;&lt;/a&gt; inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
+&lt;a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" href="http://blog.cloudnie.ort/posts/inet_ntoa/#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3"&gt;&lt;/a&gt; inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;分析输出log， 发现除了to.sin_addr,
 其他参数都是正确的；to.sin_addr的输出值为from.sin_addr值；但使用gdb来debug发现，
 to.sin_addr是正确的，也就是说输出到标准输出设备(stdout)上的值，
 不是to.sin_addr的值。&lt;/p&gt;
 &lt;p&gt;查看inet_ntoa的在线手册：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;em&gt;The inet_ntoa() function converts the Internet host address in, given in network byte order, to a string in IPv4 dotted-decimal notation. The string is returned in a statically allocated buffer, which subsequent calls will overwrite.&lt;/em&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;The inet_ntoa() function converts the Internet host address in, given in network byte order, to a string in IPv4 dotted-decimal notation. The string is returned in a statically allocated buffer, which subsequent calls will overwrite.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;很明显， inet_ntoa是不可重入的，每次调用都返回已分配好的一段memory地址，也就是说inet_ntoa的返回值（一个char*指针）是固定的，但memory中包含的内容不一样。
 在上述代码中， 在计算fprintf参数时， inet_ntoa被调用了两次，第一次的调用结果被第二次覆盖住；输出结果也反应了参数的入栈顺序为从右到左。&lt;/p&gt;
 &lt;p&gt;结论：&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;inet_ntoa 是不可重入的，在多线程的环境下要更加注意&lt;/li&gt;
-&lt;li&gt;每次调用inet_ntoa都会覆盖上次调用的计算结果， 要注意保存结果&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;inet_ntoa 是不可重入的，在多线程的环境下要更加注意&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;每次调用inet_ntoa都会覆盖上次调用的计算结果， 要注意保存结果&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;另外， 为support IPV6, 推荐使用inet_ntop函数。&lt;/p&gt;&lt;/div&gt;</description><category>Network</category><guid>http://blog.runxcode.com/posts/inet_ntoa.html</guid><pubDate>Sat, 30 Aug 2014 06:36:49 GMT</pubDate></item></channel></rss>
+&lt;p&gt;另外， 为support IPV6, 推荐使用inet_ntop函数。&lt;/p&gt;
+&lt;/section&gt;</description><category>Network</category><guid>http://blog.cloudnie.ort/posts/inet_ntoa/</guid><pubDate>Sat, 30 Aug 2014 06:36:49 GMT</pubDate></item></channel></rss>

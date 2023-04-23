@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (文章分类：Other)</title><link>http://blog.runxcode.com/</link><description></description><atom:link href="http://blog.runxcode.com/categories/cat_other.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 05 Sep 2017 07:35:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GFW</title><link>http://blog.runxcode.com/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW.html</link><dc:creator>Tony Nie</dc:creator><description>&lt;div&gt;&lt;p&gt;今天发现VPS(linode) 无法访问，ssh 和 http 同时罢工.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 Other)</title><link>http://blog.cloudnie.ort/</link><description></description><atom:link href="http://blog.cloudnie.ort/categories/cat_other.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sun, 23 Apr 2023 13:40:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GFW</title><link>http://blog.cloudnie.ort/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;今天发现VPS(linode) 无法访问，ssh 和 http 同时罢工.&lt;/p&gt;
 &lt;p&gt;逐步检查问题:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;dns 没有问题&lt;/li&gt;
-&lt;li&gt;ping 不通&lt;/li&gt;
-&lt;li&gt;traceroute 失败&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;dns 没有问题&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ping 不通&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;traceroute 失败&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;通过 Ajax Console 可以正常访问。
 之前有利用 VPS 通过 ssh 翻墙，但发现 ssh server 使用的端口很快就不能使用；
@@ -13,4 +13,4 @@
 &lt;p&gt;网上搜索发现， 早就用同学遇到这种情况了； GFW 可以探测到 走 ssh 的 http， 先封端口，再封IP.&lt;/p&gt;
 &lt;p&gt;从不传谣， 不信谣的我，真的很愤怒！&lt;/p&gt;
 &lt;p&gt;伟大的GFW 开发者， 你们真牛!!&lt;/p&gt;
-&lt;p&gt;方校长， 一路走好!!！&lt;/p&gt;&lt;/div&gt;</description><category>Other</category><guid>http://blog.runxcode.com/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW.html</guid><pubDate>Sun, 14 Jun 2015 14:05:34 GMT</pubDate></item></channel></rss>
+&lt;p&gt;方校长， 一路走好!!！&lt;/p&gt;</description><category>Other</category><guid>http://blog.cloudnie.ort/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW/</guid><pubDate>Sun, 14 Jun 2015 14:05:34 GMT</pubDate></item></channel></rss>

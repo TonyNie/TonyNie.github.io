@@ -1,242 +1,227 @@
 <!DOCTYPE html>
-<html prefix="
-og: http://ogp.me/ns#
-article: http://ogp.me/ns/article#
-" lang="zh_cn">
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="zh_cn">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="涛声依旧">
 <meta name="viewport" content="width=device-width">
-<title>凡云的博客 | 凡云的博客</title>
-<link href="assets/css/bitter.css" rel="stylesheet" type="text/css">
-<link href="assets/css/main.css" rel="stylesheet" type="text/css">
-<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
-<link href="assets/css/code.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
-<link rel="canonical" href="http://blog.runxcode.com/index.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+<title>凡云的博客</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="rss.xml">
+<link rel="canonical" href="http://blog.cloudnie.ort/">
+<link rel="next" href="index-3.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="prefetch" href="posts/speed-up-the-downloading-of-sdk/" type="text/html">
 </head>
 <body>
+    <a href="#page-content" class="sr-only sr-only-focusable">跳到主内容</a>
+    
     <section class="social"><ul>
-<li><a href="#" title="Home"><i class="icon-home"></i></a></li>
-            <li><a href="archive.html" title="Archives"><i class="icon-folder-open-alt"></i></a></li>
-            <li><a href="categories/index.html" title="Tags"><i class="icon-tags"></i></a></li>
-            <li><a href="rss.xml" title="RSS"><i class="icon-rss"></i></a></li>
-            <li><a href="posts/about_me.html" title="About me"><i class="icon-user"></i></a></li>
-            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="icon-twitter"></i></a></li>
-            <li><a href="https://github.com/TonyNie" title="My Github"><i class="icon-github"></i></a></li>
+<li><a href="#" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="posts/about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
 
         </ul></section><section class="page-content"><div class="content" rel="main">
-        <div class="post">
-            <h1 class="title"><a href="posts/speed-up-the-downloading-of-sdk.html">repo sync 加速</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2017-09-05T15:32:28+08:00">2017-09-05 15:32</time>
-</div>
-                <div class="stats">
-                            
+            
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/git.html" rel="tag">git</a></li>
-           <li><a class="tag p-category" href="categories/repo.html" rel="tag">repo</a></li>
-        </ul>
-</div>
+    
 
-            </div>
-            <div class="body">
-                <div>
-<p>项目是用 repo 来管理 SDK，随着 SDK 中包含的仓库越来越多，以及单个仓库的体积越来越大，下载 SDK 的时间越来越长，目前已经超过了 15 分钟。
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/speed-up-the-downloading-of-sdk/" class="u-url">repo sync 加速</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/speed-up-the-downloading-of-sdk/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-09-05T15:32:28+08:00" title="2017-09-05 15:32">2017-09-05 15:32</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>项目是用 repo 来管理 SDK，随着 SDK 中包含的仓库越来越多，以及单个仓库的体积越来越大，下载 SDK 的时间越来越长，目前已经超过了 15 分钟。
 有没有办法加速 SDK 的下载？ 答案是有的，就是利用  repo 命令的 --reference 参数，可以将下载时间优化到 1 分钟左右。</p>
 <p>该方法需要先创建本地 SDK mirror，然后在执行 repo init 命令的时候设定 --reference 参数。
 SDK mirror 只需要创建一次，未来 sync 代码时可以重复使用。</p>
 <p>创建 SDK mirror:</p>
-<pre class="code text"><a name="rest_code_888dc436f2464f1b853d8f759a6b6184-1"></a>mkdir sdk_repo_mirror
-<a name="rest_code_888dc436f2464f1b853d8f759a6b6184-2"></a>cd sdk_repo_mirror
-<a name="rest_code_888dc436f2464f1b853d8f759a6b6184-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --mirror
-<a name="rest_code_888dc436f2464f1b853d8f759a6b6184-4"></a>repo sync --no-tags;
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_889b2214ea394a119eb969156ae294f6-1" name="rest_code_889b2214ea394a119eb969156ae294f6-1" href="posts/speed-up-the-downloading-of-sdk/#rest_code_889b2214ea394a119eb969156ae294f6-1"></a>mkdir sdk_repo_mirror
+<a id="rest_code_889b2214ea394a119eb969156ae294f6-2" name="rest_code_889b2214ea394a119eb969156ae294f6-2" href="posts/speed-up-the-downloading-of-sdk/#rest_code_889b2214ea394a119eb969156ae294f6-2"></a>cd sdk_repo_mirror
+<a id="rest_code_889b2214ea394a119eb969156ae294f6-3" name="rest_code_889b2214ea394a119eb969156ae294f6-3" href="posts/speed-up-the-downloading-of-sdk/#rest_code_889b2214ea394a119eb969156ae294f6-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --mirror
+<a id="rest_code_889b2214ea394a119eb969156ae294f6-4" name="rest_code_889b2214ea394a119eb969156ae294f6-4" href="posts/speed-up-the-downloading-of-sdk/#rest_code_889b2214ea394a119eb969156ae294f6-4"></a>repo sync --no-tags;
+</pre></div>
 <p>Download SDK Source:</p>
-<pre class="code text"><a name="rest_code_45aa9f0690ed40cb9682efc2ade65ae0-1"></a>mkdir sdk_work
-<a name="rest_code_45aa9f0690ed40cb9682efc2ade65ae0-2"></a>cd sdk_work
-<a name="rest_code_45aa9f0690ed40cb9682efc2ade65ae0-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --reference=YOUR_SDK_MIRROR_PATH
-<a name="rest_code_45aa9f0690ed40cb9682efc2ade65ae0-4"></a>repo sync
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_6b670f79662b4107ac220bdfe07e3934-1" name="rest_code_6b670f79662b4107ac220bdfe07e3934-1" href="posts/speed-up-the-downloading-of-sdk/#rest_code_6b670f79662b4107ac220bdfe07e3934-1"></a>mkdir sdk_work
+<a id="rest_code_6b670f79662b4107ac220bdfe07e3934-2" name="rest_code_6b670f79662b4107ac220bdfe07e3934-2" href="posts/speed-up-the-downloading-of-sdk/#rest_code_6b670f79662b4107ac220bdfe07e3934-2"></a>cd sdk_work
+<a id="rest_code_6b670f79662b4107ac220bdfe07e3934-3" name="rest_code_6b670f79662b4107ac220bdfe07e3934-3" href="posts/speed-up-the-downloading-of-sdk/#rest_code_6b670f79662b4107ac220bdfe07e3934-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --reference=YOUR_SDK_MIRROR_PATH
+<a id="rest_code_6b670f79662b4107ac220bdfe07e3934-4" name="rest_code_6b670f79662b4107ac220bdfe07e3934-4" href="posts/speed-up-the-downloading-of-sdk/#rest_code_6b670f79662b4107ac220bdfe07e3934-4"></a>repo sync
+</pre></div>
 <p>repo 仓库中的注释:</p>
-<pre class="code text"><a name="rest_code_da63dd18e8b94cd7a99d5471a33294b5-1"></a>The --reference option can be used to point to a directory that has the content of a --mirror sync. This will make the working
-<a name="rest_code_da63dd18e8b94cd7a99d5471a33294b5-2"></a>directory use as much data as possible from the local reference directory when fetching from the server. This will make the sync
-<a name="rest_code_da63dd18e8b94cd7a99d5471a33294b5-3"></a>go a lot faster by reducing data traffic on the network.
-</pre>
-</div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/media_trap.html">多媒体开发注意事项</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2017-01-28T21:26:15+08:00">2017-01-28 21:26</time>
-</div>
-                <div class="stats">
-                            
+<div class="code"><pre class="code text"><a id="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-1" name="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-1" href="posts/speed-up-the-downloading-of-sdk/#rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-1"></a>The --reference option can be used to point to a directory that has the content of a --mirror sync. This will make the working
+<a id="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-2" name="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-2" href="posts/speed-up-the-downloading-of-sdk/#rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-2"></a>directory use as much data as possible from the local reference directory when fetching from the server. This will make the sync
+<a id="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-3" name="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-3" href="posts/speed-up-the-downloading-of-sdk/#rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-3"></a>go a lot faster by reducing data traffic on the network.
+</pre></div>
+    </div>
+    </article><article class="h-entry post-private" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/media_trap/" class="u-url">多媒体开发注意事项</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/media_trap/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-28T21:26:15+08:00" title="2017-01-28 21:26">2017-01-28 21:26</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/multimedia.html" rel="tag">Multimedia</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <ol class="arabic simple">
-<li>时间戳</li>
-<li>网络缓存</li>
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <ol class="arabic simple">
+<li><p>时间戳</p></li>
+<li><p>网络缓存</p></li>
 </ol>
 </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/repo_vs_tplink.html">Repo VS TPLink</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2017-01-05T23:12:47+08:00">2017-01-05 23:12</time>
-</div>
-                <div class="stats">
-                            
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/repo_vs_tplink/" class="u-url">Repo VS TPLink</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/repo_vs_tplink/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-05T23:12:47+08:00" title="2017-01-05 23:12">2017-01-05 23:12</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/repo.html" rel="tag">repo</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 是两个风马牛不相及的事物; 前者是 google 开发的用来管理 多个 git 仓库的工具；
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 是两个风马牛不相及的事物; 前者是 google 开发的用来管理 多个 git 仓库的工具；
 后者是国内一家知名的网络设备商。</p>
 <p>但笔者最近碰到一个非常诡异的问题，如果目录的名字出现 tplink 字符串，就会导致 <a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 工作异常；
 如果将目录 tplink 更改为其他名字，比如 tp 或者 test 等等，<a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 就工作正常；
 笔者一度怀疑 Repo 的开发者是否和 TPLink 公司有些过节，因此挖一个坑。</p>
-<pre class="code text"><a name="rest_code_6746bbcbd408427cb0f451757447279f-1"></a># mkdir tplink
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-2"></a># cd tplink
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-3"></a># repo init -u ssh://username@reposerver.com:29418/menifest.git
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-4"></a>......
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-5"></a>
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-6"></a>bind: atch: Cannot assign requested address
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-7"></a>ssh: connect to host 29418 port 22: Cannot assign requested address
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-8"></a>fatal: Could not read from remote repository.
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-9"></a>
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-10"></a>Please make sure you have the correct access rights
-<a name="rest_code_6746bbcbd408427cb0f451757447279f-11"></a>and the repository exists.
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-1" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-1" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-1"></a># mkdir tplink
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-2" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-2" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-2"></a># cd tplink
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-3" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-3" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-3"></a># repo init -u ssh://username@reposerver.com:29418/menifest.git
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-4" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-4" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-4"></a>......
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-5" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-5" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-5"></a>
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-6" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-6" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-6"></a>bind: atch: Cannot assign requested address
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-7" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-7" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-7"></a>ssh: connect to host 29418 port 22: Cannot assign requested address
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-8" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-8" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-8"></a>fatal: Could not read from remote repository.
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-9" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-9" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-9"></a>
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-10" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-10" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-10"></a>Please make sure you have the correct access rights
+<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-11" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-11" href="posts/repo_vs_tplink/#rest_code_41bd87b2bea34c719e39a18faef8bfdc-11"></a>and the repository exists.
+</pre></div>
 <p>抱着吃瓜群众看热闹的心理，笔者想找到那个和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 过节的程序员，和他聊聊人生。</p>
 <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 在实际运作过程中，首先创建一个共享的 SSH 隧道，后续运行的 ssh 命令将复用这个隧道,类似于开来一个本地代理。</p>
 <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 设置了环境变量 GIT_SSH, 其定义为:</p>
-<pre class="code text"><a name="rest_code_b7cbd9bdec7d48f4ae7ebd350c96d7fc-1"></a>#!/bin/sh
-<a name="rest_code_b7cbd9bdec7d48f4ae7ebd350c96d7fc-2"></a>exec ssh -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_68a27930913941008eba8e92d02e5858-1" name="rest_code_68a27930913941008eba8e92d02e5858-1" href="posts/repo_vs_tplink/#rest_code_68a27930913941008eba8e92d02e5858-1"></a>#!/bin/sh
+<a id="rest_code_68a27930913941008eba8e92d02e5858-2" name="rest_code_68a27930913941008eba8e92d02e5858-2" href="posts/repo_vs_tplink/#rest_code_68a27930913941008eba8e92d02e5858-2"></a>exec ssh -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"
+</pre></div>
 <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 设置 GIT_SSH 变量的原因是为了减少建立 SSH 隧道的次数；repo 通常要管理几十个甚至上百个 git 仓库；
 如果克隆每个仓库都建立一次 SSH 隧道，会明显增加时间消耗。</p>
 <p>Debug 发现，代理 SSH （就是创建隧道的那个）收到的 参数不对。</p>
 <p>演示一下 GIT_SSH 的用法。</p>
 <ol class="arabic simple">
-<li>打开共享 SSH 隧道</li>
+<li><p>打开共享 SSH 隧道</p></li>
 </ol>
-<pre class="code text"><a name="rest_code_a7d7570a26f64943add7a5e12e67269f-1"></a>#mkdir /tmp/ssh
-<a name="rest_code_a7d7570a26f64943add7a5e12e67269f-2"></a>#ssh -v -M -N -p 22 -o 'ControlPath /tmp/ssh/test_git_ssh' tony@192.168.3.8
-<a name="rest_code_a7d7570a26f64943add7a5e12e67269f-3"></a>###// 此处打开了 -v 选项，用来查看 ssh log 信息
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-1" name="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-1" href="posts/repo_vs_tplink/#rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-1"></a>#mkdir /tmp/ssh
+<a id="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-2" name="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-2" href="posts/repo_vs_tplink/#rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-2"></a>#ssh -v -M -N -p 22 -o 'ControlPath /tmp/ssh/test_git_ssh' tony@192.168.3.8
+<a id="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-3" name="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-3" href="posts/repo_vs_tplink/#rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-3"></a>###// 此处打开了 -v 选项，用来查看 ssh log 信息
+</pre></div>
 <ol class="arabic simple" start="2">
-<li>使用共享的 SSH 隧道 （正常）</li>
+<li><p>使用共享的 SSH 隧道 （正常）</p></li>
 </ol>
-<pre class="code text"><a name="rest_code_312ebb6a622341c292fe947208c1e712-1"></a>#mkdir ~/work/check_git/nolink
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-2"></a>#cd ~/work/check_git/nolink
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-3"></a>#echo '#!/bin/sh' &gt; git_ssh
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-5"></a>#chmod a+x git_ssh
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/nolink/git_ssh'
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-8"></a>#pwd
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-9"></a>/home/tony_nie/work/check_git/nolink
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-11"></a>Cloning into 'test_git'...
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-12"></a>remote: Counting objects: 6, done.
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-13"></a>remote: Compressing objects: 100% (3/3), done.
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-14"></a>remote: Total 6 (delta 0), reused 6 (delta 0)
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-15"></a>Receiving objects: 100% (6/6), done.
-<a name="rest_code_312ebb6a622341c292fe947208c1e712-16"></a>Checking connectivity... done.
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-1" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-1" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-1"></a>#mkdir ~/work/check_git/nolink
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-2" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-2" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-2"></a>#cd ~/work/check_git/nolink
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-3" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-3" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-3"></a>#echo '#!/bin/sh' &gt; git_ssh
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-4" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-4" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-5" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-5" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-5"></a>#chmod a+x git_ssh
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-6" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-6" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/nolink/git_ssh'
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-7" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-7" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-8" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-8" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-8"></a>#pwd
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-9" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-9" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-9"></a>/home/tony_nie/work/check_git/nolink
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-10" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-10" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-11" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-11" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-11"></a>Cloning into 'test_git'...
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-12" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-12" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-12"></a>remote: Counting objects: 6, done.
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-13" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-13" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-13"></a>remote: Compressing objects: 100% (3/3), done.
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-14" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-14" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-14"></a>remote: Total 6 (delta 0), reused 6 (delta 0)
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-15" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-15" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-15"></a>Receiving objects: 100% (6/6), done.
+<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-16" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-16" href="posts/repo_vs_tplink/#rest_code_c716553e14aa4b3fafb269a6c51bdd77-16"></a>Checking connectivity... done.
+</pre></div>
 <ol class="arabic simple" start="3">
-<li>使用共享的 SSH 隧道 （失败）</li>
+<li><p>使用共享的 SSH 隧道 （失败）</p></li>
 </ol>
-<pre class="code text"><a name="rest_code_a5f401c451af4c609e9185eca5ccb769-1"></a>#mkdir ~/work/check_git/tplink
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-2"></a>#cd ~/work/check_git/tplink
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-3"></a>#echo '#!/bin/sh' &gt; git_ssh
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-5"></a>#chmod a+x git_ssh
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/tplink/git_ssh'
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-8"></a>#pwd
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-9"></a>/home/tony_nie/work/check_git/tplink
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-11"></a>Cloning into 'test_git'...
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-12"></a>bash: tony@192.168.3.8: command not found
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-13"></a>fatal: Could not read from remote repository.
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-14"></a>
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-15"></a>Please make sure you have the correct access rights
-<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-16"></a>and the repository exists.
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_37cec30cc130455e995f828fa997ebe3-1" name="rest_code_37cec30cc130455e995f828fa997ebe3-1" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-1"></a>#mkdir ~/work/check_git/tplink
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-2" name="rest_code_37cec30cc130455e995f828fa997ebe3-2" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-2"></a>#cd ~/work/check_git/tplink
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-3" name="rest_code_37cec30cc130455e995f828fa997ebe3-3" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-3"></a>#echo '#!/bin/sh' &gt; git_ssh
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-4" name="rest_code_37cec30cc130455e995f828fa997ebe3-4" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-5" name="rest_code_37cec30cc130455e995f828fa997ebe3-5" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-5"></a>#chmod a+x git_ssh
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-6" name="rest_code_37cec30cc130455e995f828fa997ebe3-6" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/tplink/git_ssh'
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-7" name="rest_code_37cec30cc130455e995f828fa997ebe3-7" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-8" name="rest_code_37cec30cc130455e995f828fa997ebe3-8" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-8"></a>#pwd
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-9" name="rest_code_37cec30cc130455e995f828fa997ebe3-9" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-9"></a>/home/tony_nie/work/check_git/tplink
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-10" name="rest_code_37cec30cc130455e995f828fa997ebe3-10" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-11" name="rest_code_37cec30cc130455e995f828fa997ebe3-11" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-11"></a>Cloning into 'test_git'...
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-12" name="rest_code_37cec30cc130455e995f828fa997ebe3-12" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-12"></a>bash: tony@192.168.3.8: command not found
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-13" name="rest_code_37cec30cc130455e995f828fa997ebe3-13" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-13"></a>fatal: Could not read from remote repository.
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-14" name="rest_code_37cec30cc130455e995f828fa997ebe3-14" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-14"></a>
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-15" name="rest_code_37cec30cc130455e995f828fa997ebe3-15" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-15"></a>Please make sure you have the correct access rights
+<a id="rest_code_37cec30cc130455e995f828fa997ebe3-16" name="rest_code_37cec30cc130455e995f828fa997ebe3-16" href="posts/repo_vs_tplink/#rest_code_37cec30cc130455e995f828fa997ebe3-16"></a>and the repository exists.
+</pre></div>
 <p>执行 git clone 命令时可以看到共享隧道有 log 信息输出。</p>
 <p>正常：</p>
-<pre class="code text"><a name="rest_code_b939f385994d465aaa00bb26277116cc-1"></a>debug1: multiplexing control connection
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-2"></a>debug1: channel 1: new [mux-control]
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-3"></a>debug1: channel 2: new [client-session]
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-4"></a>debug1: Sending environment.
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-5"></a>debug1: Sending env LC_ALL = en_US.UTF-8
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-6"></a>debug1: Sending env LANG = zh_CN.UTF-8
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-7"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-8"></a>debug1: Sending command: git-upload-pack '/home/tony_nie/work/test_git'
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-9"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-10"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-11"></a>debug1: channel 2: free: client-session, nchannels 3
-<a name="rest_code_b939f385994d465aaa00bb26277116cc-12"></a>debug1: channel 1: free: mux-control, nchannels 2
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_b15f53f2677445689fa23e5236187d60-1" name="rest_code_b15f53f2677445689fa23e5236187d60-1" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-1"></a>debug1: multiplexing control connection
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-2" name="rest_code_b15f53f2677445689fa23e5236187d60-2" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-2"></a>debug1: channel 1: new [mux-control]
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-3" name="rest_code_b15f53f2677445689fa23e5236187d60-3" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-3"></a>debug1: channel 2: new [client-session]
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-4" name="rest_code_b15f53f2677445689fa23e5236187d60-4" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-4"></a>debug1: Sending environment.
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-5" name="rest_code_b15f53f2677445689fa23e5236187d60-5" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-5"></a>debug1: Sending env LC_ALL = en_US.UTF-8
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-6" name="rest_code_b15f53f2677445689fa23e5236187d60-6" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-6"></a>debug1: Sending env LANG = zh_CN.UTF-8
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-7" name="rest_code_b15f53f2677445689fa23e5236187d60-7" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-7"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-8" name="rest_code_b15f53f2677445689fa23e5236187d60-8" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-8"></a>debug1: Sending command: git-upload-pack '/home/tony_nie/work/test_git'
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-9" name="rest_code_b15f53f2677445689fa23e5236187d60-9" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-9"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-10" name="rest_code_b15f53f2677445689fa23e5236187d60-10" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-10"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-11" name="rest_code_b15f53f2677445689fa23e5236187d60-11" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-11"></a>debug1: channel 2: free: client-session, nchannels 3
+<a id="rest_code_b15f53f2677445689fa23e5236187d60-12" name="rest_code_b15f53f2677445689fa23e5236187d60-12" href="posts/repo_vs_tplink/#rest_code_b15f53f2677445689fa23e5236187d60-12"></a>debug1: channel 1: free: mux-control, nchannels 2
+</pre></div>
 <p>异常：</p>
-<pre class="code text"><a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-1"></a>debug1: multiplexing control connection
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-2"></a>debug1: channel 1: new [mux-control]
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-3"></a>debug1: channel 2: new [client-session]
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-4"></a>debug1: Sending environment.
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-5"></a>debug1: Sending env LC_PAPER = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-6"></a>debug1: Sending env LC_ADDRESS = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-7"></a>debug1: Sending env LC_MONETARY = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-8"></a>debug1: Sending env LC_NUMERIC = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-9"></a>debug1: Sending env LC_ALL = en_US.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-10"></a>debug1: Sending env LC_TELEPHONE = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-11"></a>debug1: Sending env LC_IDENTIFICATION = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-12"></a>debug1: Sending env LANG = en_US.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-13"></a>debug1: Sending env LC_MEASUREMENT = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-14"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-15"></a>debug1: Sending env LC_TIME = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-16"></a>debug1: Sending env LC_NAME = zh_CN.UTF-8
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-17"></a>debug1: Sending command: tony@192.168.3.8 git-upload-pack '/Users/tony/code/check_git/test_git'
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-18"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-19"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-20"></a>debug1: channel 2: free: client-session, nchannels 3
-<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-21"></a>debug1: channel 1: free: mux-control, nchannels 2
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-1" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-1" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-1"></a>debug1: multiplexing control connection
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-2" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-2" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-2"></a>debug1: channel 1: new [mux-control]
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-3" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-3" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-3"></a>debug1: channel 2: new [client-session]
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-4" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-4" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-4"></a>debug1: Sending environment.
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-5" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-5" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-5"></a>debug1: Sending env LC_PAPER = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-6" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-6" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-6"></a>debug1: Sending env LC_ADDRESS = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-7" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-7" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-7"></a>debug1: Sending env LC_MONETARY = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-8" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-8" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-8"></a>debug1: Sending env LC_NUMERIC = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-9" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-9" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-9"></a>debug1: Sending env LC_ALL = en_US.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-10" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-10" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-10"></a>debug1: Sending env LC_TELEPHONE = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-11" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-11" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-11"></a>debug1: Sending env LC_IDENTIFICATION = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-12" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-12" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-12"></a>debug1: Sending env LANG = en_US.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-13" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-13" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-13"></a>debug1: Sending env LC_MEASUREMENT = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-14" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-14" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-14"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-15" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-15" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-15"></a>debug1: Sending env LC_TIME = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-16" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-16" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-16"></a>debug1: Sending env LC_NAME = zh_CN.UTF-8
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-17" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-17" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-17"></a>debug1: Sending command: tony@192.168.3.8 git-upload-pack '/Users/tony/code/check_git/test_git'
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-18" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-18" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-18"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-19" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-19" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-19"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-20" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-20" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-20"></a>debug1: channel 2: free: client-session, nchannels 3
+<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-21" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-21" href="posts/repo_vs_tplink/#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-21"></a>debug1: channel 1: free: mux-control, nchannels 2
+</pre></div>
 <p>发现如果GIT_SSH 环境变量中如果包含 tplink 字样就会出错； 和 repo 没有关系哎。难道是
 git 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 有过节？</p>
 <p>download git (1.9.1) 的 code 研究一下吧。</p>
 <p>现在整个工程中 grep  TPlink 字符串，没有发现；再  grep plink；咦，有发现哎。</p>
 <p>git v1.9.1
 .. sourcecode:</p>
-<pre class="literal-block">
-if (protocol == PROTO_SSH) {
+<pre class="literal-block">if (protocol == PROTO_SSH) {
         const char *ssh = getenv("GIT_SSH");
         int putty = ssh &amp;&amp; strcasestr(ssh, "plink");
         char *ssh_host = hostandport;
@@ -254,76 +239,65 @@ if (protocol == PROTO_SSH) {
                 *arg++ = port;
         }
         *arg++ = ssh_host;
-}
-</pre>
+}</pre>
 <p>很明显在判断 是否 putty 时，出了问题；认为GIT_SSH 环境变量出现 plink 就为 putty  :&gt; &lt;:</p>
 <p>git v2.5</p>
-<pre class="code text"><a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-1"></a>ssh = getenv("GIT_SSH_COMMAND");
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-2"></a>if (ssh) {
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-3"></a>        conn-&gt;use_shell = 1;
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-4"></a>        putty = 0;
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-5"></a>} else {
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-6"></a>        const char *base;
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-7"></a>        char *ssh_dup;
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-8"></a>
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-9"></a>        ssh = getenv("GIT_SSH");
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-10"></a>        if (!ssh)
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-11"></a>        ssh = "ssh";
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-12"></a>
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-13"></a>        ssh_dup = xstrdup(ssh);
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-14"></a>        base = basename(ssh_dup);
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-15"></a>
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-16"></a>        tortoiseplink = !strcasecmp(base, "tortoiseplink") ||
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-17"></a>                !strcasecmp(base, "tortoiseplink.exe");
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-18"></a>        putty = !strcasecmp(base, "plink") ||
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-19"></a>                !strcasecmp(base, "plink.exe") || tortoiseplink;
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-20"></a>
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-21"></a>        free(ssh_dup);
-<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-22"></a>}
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_bee7774442f744d1b662132b4115b39a-1" name="rest_code_bee7774442f744d1b662132b4115b39a-1" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-1"></a>ssh = getenv("GIT_SSH_COMMAND");
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-2" name="rest_code_bee7774442f744d1b662132b4115b39a-2" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-2"></a>if (ssh) {
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-3" name="rest_code_bee7774442f744d1b662132b4115b39a-3" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-3"></a>        conn-&gt;use_shell = 1;
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-4" name="rest_code_bee7774442f744d1b662132b4115b39a-4" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-4"></a>        putty = 0;
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-5" name="rest_code_bee7774442f744d1b662132b4115b39a-5" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-5"></a>} else {
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-6" name="rest_code_bee7774442f744d1b662132b4115b39a-6" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-6"></a>        const char *base;
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-7" name="rest_code_bee7774442f744d1b662132b4115b39a-7" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-7"></a>        char *ssh_dup;
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-8" name="rest_code_bee7774442f744d1b662132b4115b39a-8" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-8"></a>
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-9" name="rest_code_bee7774442f744d1b662132b4115b39a-9" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-9"></a>        ssh = getenv("GIT_SSH");
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-10" name="rest_code_bee7774442f744d1b662132b4115b39a-10" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-10"></a>        if (!ssh)
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-11" name="rest_code_bee7774442f744d1b662132b4115b39a-11" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-11"></a>        ssh = "ssh";
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-12" name="rest_code_bee7774442f744d1b662132b4115b39a-12" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-12"></a>
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-13" name="rest_code_bee7774442f744d1b662132b4115b39a-13" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-13"></a>        ssh_dup = xstrdup(ssh);
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-14" name="rest_code_bee7774442f744d1b662132b4115b39a-14" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-14"></a>        base = basename(ssh_dup);
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-15" name="rest_code_bee7774442f744d1b662132b4115b39a-15" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-15"></a>
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-16" name="rest_code_bee7774442f744d1b662132b4115b39a-16" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-16"></a>        tortoiseplink = !strcasecmp(base, "tortoiseplink") ||
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-17" name="rest_code_bee7774442f744d1b662132b4115b39a-17" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-17"></a>                !strcasecmp(base, "tortoiseplink.exe");
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-18" name="rest_code_bee7774442f744d1b662132b4115b39a-18" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-18"></a>        putty = !strcasecmp(base, "plink") ||
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-19" name="rest_code_bee7774442f744d1b662132b4115b39a-19" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-19"></a>                !strcasecmp(base, "plink.exe") || tortoiseplink;
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-20" name="rest_code_bee7774442f744d1b662132b4115b39a-20" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-20"></a>
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-21" name="rest_code_bee7774442f744d1b662132b4115b39a-21" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-21"></a>        free(ssh_dup);
+<a id="rest_code_bee7774442f744d1b662132b4115b39a-22" name="rest_code_bee7774442f744d1b662132b4115b39a-22" href="posts/repo_vs_tplink/#rest_code_bee7774442f744d1b662132b4115b39a-22"></a>}
+</pre></div>
 <p>还好 v2.5 修正了这个问题。</p>
 <p>看来不是 repo 和 TPLink 有过节，而是 git 1.9.1 和 TPLink 开了个玩笑 :)</p>
-</div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/talking-from-dead-lock.html">从一个死锁问题说起</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2016-10-25T18:28:11+08:00">2016-10-25 18:28</time>
-</div>
-                <div class="stats">
-                            
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/talking-from-dead-lock/" class="u-url">从一个死锁问题说起</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/talking-from-dead-lock/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2016-10-25T18:28:11+08:00" title="2016-10-25 18:28">2016-10-25 18:28</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/system-call.html" rel="tag">System Call</a></li>
-           <li><a class="tag p-category" href="categories/unix.html" rel="tag">UNIX</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p>碰到一个死锁问题，A 进程一直持有锁。</p>
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>碰到一个死锁问题，A 进程一直持有锁。</p>
 <p>加锁和解锁代码如下：</p>
-<pre class="code text"><a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-1"></a>fd = open(PATH, O_RDRW);
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-2"></a>if (fd &lt; 0)
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-3"></a>        goto out;
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-4"></a>ret = flock(fd, LOCK_SH);
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-5"></a>if (ret &lt; 0)
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-6"></a>        goto out;
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-7"></a>
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-8"></a>/* do something */
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-9"></a>
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-10"></a>out:
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-11"></a>        if (fd &gt; 0) {
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-12"></a>                flock(fd, LOCK_UN);
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-13"></a>                close(fd);
-<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-14"></a>        }
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_7d45990d744641688d8f0cd129180e69-1" name="rest_code_7d45990d744641688d8f0cd129180e69-1" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-1"></a>fd = open(PATH, O_RDRW);
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-2" name="rest_code_7d45990d744641688d8f0cd129180e69-2" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-2"></a>if (fd &lt; 0)
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-3" name="rest_code_7d45990d744641688d8f0cd129180e69-3" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-3"></a>        goto out;
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-4" name="rest_code_7d45990d744641688d8f0cd129180e69-4" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-4"></a>ret = flock(fd, LOCK_SH);
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-5" name="rest_code_7d45990d744641688d8f0cd129180e69-5" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-5"></a>if (ret &lt; 0)
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-6" name="rest_code_7d45990d744641688d8f0cd129180e69-6" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-6"></a>        goto out;
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-7" name="rest_code_7d45990d744641688d8f0cd129180e69-7" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-7"></a>
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-8" name="rest_code_7d45990d744641688d8f0cd129180e69-8" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-8"></a>/* do something */
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-9" name="rest_code_7d45990d744641688d8f0cd129180e69-9" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-9"></a>
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-10" name="rest_code_7d45990d744641688d8f0cd129180e69-10" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-10"></a>out:
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-11" name="rest_code_7d45990d744641688d8f0cd129180e69-11" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-11"></a>        if (fd &gt; 0) {
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-12" name="rest_code_7d45990d744641688d8f0cd129180e69-12" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-12"></a>                flock(fd, LOCK_UN);
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-13" name="rest_code_7d45990d744641688d8f0cd129180e69-13" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-13"></a>                close(fd);
+<a id="rest_code_7d45990d744641688d8f0cd129180e69-14" name="rest_code_7d45990d744641688d8f0cd129180e69-14" href="posts/talking-from-dead-lock/#rest_code_7d45990d744641688d8f0cd129180e69-14"></a>        }
+</pre></div>
 <p>追送代码发现，出现了加锁而没有释放锁的情况；唯一的可能性就是 fd &gt; 0 不成立。
 但加锁成功，说明 fd 不会小于 0；所以 fd == 0.</p>
 <p>为什么？ fd 是由系统调用 open 返回的，通常情况是 &gt; 0 的；内核根据进程打开文件的记录返回没有使用的
@@ -331,53 +305,43 @@ if (protocol == PROTO_SSH) {
 close 掉了。daemon 程序通常会将 0， 1，2 重新定向于 /dev/null, 但我们并没有这样处理。
 通过 proc 文件系统查看 fd 的使用情况。</p>
 <p>正常情况：</p>
-<pre class="code text"><a name="rest_code_a38d3e25a822468c87624e910369a65d-1"></a># ls -lh /proc/1845/fd/*
-<a name="rest_code_a38d3e25a822468c87624e910369a65d-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/console
-<a name="rest_code_a38d3e25a822468c87624e910369a65d-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
-<a name="rest_code_a38d3e25a822468c87624e910369a65d-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-1" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-1" href="posts/talking-from-dead-lock/#rest_code_fb9083caba2944c9ac8ee89834b5e372-1"></a># ls -lh /proc/1845/fd/*
+<a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-2" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-2" href="posts/talking-from-dead-lock/#rest_code_fb9083caba2944c9ac8ee89834b5e372-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/console
+<a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-3" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-3" href="posts/talking-from-dead-lock/#rest_code_fb9083caba2944c9ac8ee89834b5e372-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
+<a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-4" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-4" href="posts/talking-from-dead-lock/#rest_code_fb9083caba2944c9ac8ee89834b5e372-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
+</pre></div>
 <p>异常情况：</p>
-<pre class="code text"><a name="rest_code_755cb63e00284310987b304a56173740-1"></a># ls -lh /proc/1845/fd/*
-<a name="rest_code_755cb63e00284310987b304a56173740-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/conf/myfile
-<a name="rest_code_755cb63e00284310987b304a56173740-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
-<a name="rest_code_755cb63e00284310987b304a56173740-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_c9847aaa3fd0478da23243a62246eb90-1" name="rest_code_c9847aaa3fd0478da23243a62246eb90-1" href="posts/talking-from-dead-lock/#rest_code_c9847aaa3fd0478da23243a62246eb90-1"></a># ls -lh /proc/1845/fd/*
+<a id="rest_code_c9847aaa3fd0478da23243a62246eb90-2" name="rest_code_c9847aaa3fd0478da23243a62246eb90-2" href="posts/talking-from-dead-lock/#rest_code_c9847aaa3fd0478da23243a62246eb90-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/conf/myfile
+<a id="rest_code_c9847aaa3fd0478da23243a62246eb90-3" name="rest_code_c9847aaa3fd0478da23243a62246eb90-3" href="posts/talking-from-dead-lock/#rest_code_c9847aaa3fd0478da23243a62246eb90-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
+<a id="rest_code_c9847aaa3fd0478da23243a62246eb90-4" name="rest_code_c9847aaa3fd0478da23243a62246eb90-4" href="posts/talking-from-dead-lock/#rest_code_c9847aaa3fd0478da23243a62246eb90-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
+</pre></div>
 <p>很明显标准输入被 close 了，然后进程重新 open 文件时就得到了值为 0 的 fd.</p>
 <p>谁关闭了标准输入？ 为什么？</p>
 <p>有了方向很快就查到了元凶。</p>
 <p><strong>我们知道 Linux 同时支持 POSIX 标准 和 System V 标准的 IPC 机制。 项目中使用了 Message queue 的 IPC 方法，但我们混用了两种机制；在获取 IPC handle 的时候使用了 System V 标准(msgget)；但释放 IPC handle 的时候使用了 POSIX 标准 (mq_close). 问题是 msgget 的拿到的值有很大概率为 0；mq_close(0) 会将 0 号 fd close 掉，导致 0 号 fd 重新进入了分配池。</strong></p>
-<dl class="docutils">
+<dl class="simple">
 <dt>两点结论:</dt>
-<dd><ol class="first last arabic simple">
-<li>系统调用 open/create 的返回值是有可能为 0 的</li>
-<li>POSIX 标准和 System V 标准的 系统调用不能混合使用</li>
+<dd><ol class="arabic simple">
+<li><p>系统调用 open/create 的返回值是有可能为 0 的</p></li>
+<li><p>POSIX 标准和 System V 标准的 系统调用不能混合使用</p></li>
 </ol></dd>
 </dl>
 </div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/file-time-at-fat32.html">FAT32 文件系统时间戳问题</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2016-07-27T19:56:50+08:00">2016-07-27 19:56</time>
-</div>
-                <div class="stats">
-                            
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/file-time-at-fat32/" class="u-url">FAT32 文件系统时间戳问题</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/file-time-at-fat32/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2016-07-27T19:56:50+08:00" title="2016-07-27 19:56">2016-07-27 19:56</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/file-system.html" rel="tag">File System</a></li>
-           <li><a class="tag p-category" href="categories/unix.html" rel="tag">UNIX</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p>最近遇到一个文件创建时间显示异常问题。嵌入系统中 SD 的文件系统默认选择 vfat，
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>最近遇到一个文件创建时间显示异常问题。嵌入系统中 SD 的文件系统默认选择 vfat，
 就是 FAT32；在嵌入式系统中查看文件的创建时间是正常的，但如果将 SD 卡插入到 PC 机
 上面，无论是 Ubuntu 还是 Windows，文件的创建时间都会显示异常，比实际创建时间早8个小时。</p>
 <p>嵌入式系统上的时区为东8区（北京时间）；其他应用获取时间和日期都正常。开始怀疑是 vfat 的问题；
@@ -396,87 +360,61 @@ to use this feature</p>
 挂载文件系统时指定的时区信息。</p>
 <p>内核也建议在系统上电之后，应尽快设置 <em>sys_tz</em>.</p>
 <p>解决方案：系统启动后，利用 <em>hwclock</em> 设置内核的 <em>sys_tz</em> 变量。</p>
-</div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/virtualbox.html">VirtualBox 找不到网络界面</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2016-07-01T08:43:07+08:00">2016-07-01 08:43</time>
-</div>
-                <div class="stats">
-                            
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/virtualbox/" class="u-url">VirtualBox 找不到网络界面</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/virtualbox/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2016-07-01T08:43:07+08:00" title="2016-07-01 08:43">2016-07-01 08:43</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/develop-tools.html" rel="tag">develop tools</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p>VBox 的网络模式有 N 多种，每种都有使用场景；个人比较倾向选择 Bridge 模式，好处是虚拟机在
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>VBox 的网络模式有 N 多种，每种都有使用场景；个人比较倾向选择 Bridge 模式，好处是虚拟机在
 Host 所处的局域网是真实存在的，其他机器都可以访问。但在 Bridge 模式先，如果 ethernet 没有
 插入网线，Host 和 Virtual Machine 无法互相访问（host 为 Mac OS）。</p>
 <p>希望将网络模式 hostonly 也配置起来，这样在没有 ethernet 的情况下也可以 ssh 到虚拟机。但配置
 网络的时候 UI 上提示没有界面可以选择。google 之，原来 hostonly 需要利用 VBoxManage 创建一个
 interface 出来。</p>
 <ol class="arabic simple">
-<li>VBoxManage hostonlyif create</li>
-<li>VBoxManage hostonlyif ipconfig vboxnet0 --ip 192.168.56.2 --netmask 255.255.255.0</li>
+<li><p>VBoxManage hostonlyif create</p></li>
+<li><p>VBoxManage hostonlyif ipconfig vboxnet0 --ip 192.168.56.2 --netmask 255.255.255.0</p></li>
 </ol>
 </div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/inotify-and-sendfile.html">inotify 失效问题</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2016-03-03T21:02:16+08:00">2016-03-03 21:02</time>
-</div>
-                <div class="stats">
-                            
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/inotify-and-sendfile/" class="u-url">inotify 失效问题</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/inotify-and-sendfile/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2016-03-03T21:02:16+08:00" title="2016-03-03 21:02">2016-03-03 21:02</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/io.html" rel="tag">IO</a></li>
-           <li><a class="tag p-category" href="categories/unix.html" rel="tag">UNIX</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <p>inotify 子系统可以用来监视文件系统，包括文件后者目录的创建，修改，删除等等。
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>inotify 子系统可以用来监视文件系统，包括文件后者目录的创建，修改，删除等等。
 但如果通过 sendfile 对文件作出修改，inotify 就会监测不到对应的事件。</p>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/tmux.html">tmux 中 ssh-agent forwarding 失效问题</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2015-12-04T23:29:38+08:00">2015-12-04 23:29</time>
-</div>
-                <div class="stats">
-                            
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/tmux/" class="u-url">tmux 中 ssh-agent forwarding 失效问题</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/tmux/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-12-04T23:29:38+08:00" title="2015-12-04 23:29">2015-12-04 23:29</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/develop-tools.html" rel="tag">develop tools</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p>作为程序员，我是比较懒的，对于重复性的劳动深恶痛绝。</p>
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>作为程序员，我是比较懒的，对于重复性的劳动深恶痛绝。</p>
 <p>之前 byobu 和 screen 用的不怎么顺手，没有坚持下去；后来转向 tmux，经过一段时间的摸索，发现还是
 蛮好用的。</p>
 <p>目前的工作模式使用一台 Mac book，ssh 到一台或者两台 Ubuntu 做开发工作，利用 tmux 打开好几个终端。
@@ -490,115 +428,92 @@ interface 出来。</p>
 当再次 attach 时 （tmux detach, 退出 shell，登录 shell， tmux attach), tmux session 中保存的 SSH_AUTH_SOCK 还是第一次登录时 sshd 分配的，已经失效，应该使用当前登录 shell 环境变量中保存的值。</p>
 <p>但是 tmux 的 update-environment 和 set-environment 在 attach session 好像不会生效，即使重新 load 配置文件也
 没有效果。暂时只能采用 <a class="reference external" href="http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach">stackexchange</a> 的方案。</p>
-</div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/wuxia.html">武侠小说中派，帮和教的区别</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2015-12-01T22:32:03+08:00">2015-12-01 22:32</time>
-</div>
-                <div class="stats">
-                            
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/wuxia/" class="u-url">武侠小说中派，帮和教的区别</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/wuxia/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-12-01T22:32:03+08:00" title="2015-12-01 22:32">2015-12-01 22:32</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/za-tan.html" rel="tag">杂谈</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p>武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？</p>
-<div class="section" id="id1">
-<h2>派</h2>
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？</p>
+<section id="section-1"><h2>派</h2>
 <p>派是以某一种或一类武功为基础而形成的组织；成员修习本组织的特色武功，比如武当派，少林派，华山派，
 峨眉派, 逍遥派等等， 这些派都有独特的武功绝技， 比如武当的太极拳和太极剑， 少林的七十二绝技，
 华山剑法，峨眉剑法，逍遥派的北冥神功; 总部多位于山上, 首领为掌门。</p>
-</div>
-<div class="section" id="id2">
-<h2>帮</h2>
+</section><section id="section-2"><h2>帮</h2>
 <p>帮是以某一种谋生手段为基础为形成的组织; 成员以相同的职业为生, 比如丐帮的弟子，以乞讨为生;
 盐帮，以贩卖盐为生计；帮内的成员的武功比较杂，但帮主通常具有武功绝技; 总部多位于城市或者乡镇，
 首领为帮主。</p>
-</div>
-<div class="section" id="id3">
-<h2>教</h2>
+</section><section id="section-3"><h2>教</h2>
 <p>教是以某一种信仰而形成的组织, 成员在信仰上比较统一；比如全真教，明教等等；全真教的弟子会
 修习全真教的武功，所以教全真派也说的过去；明教的弟子武功就比较杂乱，但教主具有独特的武功绝技，
 九阳神功，而四大护法的武功路数完全不一样; 总部通常位于偏远的地区， 首领为教主。</p>
-</div>
-<div class="section" id="id4">
-<h2>其他</h2>
+</section><section id="section-4"><h2>其他</h2>
 <p>除了派、帮和教以外，还有门、镖局等等。</p>
+</section>
 </div>
-</div>
-            </div>
-        </div>
-        <div class="post">
-            <h1 class="title"><a href="posts/c-unit-test.html">单元测试之 C 语言</a></h1>
-            <div class="meta">
-                <div class="authordate">
-                    <time class="timeago" datetime="2015-11-21T10:44:59+08:00">2015-11-21 10:44</time>
-</div>
-                <div class="stats">
-                            
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/c-unit-test/" class="u-url">单元测试之 C 语言</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/c-unit-test/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-11-21T10:44:59+08:00" title="2015-11-21 10:44">2015-11-21 10:44</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
 
-                </div>
-                        <div itemprop="keywords" class="tags">
-        <ul>
-        标签 : 
-           <li><a class="tag p-category" href="categories/cc%2B%2B.html" rel="tag">C/C++</a></li>
-        </ul>
-</div>
 
-            </div>
-            <div class="body">
-                <div>
-<p>目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。</p>
-<div class="section" id="static">
-<h2>如何测试 static 函数</h2>
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。</p>
+<section id="static"><h2>如何测试 static 函数</h2>
 <p>当产品代码和单元测试代码隔离时， 测试 static 的函数需要些技巧；有同学认为
 可以不对 static 的函数不进行测试，只要对其调用者做单元测试就可以了。但对于嵌套比较
 深的 static 函数来说， 测试用例不是太好构造。</p>
 <p>解决办法：</p>
 <ol class="arabic simple">
-<li>使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；</li>
-<li>在单元测试代码中 include 产品代码的源文件</li>
-<li>利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件</li>
+<li><p>使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；</p></li>
+<li><p>在单元测试代码中 include 产品代码的源文件</p></li>
+<li><p>利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件</p></li>
 </ol>
 <p>三种方法中我比较推荐第3中方法; 好处时不影响产品代码，又可以具有较好的 coding style; 麻烦的地方在于
 building 过程中定位 warning 或者 error 不是太直接。</p>
-</div>
-<div class="section" id="main">
-<h2>如何处理 main 函数所在的文件</h2>
+</section><section id="main"><h2>如何处理 main 函数所在的文件</h2>
 <p>如果产品代码和单元测试代码是隔离开来的，通常就各自拥有自己的 main 的函数；
 在 build 单元测试代码时就会出现冲突。</p>
 <p>解决办法：</p>
 <ol class="arabic simple">
-<li>修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;</li>
-<li>利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;</li>
-</ol>
+<li><p>修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;</p></li>
+<li><p>利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;</p></li>
+</ol></section>
 </div>
+    </article>
 </div>
-            </div>
-        </div>
-            <nav class="postindexpager"><ul class="pager">
+
+        <nav class="postindexpager"><ul class="pager">
 <li class="next">
-                <a href="index-3.html" rel="next">旧一篇</a>
+                <a href="index-3.html" rel="next">以前的文章</a>
             </li>
-        </ul></nav><footer id="footer"><p>Contents © 2017         <a href="mailto:cloudnie@gmail.com">Tony Nie</a> </p>
+        </ul></nav><footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
             
         </footer>
 </div>
-    </section><script src="assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="assets/js/jquery.timeago.js" type="text/javascript"></script><script type="text/javascript">
-            $(function(){
-                $('.timeago').timeago();
-            });
-        </script>
+    </section><script src="assets/js/all-nocdn.js"></script><script src="assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+    luxon.Settings.defaultLocale = "zh-CN";
+    fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
 </body>
 </html>
