@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>FFmpeg 之FFM | 凡云的博客</title>
+<link href="../assets/css/bitter.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://blog.runxcode.com/posts/FFmpeg.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="Tony Nie">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="FFmpeg 之FFM">
+<meta property="og:url" content="http://blog.runxcode.com/posts/FFmpeg.html">
+<meta property="og:description" content="FFmpeg 提供了ffm muxer和demuxer， 从ffmpeg和fferver的code看，
+ffm是作为缓冲来使用的，即起到漏斗的作用。
+ffm muxer 和 demuxer的实现是不完整的， 从 ffserver.c 可以看出来，
+在使用过程中需要更新write_index,  真是一个蛋疼的实现。
+注意： ffm的IO文件要位于ramfs之上， 比如tmpfs，不能是真实的磁盘文">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-08-30T14:36:49+08:00">
+<meta property="article:tag" content="Multimedia">
+</head>
+<body>
+    <section class="social"><ul>
+<li><a href="../index.html" title="Home"><i class="icon-home"></i></a></li>
+            <li><a href="../archive.html" title="Archives"><i class="icon-folder-open-alt"></i></a></li>
+            <li><a href="../categories/index.html" title="Tags"><i class="icon-tags"></i></a></li>
+            <li><a href="../rss.xml" title="RSS"><i class="icon-rss"></i></a></li>
+            <li><a href="about_me.html" title="About me"><i class="icon-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="icon-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="icon-github"></i></a></li>
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+    <div class="post">
+        <h1 class="p-name entry-title" itemprop="headline name">FFmpeg 之FFM</h1>
+
+        <div class="meta">
+            <div class="authordate">
+                <time class="timeago" datetime="2014-08-30T14:36:49+08:00">2014-08-30 14:36</time>
+</div>
+                    <div itemprop="keywords" class="tags">
+        <ul>
+        标签 : 
+           <li><a class="tag p-category" href="../categories/multimedia.html" rel="tag">Multimedia</a></li>
+        </ul>
+</div>
+
+        </div>
+        <div class="body">
+            <div>
+<p>FFmpeg 提供了ffm muxer和demuxer， 从ffmpeg和fferver的code看，
+ffm是作为缓冲来使用的，即起到漏斗的作用。</p>
+<p>ffm muxer 和 demuxer的实现是不完整的， 从 ffserver.c 可以看出来，
+在使用过程中需要更新write_index,  真是一个蛋疼的实现。</p>
+<p>注意： ffm的IO文件要位于ramfs之上， 比如tmpfs，不能是真实的磁盘文件系统。</p>
+<p>实际使用过程中就碰到RTP出去的数据无法正常解码。</p>
+<p>stream 流： <em>v4l2(h264) -&gt; ffm(muxer)</em> <em>ffm(demuxer) -&gt;rtp(muxer)</em></p>
+<p>通过VLC观看， 第一帧可以正常显示出来， 后续RTP一直有数据发送，
+但VLC没能解出video。</p>
+<p>通过tcpdump查看UDP数据包， 看不出异常。</p>
+<p>trace了一下ffm write (av_write_frame) 的时间，发现每帧耗时在100～300ms之间， 这个时间太长了（fps为30）.</p>
+<p>因为ffm的write 是同步做的，所以肯定会导致V4L2丢帧;  对H264来说，丢帧就会导致很长一段时间不能正常解码。</p>
+<p>当前ffm的IO文件位于 /tmp/h264.ffm, 对于tmpfs来说，写的速度应该非常快才对。</p>
+<p>使用df命令查看了当前OS的文件系统挂载情况：</p>
+<pre class="code text"><a name="rest_code_a13a7feab69346c5b7d1e73d7dbfca3c-1"></a> /dev/sda1 33032012 8790252 22563784 29% /
+<a name="rest_code_a13a7feab69346c5b7d1e73d7dbfca3c-2"></a>udev 922740 4 922736 1% /dev
+<a name="rest_code_a13a7feab69346c5b7d1e73d7dbfca3c-3"></a>tmpfs 186308 1948 184360 2% /run
+<a name="rest_code_a13a7feab69346c5b7d1e73d7dbfca3c-4"></a>none 5120 0 5120 0% /run/lock
+<a name="rest_code_a13a7feab69346c5b7d1e73d7dbfca3c-5"></a>none 931536 152 931384 1% /run/shm
+</pre>
+<p>问题找到了。tmpfs 挂载于 /run, 而不是/tmp.</p>
+<p>修改ffm的IO文件位置， OK， 问题解决。</p>
+<p>后记： 发现在系统memory资源紧张的情况下， tmpfs会被交换到swap 分区，
+所以tmpfs不是太安全，应该使用ramfs</p>
+</div>
+        </div>
+                <ul class="pager hidden-print">
+<li class="previous">
+                <a href="inet_ntoa.html" rel="prev" title="inet_ntoa不可重入性">前一篇</a>
+            </li>
+            <li class="next">
+                <a href="dispatch.html" rel="next" title="未派遣证明">后一篇</a>
+            </li>
+        </ul>
+</div>
+                    <footer id="footer"><p>Contents © 2017         <a href="mailto:cloudnie@gmail.com">Tony Nie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../assets/js/jquery.timeago.js" type="text/javascript"></script><script type="text/javascript">
+            $(function(){
+                $('.timeago').timeago();
+            });
+        </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (文章分类：File System)</title><link>http://blog.runxcode.com/</link><description></description><atom:link href="http://blog.runxcode.com/categories/file-system.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 05 Sep 2017 07:35:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FAT32 文件系统时间戳问题</title><link>http://blog.runxcode.com/posts/file-time-at-fat32.html</link><dc:creator>Tony Nie</dc:creator><description>&lt;div&gt;&lt;p&gt;最近遇到一个文件创建时间显示异常问题。嵌入系统中 SD 的文件系统默认选择 vfat，
+就是 FAT32；在嵌入式系统中查看文件的创建时间是正常的，但如果将 SD 卡插入到 PC 机
+上面，无论是 Ubuntu 还是 Windows，文件的创建时间都会显示异常，比实际创建时间早8个小时。&lt;/p&gt;
+&lt;p&gt;嵌入式系统上的时区为东8区（北京时间）；其他应用获取时间和日期都正常。开始怀疑是 vfat 的问题；
+但在 Ubuntu 14.04 上测试没有遇到问题。&lt;/p&gt;
+&lt;p&gt;有同事反应说他们之前也碰到过类似的问题，解决办法是调用 &lt;em&gt;settimeofday&lt;/em&gt; 时提供时区参数。&lt;/p&gt;
+&lt;p&gt;查阅 settimeofday 的在线手册，发现有这样一段话：&lt;/p&gt;
+&lt;p&gt;Under  Linux  there are some peculiar "warp clock" semantics associated with the settimeofday() system call if on the
+very first call (after booting) that has a non-NULL tz argument, the tv argument is NULL and the tz_minuteswest field
+is  nonzero.   (The tz_dsttime field should be zero for this case.)  In such a case it is assumed that the CMOS clock
+is on local time, and that it has to be incremented by this amount to get UTC system time.  No doubt it is a bad idea
+to use this feature&lt;/p&gt;
+&lt;p&gt;查看内核中关于时间的代码，发现 CMOS Clock 存储的是本地时间；而内核对此一无所知。因此需要某种手段来告知内核。内核为此还
+定义了一个全局的变量 &lt;em&gt;sys_tz&lt;/em&gt; 来记录时区信息。在呼叫 &lt;em&gt;settimeofday&lt;/em&gt; 时，如果时区参数不为空，内核就会修改 &lt;em&gt;sys_tz&lt;/em&gt; 变量。&lt;/p&gt;
+&lt;p&gt;因此怀疑 FAT32 中记录的文件创建时间是 locale time，不是 UTC 时间。查阅 FAT32 的代码发现，在创建文件节点时，会呼叫
+&lt;em&gt;fat_time_unix2fat&lt;/em&gt; 时将 UTC 时间转换为本地时间。在转换的过程中，使用了 &lt;em&gt;sys_tz&lt;/em&gt; 保存的时区信息或者
+挂载文件系统时指定的时区信息。&lt;/p&gt;
+&lt;p&gt;内核也建议在系统上电之后，应尽快设置 &lt;em&gt;sys_tz&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;解决方案：系统启动后，利用 &lt;em&gt;hwclock&lt;/em&gt; 设置内核的 &lt;em&gt;sys_tz&lt;/em&gt; 变量。&lt;/p&gt;&lt;/div&gt;</description><category>File System</category><category>UNIX</category><guid>http://blog.runxcode.com/posts/file-time-at-fat32.html</guid><pubDate>Wed, 27 Jul 2016 11:56:50 GMT</pubDate></item></channel></rss>

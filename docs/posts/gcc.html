@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>gcc 常用实例 | 凡云的博客</title>
+<link href="../assets/css/bitter.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://blog.runxcode.com/posts/gcc.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="Tony Nie">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="gcc 常用实例">
+<meta property="og:url" content="http://blog.runxcode.com/posts/gcc.html">
+<meta property="og:description" content="前言
+GCC (the GNU Compiler Collection) 是由GNU组织开发的编译器套件, 可以执行预处理,编译,汇编和链接动作. 这篇文章首先向大家介绍如何生成C语言的可执行文件, 共享库(动态库) 以及静态库, 然后介绍一下gcc常用的选项.
+
+
+例子
+
+以下的例子都在Ubuntu13.10 上使用gcc 4.8.1 测试通过. 假设有三个文件
+
+
+main.c 定义main函">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-03-22T22:10:59+08:00">
+<meta property="article:tag" content="develop tools">
+</head>
+<body>
+    <section class="social"><ul>
+<li><a href="../index.html" title="Home"><i class="icon-home"></i></a></li>
+            <li><a href="../archive.html" title="Archives"><i class="icon-folder-open-alt"></i></a></li>
+            <li><a href="../categories/index.html" title="Tags"><i class="icon-tags"></i></a></li>
+            <li><a href="../rss.xml" title="RSS"><i class="icon-rss"></i></a></li>
+            <li><a href="about_me.html" title="About me"><i class="icon-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="icon-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="icon-github"></i></a></li>
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+    <div class="post">
+        <h1 class="p-name entry-title" itemprop="headline name">gcc 常用实例</h1>
+
+        <div class="meta">
+            <div class="authordate">
+                <time class="timeago" datetime="2015-03-22T22:10:59+08:00">2015-03-22 22:10</time>
+</div>
+                    <div itemprop="keywords" class="tags">
+        <ul>
+        标签 : 
+           <li><a class="tag p-category" href="../categories/develop-tools.html" rel="tag">develop tools</a></li>
+        </ul>
+</div>
+
+        </div>
+        <div class="body">
+            <div>
+<div class="section" id="id1">
+<h2>前言</h2>
+<p><a class="reference external" href="http://gcc.gnu.org/">GCC</a> (the GNU Compiler Collection) 是由GNU组织开发的编译器套件, 可以执行预处理,编译,汇编和链接动作. 这篇文章首先向大家介绍如何生成C语言的可执行文件, 共享库(动态库) 以及静态库, 然后介绍一下gcc常用的选项.</p>
+</div>
+<div class="section" id="id2">
+<h2>例子</h2>
+<ol class="arabic">
+<li>
+<p class="first">以下的例子都在Ubuntu13.10 上使用gcc 4.8.1 测试通过. 假设有三个文件</p>
+<blockquote>
+<ul class="simple">
+<li>main.c 定义main函数</li>
+<li>a.c 定义add 函数</li>
+<li>b.c 定义sub 函数</li>
+</ul>
+</blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>可执行文件</dt>
+<dd>
+<p class="first last">gcc -o test main.c a.c b.c</p>
+</dd>
+</dl></li>
+<li>
+<p class="first">共享库</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>生成共享库</dt>
+<dd>gcc -shared -o libmymath.so a.c b.c</dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>使用共享库</dt>
+<dd>gcc -o test main.c -L. -lmymath</dd>
+</dl></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p class="first">静态库</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>生成静态库</dt>
+<dd><ol class="first last arabic">
+<li>gcc -c a.c b.c</li>
+<li>ar crv libmymath.a a.o b.o</li>
+</ol></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>使用静态库</dt>
+<dd>gcc -o test main.c -static -L. -lmymath</dd>
+</dl></li>
+<li>注意: 当ld的搜索默认搜索路径即包含共享库又包含静态库时, 默认选择链接共享库；若需要链接静态库, 则需要加上-static选项</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>选项</h2>
+<ol class="arabic">
+<li>
+<p class="first">-I(大写的i) 添加路径到预处理器的搜索目录</p>
+<blockquote>
+<ul>
+<li>
+<p class="first">使用方法 -IPATH</p>
+<blockquote>
+<ul class="simple">
+<li>gcc -I. -o test main.c a.c b.c</li>
+<li>gcc -I/home/tony/work/myheaer -o test main.c</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p class="first">注意: 在搜索头文件时, 通过-I添加的目录会优先与系统默认的搜索目录</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>-D 预定义宏</dt>
+<dd><ul class="first last">
+<li>
+<p class="first">使用方法 -DNAME</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>gcc -DCONFIG_GATE -o test main.c</dt>
+<dd>等同于: #define CONFIG_GATE=1</dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>gcc -DCONFIG_GATE_VALUE=128 -o test main.c</dt>
+<dd>等同于: #define CONFIG_GATE_VALU=128</dd>
+</dl></li>
+</ul>
+</blockquote>
+</li>
+</ul></dd>
+</dl></li>
+<li>
+<p class="first">-c 执行编译和汇编, 但不执行链接动作, 生成中间文件</p>
+<blockquote>
+<ul class="simple">
+<li>gcc -c main.c a.c b.c</li>
+<li>生成 main.o, a.o, b.o</li>
+<li>gcc -c main.s a.s b.s</li>
+<li>生成 main.o, a.o, b.o</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p class="first">-S 执行编译动作, 但不执行汇编, 生成汇编文件, 通常文件后缀为.s</p>
+<blockquote>
+<ul class="simple">
+<li>gcc -S main.c a.c b.c</li>
+<li>生成 main.s, a.s, b.s</li>
+</ul>
+</blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>-L 添加路径到链接器的搜索目录</dt>
+<dd>
+<p class="first last">gcc -o test main.c -L.</p>
+</dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>-l(小写的L) 在指定的library中查找符号表</dt>
+<dd>
+<p class="first last">gcc -o test main.c -L. -lmypath</p>
+</dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>-Wall 打开所有的编译警告</dt>
+<dd>
+<p class="first last">gcc -Wall -o test main.c</p>
+</dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>-static 优先选择链接静态库</dt>
+<dd>
+<p class="first last">gcc -o test main.c -static -L. -lmymath</p>
+</dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>-shared 生成的目标为共享库</dt>
+<dd>
+<p class="first last">gcc -shared -o libmymath.so a.c b.c</p>
+</dd>
+</dl></li>
+<li>
+<p class="first">-o 指定生成目标的名字</p>
+</li>
+<li>
+<p class="first">-Wl 传递参数给链接器</p>
+<blockquote>
+<ul class="simple">
+<li>gcc -o test main.c -Wl,-Map=out.map -L. -lmymath</li>
+<li>gcc -o test main.c -Wl,-rpath=/media/code/exercise/gcc -L. -lmymath</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p class="first">rpath 的作用是添加目录到运行时共享库搜索路径</p>
+</li>
+<li><dl class="first docutils">
+<dt>-g 生成debugging信息, 在使用debug工具比如GCB的时候需要</dt>
+<dd>
+<p class="first last">gcc -g -o test main.c a.c .bc</p>
+</dd>
+</dl></li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h2>结束语</h2>
+<blockquote>
+<p>虽然gcc是一个非常强大的工具, 但当一个工程比较庞大是, 直接使用gcc是不明智的选择.</p>
+<ul class="simple">
+<li>对于中等规模的工程,使用makefile来管理是一个不错的选择</li>
+<li>但对于非常庞大的工程, 比如KDE, 可以使用更高阶的管理工具, 比如 <a class="reference external" href="http://www.cmake.org/">CMake</a> , <a class="reference external" href="http://www.gnu.org/software/automake/">automake</a> 以及 <a class="reference external" href="http://scons.org/">Scons</a>
+</li>
+</ul>
+</blockquote>
+</div>
+</div>
+        </div>
+                <ul class="pager hidden-print">
+<li class="previous">
+                <a href="git.html" rel="prev" title="git 常用实例">前一篇</a>
+            </li>
+            <li class="next">
+                <a href="ftok.html" rel="next" title="ftok 陷阱">后一篇</a>
+            </li>
+        </ul>
+</div>
+                    <footer id="footer"><p>Contents © 2017         <a href="mailto:cloudnie@gmail.com">Tony Nie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../assets/js/jquery.timeago.js" type="text/javascript"></script><script type="text/javascript">
+            $(function(){
+                $('.timeago').timeago();
+            });
+        </script>
+</body>
+</html>

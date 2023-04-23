@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Repo VS TPLink | 凡云的博客</title>
+<link href="../assets/css/bitter.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://blog.runxcode.com/posts/repo_vs_tplink.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="Tony Nie">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="Repo VS TPLink">
+<meta property="og:url" content="http://blog.runxcode.com/posts/repo_vs_tplink.html">
+<meta property="og:description" content="Repo 和 TPLink 是两个风马牛不相及的事物; 前者是 google 开发的用来管理 多个 git 仓库的工具；
+后者是国内一家知名的网络设备商。
+但笔者最近碰到一个非常诡异的问题，如果目录的名字出现 tplink 字符串，就会导致 Repo 工作异常；
+如果将目录 tplink 更改为其他名字，比如 tp 或者 test 等等，Repo 就工作正常；
+笔者一度怀疑 Repo 的开发者是否">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-01-05T23:12:47+08:00">
+<meta property="article:tag" content="repo">
+</head>
+<body>
+    <section class="social"><ul>
+<li><a href="../index.html" title="Home"><i class="icon-home"></i></a></li>
+            <li><a href="../archive.html" title="Archives"><i class="icon-folder-open-alt"></i></a></li>
+            <li><a href="../categories/index.html" title="Tags"><i class="icon-tags"></i></a></li>
+            <li><a href="../rss.xml" title="RSS"><i class="icon-rss"></i></a></li>
+            <li><a href="about_me.html" title="About me"><i class="icon-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="icon-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="icon-github"></i></a></li>
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+    <div class="post">
+        <h1 class="p-name entry-title" itemprop="headline name">Repo VS TPLink</h1>
+
+        <div class="meta">
+            <div class="authordate">
+                <time class="timeago" datetime="2017-01-05T23:12:47+08:00">2017-01-05 23:12</time>
+</div>
+                    <div itemprop="keywords" class="tags">
+        <ul>
+        标签 : 
+           <li><a class="tag p-category" href="../categories/repo.html" rel="tag">repo</a></li>
+        </ul>
+</div>
+
+        </div>
+        <div class="body">
+            <div>
+<p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 是两个风马牛不相及的事物; 前者是 google 开发的用来管理 多个 git 仓库的工具；
+后者是国内一家知名的网络设备商。</p>
+<p>但笔者最近碰到一个非常诡异的问题，如果目录的名字出现 tplink 字符串，就会导致 <a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 工作异常；
+如果将目录 tplink 更改为其他名字，比如 tp 或者 test 等等，<a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 就工作正常；
+笔者一度怀疑 Repo 的开发者是否和 TPLink 公司有些过节，因此挖一个坑。</p>
+<pre class="code text"><a name="rest_code_6746bbcbd408427cb0f451757447279f-1"></a># mkdir tplink
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-2"></a># cd tplink
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-3"></a># repo init -u ssh://username@reposerver.com:29418/menifest.git
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-4"></a>......
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-5"></a>
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-6"></a>bind: atch: Cannot assign requested address
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-7"></a>ssh: connect to host 29418 port 22: Cannot assign requested address
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-8"></a>fatal: Could not read from remote repository.
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-9"></a>
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-10"></a>Please make sure you have the correct access rights
+<a name="rest_code_6746bbcbd408427cb0f451757447279f-11"></a>and the repository exists.
+</pre>
+<p>抱着吃瓜群众看热闹的心理，笔者想找到那个和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 过节的程序员，和他聊聊人生。</p>
+<p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 在实际运作过程中，首先创建一个共享的 SSH 隧道，后续运行的 ssh 命令将复用这个隧道,类似于开来一个本地代理。</p>
+<p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 设置了环境变量 GIT_SSH, 其定义为:</p>
+<pre class="code text"><a name="rest_code_b7cbd9bdec7d48f4ae7ebd350c96d7fc-1"></a>#!/bin/sh
+<a name="rest_code_b7cbd9bdec7d48f4ae7ebd350c96d7fc-2"></a>exec ssh -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"
+</pre>
+<p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 设置 GIT_SSH 变量的原因是为了减少建立 SSH 隧道的次数；repo 通常要管理几十个甚至上百个 git 仓库；
+如果克隆每个仓库都建立一次 SSH 隧道，会明显增加时间消耗。</p>
+<p>Debug 发现，代理 SSH （就是创建隧道的那个）收到的 参数不对。</p>
+<p>演示一下 GIT_SSH 的用法。</p>
+<ol class="arabic simple">
+<li>打开共享 SSH 隧道</li>
+</ol>
+<pre class="code text"><a name="rest_code_a7d7570a26f64943add7a5e12e67269f-1"></a>#mkdir /tmp/ssh
+<a name="rest_code_a7d7570a26f64943add7a5e12e67269f-2"></a>#ssh -v -M -N -p 22 -o 'ControlPath /tmp/ssh/test_git_ssh' tony@192.168.3.8
+<a name="rest_code_a7d7570a26f64943add7a5e12e67269f-3"></a>###// 此处打开了 -v 选项，用来查看 ssh log 信息
+</pre>
+<ol class="arabic simple" start="2">
+<li>使用共享的 SSH 隧道 （正常）</li>
+</ol>
+<pre class="code text"><a name="rest_code_312ebb6a622341c292fe947208c1e712-1"></a>#mkdir ~/work/check_git/nolink
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-2"></a>#cd ~/work/check_git/nolink
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-3"></a>#echo '#!/bin/sh' &gt; git_ssh
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-5"></a>#chmod a+x git_ssh
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/nolink/git_ssh'
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-8"></a>#pwd
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-9"></a>/home/tony_nie/work/check_git/nolink
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-11"></a>Cloning into 'test_git'...
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-12"></a>remote: Counting objects: 6, done.
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-13"></a>remote: Compressing objects: 100% (3/3), done.
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-14"></a>remote: Total 6 (delta 0), reused 6 (delta 0)
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-15"></a>Receiving objects: 100% (6/6), done.
+<a name="rest_code_312ebb6a622341c292fe947208c1e712-16"></a>Checking connectivity... done.
+</pre>
+<ol class="arabic simple" start="3">
+<li>使用共享的 SSH 隧道 （失败）</li>
+</ol>
+<pre class="code text"><a name="rest_code_a5f401c451af4c609e9185eca5ccb769-1"></a>#mkdir ~/work/check_git/tplink
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-2"></a>#cd ~/work/check_git/tplink
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-3"></a>#echo '#!/bin/sh' &gt; git_ssh
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-5"></a>#chmod a+x git_ssh
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/tplink/git_ssh'
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-8"></a>#pwd
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-9"></a>/home/tony_nie/work/check_git/tplink
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-11"></a>Cloning into 'test_git'...
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-12"></a>bash: tony@192.168.3.8: command not found
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-13"></a>fatal: Could not read from remote repository.
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-14"></a>
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-15"></a>Please make sure you have the correct access rights
+<a name="rest_code_a5f401c451af4c609e9185eca5ccb769-16"></a>and the repository exists.
+</pre>
+<p>执行 git clone 命令时可以看到共享隧道有 log 信息输出。</p>
+<p>正常：</p>
+<pre class="code text"><a name="rest_code_b939f385994d465aaa00bb26277116cc-1"></a>debug1: multiplexing control connection
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-2"></a>debug1: channel 1: new [mux-control]
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-3"></a>debug1: channel 2: new [client-session]
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-4"></a>debug1: Sending environment.
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-5"></a>debug1: Sending env LC_ALL = en_US.UTF-8
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-6"></a>debug1: Sending env LANG = zh_CN.UTF-8
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-7"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-8"></a>debug1: Sending command: git-upload-pack '/home/tony_nie/work/test_git'
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-9"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-10"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-11"></a>debug1: channel 2: free: client-session, nchannels 3
+<a name="rest_code_b939f385994d465aaa00bb26277116cc-12"></a>debug1: channel 1: free: mux-control, nchannels 2
+</pre>
+<p>异常：</p>
+<pre class="code text"><a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-1"></a>debug1: multiplexing control connection
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-2"></a>debug1: channel 1: new [mux-control]
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-3"></a>debug1: channel 2: new [client-session]
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-4"></a>debug1: Sending environment.
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-5"></a>debug1: Sending env LC_PAPER = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-6"></a>debug1: Sending env LC_ADDRESS = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-7"></a>debug1: Sending env LC_MONETARY = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-8"></a>debug1: Sending env LC_NUMERIC = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-9"></a>debug1: Sending env LC_ALL = en_US.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-10"></a>debug1: Sending env LC_TELEPHONE = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-11"></a>debug1: Sending env LC_IDENTIFICATION = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-12"></a>debug1: Sending env LANG = en_US.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-13"></a>debug1: Sending env LC_MEASUREMENT = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-14"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-15"></a>debug1: Sending env LC_TIME = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-16"></a>debug1: Sending env LC_NAME = zh_CN.UTF-8
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-17"></a>debug1: Sending command: tony@192.168.3.8 git-upload-pack '/Users/tony/code/check_git/test_git'
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-18"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-19"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-20"></a>debug1: channel 2: free: client-session, nchannels 3
+<a name="rest_code_c8ab70722ad44749b8eca0e8d22dcbd0-21"></a>debug1: channel 1: free: mux-control, nchannels 2
+</pre>
+<p>发现如果GIT_SSH 环境变量中如果包含 tplink 字样就会出错； 和 repo 没有关系哎。难道是
+git 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 有过节？</p>
+<p>download git (1.9.1) 的 code 研究一下吧。</p>
+<p>现在整个工程中 grep  TPlink 字符串，没有发现；再  grep plink；咦，有发现哎。</p>
+<p>git v1.9.1
+.. sourcecode:</p>
+<pre class="literal-block">
+if (protocol == PROTO_SSH) {
+        const char *ssh = getenv("GIT_SSH");
+        int putty = ssh &amp;&amp; strcasestr(ssh, "plink");
+        char *ssh_host = hostandport;
+        const char *port = NULL;
+        get_host_and_port(&amp;ssh_host, &amp;port);
+        port = get_port_numeric(port);
+
+        if (!ssh) ssh = "ssh";
+        *arg++ = ssh;
+        if (putty &amp;&amp; !strcasestr(ssh, "tortoiseplink"))
+                *arg++ = "-batch";
+        if (port) {
+                /* P is for PuTTY, p is for OpenSSH */
+                *arg++ = putty ? "-P" : "-p";
+                *arg++ = port;
+        }
+        *arg++ = ssh_host;
+}
+</pre>
+<p>很明显在判断 是否 putty 时，出了问题；认为GIT_SSH 环境变量出现 plink 就为 putty  :&gt; &lt;:</p>
+<p>git v2.5</p>
+<pre class="code text"><a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-1"></a>ssh = getenv("GIT_SSH_COMMAND");
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-2"></a>if (ssh) {
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-3"></a>        conn-&gt;use_shell = 1;
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-4"></a>        putty = 0;
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-5"></a>} else {
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-6"></a>        const char *base;
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-7"></a>        char *ssh_dup;
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-8"></a>
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-9"></a>        ssh = getenv("GIT_SSH");
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-10"></a>        if (!ssh)
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-11"></a>        ssh = "ssh";
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-12"></a>
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-13"></a>        ssh_dup = xstrdup(ssh);
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-14"></a>        base = basename(ssh_dup);
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-15"></a>
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-16"></a>        tortoiseplink = !strcasecmp(base, "tortoiseplink") ||
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-17"></a>                !strcasecmp(base, "tortoiseplink.exe");
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-18"></a>        putty = !strcasecmp(base, "plink") ||
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-19"></a>                !strcasecmp(base, "plink.exe") || tortoiseplink;
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-20"></a>
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-21"></a>        free(ssh_dup);
+<a name="rest_code_b11acaeca60343c0ad9b7a04bb0016a3-22"></a>}
+</pre>
+<p>还好 v2.5 修正了这个问题。</p>
+<p>看来不是 repo 和 TPLink 有过节，而是 git 1.9.1 和 TPLink 开了个玩笑 :)</p>
+</div>
+        </div>
+                <ul class="pager hidden-print">
+<li class="previous">
+                <a href="talking-from-dead-lock.html" rel="prev" title="从一个死锁问题说起">前一篇</a>
+            </li>
+            <li class="next">
+                <a href="media_trap.html" rel="next" title="多媒体开发注意事项">后一篇</a>
+            </li>
+        </ul>
+</div>
+                    <footer id="footer"><p>Contents © 2017         <a href="mailto:cloudnie@gmail.com">Tony Nie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../assets/js/jquery.timeago.js" type="text/javascript"></script><script type="text/javascript">
+            $(function(){
+                $('.timeago').timeago();
+            });
+        </script>
+</body>
+</html>

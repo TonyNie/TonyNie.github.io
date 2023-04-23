@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从一个死锁问题说起 | 凡云的博客</title>
+<link href="../assets/css/bitter.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://blog.runxcode.com/posts/talking-from-dead-lock.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="Tony Nie">
+<meta property="og:site_name" content="凡云的博客">
+<meta property="og:title" content="从一个死锁问题说起">
+<meta property="og:url" content="http://blog.runxcode.com/posts/talking-from-dead-lock.html">
+<meta property="og:description" content="碰到一个死锁问题，A 进程一直持有锁。
+加锁和解锁代码如下：
+fd = open(PATH, O_RDRW);
+if (fd &lt; 0)
+        goto out;
+ret = flock(fd, LOCK_SH);
+if (ret &lt; 0)
+        goto out;
+
+/* do something */
+
+out:
+        if (fd &gt; 0) {
+         ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-10-25T18:28:11+08:00">
+<meta property="article:tag" content="System Call">
+<meta property="article:tag" content="UNIX">
+</head>
+<body>
+    <section class="social"><ul>
+<li><a href="../index.html" title="Home"><i class="icon-home"></i></a></li>
+            <li><a href="../archive.html" title="Archives"><i class="icon-folder-open-alt"></i></a></li>
+            <li><a href="../categories/index.html" title="Tags"><i class="icon-tags"></i></a></li>
+            <li><a href="../rss.xml" title="RSS"><i class="icon-rss"></i></a></li>
+            <li><a href="about_me.html" title="About me"><i class="icon-user"></i></a></li>
+            <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="icon-twitter"></i></a></li>
+            <li><a href="https://github.com/TonyNie" title="My Github"><i class="icon-github"></i></a></li>
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+    <div class="post">
+        <h1 class="p-name entry-title" itemprop="headline name">从一个死锁问题说起</h1>
+
+        <div class="meta">
+            <div class="authordate">
+                <time class="timeago" datetime="2016-10-25T18:28:11+08:00">2016-10-25 18:28</time>
+</div>
+                    <div itemprop="keywords" class="tags">
+        <ul>
+        标签 : 
+           <li><a class="tag p-category" href="../categories/system-call.html" rel="tag">System Call</a></li>
+           <li><a class="tag p-category" href="../categories/unix.html" rel="tag">UNIX</a></li>
+        </ul>
+</div>
+
+        </div>
+        <div class="body">
+            <div>
+<p>碰到一个死锁问题，A 进程一直持有锁。</p>
+<p>加锁和解锁代码如下：</p>
+<pre class="code text"><a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-1"></a>fd = open(PATH, O_RDRW);
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-2"></a>if (fd &lt; 0)
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-3"></a>        goto out;
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-4"></a>ret = flock(fd, LOCK_SH);
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-5"></a>if (ret &lt; 0)
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-6"></a>        goto out;
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-7"></a>
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-8"></a>/* do something */
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-9"></a>
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-10"></a>out:
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-11"></a>        if (fd &gt; 0) {
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-12"></a>                flock(fd, LOCK_UN);
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-13"></a>                close(fd);
+<a name="rest_code_a342bf649ecd46c0b1ae67b50d8a39ae-14"></a>        }
+</pre>
+<p>追送代码发现，出现了加锁而没有释放锁的情况；唯一的可能性就是 fd &gt; 0 不成立。
+但加锁成功，说明 fd 不会小于 0；所以 fd == 0.</p>
+<p>为什么？ fd 是由系统调用 open 返回的，通常情况是 &gt; 0 的；内核根据进程打开文件的记录返回没有使用的
+值；如果 fd 为 0，说明之前 0 是空着的；但我们知道 0 通常代表着 标准输入，可能情况就是有人把标注输入
+close 掉了。daemon 程序通常会将 0， 1，2 重新定向于 /dev/null, 但我们并没有这样处理。
+通过 proc 文件系统查看 fd 的使用情况。</p>
+<p>正常情况：</p>
+<pre class="code text"><a name="rest_code_a38d3e25a822468c87624e910369a65d-1"></a># ls -lh /proc/1845/fd/*
+<a name="rest_code_a38d3e25a822468c87624e910369a65d-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/console
+<a name="rest_code_a38d3e25a822468c87624e910369a65d-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
+<a name="rest_code_a38d3e25a822468c87624e910369a65d-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
+</pre>
+<p>异常情况：</p>
+<pre class="code text"><a name="rest_code_755cb63e00284310987b304a56173740-1"></a># ls -lh /proc/1845/fd/*
+<a name="rest_code_755cb63e00284310987b304a56173740-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/conf/myfile
+<a name="rest_code_755cb63e00284310987b304a56173740-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
+<a name="rest_code_755cb63e00284310987b304a56173740-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
+</pre>
+<p>很明显标准输入被 close 了，然后进程重新 open 文件时就得到了值为 0 的 fd.</p>
+<p>谁关闭了标准输入？ 为什么？</p>
+<p>有了方向很快就查到了元凶。</p>
+<p><strong>我们知道 Linux 同时支持 POSIX 标准 和 System V 标准的 IPC 机制。 项目中使用了 Message queue 的 IPC 方法，但我们混用了两种机制；在获取 IPC handle 的时候使用了 System V 标准(msgget)；但释放 IPC handle 的时候使用了 POSIX 标准 (mq_close). 问题是 msgget 的拿到的值有很大概率为 0；mq_close(0) 会将 0 号 fd close 掉，导致 0 号 fd 重新进入了分配池。</strong></p>
+<dl class="docutils">
+<dt>两点结论:</dt>
+<dd><ol class="first last arabic simple">
+<li>系统调用 open/create 的返回值是有可能为 0 的</li>
+<li>POSIX 标准和 System V 标准的 系统调用不能混合使用</li>
+</ol></dd>
+</dl>
+</div>
+        </div>
+                <ul class="pager hidden-print">
+<li class="previous">
+                <a href="file-time-at-fat32.html" rel="prev" title="FAT32 文件系统时间戳问题">前一篇</a>
+            </li>
+            <li class="next">
+                <a href="repo_vs_tplink.html" rel="next" title="Repo VS TPLink">后一篇</a>
+            </li>
+        </ul>
+</div>
+                    <footer id="footer"><p>Contents © 2017         <a href="mailto:cloudnie@gmail.com">Tony Nie</a> </p>
+            
+        </footer>
+</div>
+    </section><script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../assets/js/jquery.timeago.js" type="text/javascript"></script><script type="text/javascript">
+            $(function(){
+                $('.timeago').timeago();
+            });
+        </script>
+</body>
+</html>
