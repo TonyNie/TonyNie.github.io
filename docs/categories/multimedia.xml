@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 Multimedia)</title><link>http://blog.cloudnie.ort/</link><description></description><atom:link href="http://blog.cloudnie.ort/categories/multimedia.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sun, 23 Apr 2023 13:40:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>多媒体开发注意事项</title><link>http://blog.cloudnie.ort/posts/media_trap/</link><dc:creator>CloudNie</dc:creator><description>&lt;ol class="arabic simple"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 Multimedia)</title><link>https://blog.cloudnie.org/</link><description></description><atom:link href="https://blog.cloudnie.org/categories/multimedia.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 25 Apr 2023 05:50:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>多媒体开发注意事项</title><link>https://blog.cloudnie.org/posts/media_trap/</link><dc:creator>CloudNie</dc:creator><description>&lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;p&gt;时间戳&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;网络缓存&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;</description><category>Multimedia</category><guid>http://blog.cloudnie.ort/posts/media_trap/</guid><pubDate>Sat, 28 Jan 2017 13:26:15 GMT</pubDate></item><item><title>FFmpeg 之FFM</title><link>http://blog.cloudnie.ort/posts/%20FFmpeg/</link><dc:creator>CloudNie</dc:creator><description>&lt;section id="ffmpeg-ffm"&gt;
+&lt;/ol&gt;</description><category>Multimedia</category><guid>https://blog.cloudnie.org/posts/media_trap/</guid><pubDate>Sat, 28 Jan 2017 13:26:15 GMT</pubDate></item><item><title>FFmpeg 之FFM</title><link>https://blog.cloudnie.org/posts/%20FFmpeg/</link><dc:creator>CloudNie</dc:creator><description>&lt;section id="ffmpeg-ffm"&gt;
 &lt;h2&gt;FFmpeg 之 FFM&lt;/h2&gt;
 &lt;p&gt;FFmpeg 提供了ffm muxer和demuxer， 从ffmpeg和fferver的code看，
 ffm是作为缓冲来使用的，即起到漏斗的作用。&lt;/p&gt;
@@ -18,14 +18,14 @@ ffm是作为缓冲来使用的，即起到漏斗的作用。&lt;/p&gt;
 &lt;p&gt;因为ffm的write 是同步做的，所以肯定会导致V4L2丢帧;  对H264来说，丢帧就会导致很长一段时间不能正常解码。&lt;/p&gt;
 &lt;p&gt;当前ffm的IO文件位于 /tmp/h264.ffm, 对于tmpfs来说，写的速度应该非常快才对。&lt;/p&gt;
 &lt;p&gt;使用df命令查看了当前OS的文件系统挂载情况：&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1" href="http://blog.cloudnie.ort/posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1"&gt;&lt;/a&gt; /dev/sda1 33032012 8790252 22563784 29% /
-&lt;a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2" href="http://blog.cloudnie.ort/posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2"&gt;&lt;/a&gt;udev 922740 4 922736 1% /dev
-&lt;a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3" href="http://blog.cloudnie.ort/posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3"&gt;&lt;/a&gt;tmpfs 186308 1948 184360 2% /run
-&lt;a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4" href="http://blog.cloudnie.ort/posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4"&gt;&lt;/a&gt;none 5120 0 5120 0% /run/lock
-&lt;a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5" href="http://blog.cloudnie.ort/posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5"&gt;&lt;/a&gt;none 931536 152 931384 1% /run/shm
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_40964dcca30d42d7804f65fa57a53e06-1" name="rest_code_40964dcca30d42d7804f65fa57a53e06-1" href="https://blog.cloudnie.org/posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-1"&gt;&lt;/a&gt; /dev/sda1 33032012 8790252 22563784 29% /
+&lt;a id="rest_code_40964dcca30d42d7804f65fa57a53e06-2" name="rest_code_40964dcca30d42d7804f65fa57a53e06-2" href="https://blog.cloudnie.org/posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-2"&gt;&lt;/a&gt;udev 922740 4 922736 1% /dev
+&lt;a id="rest_code_40964dcca30d42d7804f65fa57a53e06-3" name="rest_code_40964dcca30d42d7804f65fa57a53e06-3" href="https://blog.cloudnie.org/posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-3"&gt;&lt;/a&gt;tmpfs 186308 1948 184360 2% /run
+&lt;a id="rest_code_40964dcca30d42d7804f65fa57a53e06-4" name="rest_code_40964dcca30d42d7804f65fa57a53e06-4" href="https://blog.cloudnie.org/posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-4"&gt;&lt;/a&gt;none 5120 0 5120 0% /run/lock
+&lt;a id="rest_code_40964dcca30d42d7804f65fa57a53e06-5" name="rest_code_40964dcca30d42d7804f65fa57a53e06-5" href="https://blog.cloudnie.org/posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-5"&gt;&lt;/a&gt;none 931536 152 931384 1% /run/shm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;问题找到了。tmpfs 挂载于 /run, 而不是/tmp.&lt;/p&gt;
 &lt;p&gt;修改ffm的IO文件位置， OK， 问题解决。&lt;/p&gt;
 &lt;p&gt;后记： 发现在系统memory资源紧张的情况下， tmpfs会被交换到swap 分区，
 所以tmpfs不是太安全，应该使用ramfs&lt;/p&gt;
-&lt;/section&gt;</description><category>Multimedia</category><guid>http://blog.cloudnie.ort/posts/%20FFmpeg/</guid><pubDate>Sat, 30 Aug 2014 06:36:49 GMT</pubDate></item></channel></rss>
+&lt;/section&gt;</description><category>Multimedia</category><guid>https://blog.cloudnie.org/posts/%20FFmpeg/</guid><pubDate>Sat, 30 Aug 2014 06:36:49 GMT</pubDate></item></channel></rss>

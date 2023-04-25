@@ -10,13 +10,13 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/">
+<link rel="canonical" href="https://blog.cloudnie.org/posts/cast_int_to_long_unsigned_int/">
 <!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
 <link rel="prev" href="../write-blog-with-restructuredtext/" title="使用nikola生成静态博客" type="text/html">
 <link rel="next" href="../the-spirit-cat/" title="小咪的奇怪行为" type="text/html">
 <meta property="og:site_name" content="凡云的博客">
 <meta property="og:title" content="_IOC定义的不严谨性">
-<meta property="og:url" content="http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/">
+<meta property="og:url" content="https://blog.cloudnie.org/posts/cast_int_to_long_unsigned_int/">
 <meta property="og:description" content="C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.
 
 int v4l2_ioctl(int requet, void *arg) {
@@ -38,7 +38,7 @@ int v4l2_ioctl(int requet, void *arg) {
             <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="../about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -76,11 +76,11 @@ int v4l2_ioctl(int requet, void *arg) {
     <blockquote>
 <p>C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.</p>
 </blockquote>
-<div class="code"><pre class="code text"><a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1"></a>int v4l2_ioctl(int requet, void *arg) {
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2"></a>        if (UVCIOC_CTRL_QUERY == request) {
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3"></a>        /* do something */
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4"></a>        }
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" href="#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5"></a>}
+<div class="code"><pre class="code text"><a id="rest_code_7373668eed4c40168de0ae1d518c2943-1" name="rest_code_7373668eed4c40168de0ae1d518c2943-1" href="#rest_code_7373668eed4c40168de0ae1d518c2943-1"></a>int v4l2_ioctl(int requet, void *arg) {
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-2" name="rest_code_7373668eed4c40168de0ae1d518c2943-2" href="#rest_code_7373668eed4c40168de0ae1d518c2943-2"></a>        if (UVCIOC_CTRL_QUERY == request) {
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-3" name="rest_code_7373668eed4c40168de0ae1d518c2943-3" href="#rest_code_7373668eed4c40168de0ae1d518c2943-3"></a>        /* do something */
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-4" name="rest_code_7373668eed4c40168de0ae1d518c2943-4" href="#rest_code_7373668eed4c40168de0ae1d518c2943-4"></a>        }
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-5" name="rest_code_7373668eed4c40168de0ae1d518c2943-5" href="#rest_code_7373668eed4c40168de0ae1d518c2943-5"></a>}
 </pre></div>
 <p>实际执行过程发现, <em>UVCIOC_CTRL_QUERY == request</em> 永远为false, 即使request == UVCIOC_CTRL_QUERY.</p>
 <dl class="simple">
@@ -103,16 +103,16 @@ int v4l2_ioctl(int requet, void *arg) {
 }</pre>
 <p>编译, 运行, 得到的结果是 <strong>different</strong>,
 应该是默认转换出了问题. 查看UVCIOC_CTRL_QUERY的定义, 所用到的宏主要定义在 <em>&lt;linux/uvcvideo.h&gt;</em> 和 <em>&lt;sys/ioctl.h&gt;</em>.</p>
-<div class="code"><pre class="code text"><a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-1"></a>#define _IOC_TYPECHECK(t) (sizeof(t))
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-2"></a># define _IOC_WRITE     1U
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-3"></a># define _IOC_READ      2U
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-4"></a>#define _IOC(dir,type,nr,size) \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-5"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-6"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-7"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-8"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT))
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-9"></a>#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" href="#rest_code_d34c594b059e49f0926d367c8ee46eeb-10"></a>#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
+<div class="code"><pre class="code text"><a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-1" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-1" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-1"></a>#define _IOC_TYPECHECK(t) (sizeof(t))
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-2" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-2" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-2"></a># define _IOC_WRITE     1U
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-3" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-3" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-3"></a># define _IOC_READ      2U
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-4" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-4" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-4"></a>#define _IOC(dir,type,nr,size) \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-5" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-5" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-5"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-6" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-6" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-6"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-7" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-7" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-7"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-8" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-8" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-8"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT))
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-9" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-9" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-9"></a>#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-10" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-10" href="#rest_code_eeb8718f27d34debaa8ad887e7fd4601-10"></a>#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
 </pre></div>
 <p>将UVCIOC_CTRL_QUERY 展开, 得到的定义是:</p>
 <blockquote>
@@ -145,12 +145,12 @@ int v4l2_ioctl(int requet, void *arg) {
 </blockquote>
 <p>所以将 <em>requet</em> 定义为unsigned int 也不合适.</p>
 <p>无论在64位还是32位的机器上, _IOC的定义应该为uint32_t, 所以_IOC的定义应该加强制类型转换.</p>
-<div class="code"><pre class="code text"><a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1"></a>#define _IOC(dir,type,nr,size) \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2"></a>        (uint32_t) (    \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" href="#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT)))
+<div class="code"><pre class="code text"><a id="rest_code_345c148a4c4545f69c66c7d6e9368008-1" name="rest_code_345c148a4c4545f69c66c7d6e9368008-1" href="#rest_code_345c148a4c4545f69c66c7d6e9368008-1"></a>#define _IOC(dir,type,nr,size) \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-2" name="rest_code_345c148a4c4545f69c66c7d6e9368008-2" href="#rest_code_345c148a4c4545f69c66c7d6e9368008-2"></a>        (uint32_t) (    \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-3" name="rest_code_345c148a4c4545f69c66c7d6e9368008-3" href="#rest_code_345c148a4c4545f69c66c7d6e9368008-3"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-4" name="rest_code_345c148a4c4545f69c66c7d6e9368008-4" href="#rest_code_345c148a4c4545f69c66c7d6e9368008-4"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-5" name="rest_code_345c148a4c4545f69c66c7d6e9368008-5" href="#rest_code_345c148a4c4545f69c66c7d6e9368008-5"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-6" name="rest_code_345c148a4c4545f69c66c7d6e9368008-6" href="#rest_code_345c148a4c4545f69c66c7d6e9368008-6"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT)))
 </pre></div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">

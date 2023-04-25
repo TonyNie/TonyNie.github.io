@@ -10,13 +10,13 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/posts/inet_ntoa/">
+<link rel="canonical" href="https://blog.cloudnie.org/posts/inet_ntoa/">
 <!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
 <link rel="prev" href="../ketten-and-me/" title="我和小咪" type="text/html">
 <link rel="next" href="../%20FFmpeg/" title="FFmpeg 之FFM" type="text/html">
 <meta property="og:site_name" content="凡云的博客">
 <meta property="og:title" content="inet_ntoa不可重入性">
-<meta property="og:url" content="http://blog.cloudnie.ort/posts/inet_ntoa/">
+<meta property="og:url" content="https://blog.cloudnie.org/posts/inet_ntoa/">
 <meta property="og:description" content='inet_ntoa 的不可重入性
 在使用inet_ntoa时， 碰到一个很奇观的现象。
 代码如下：
@@ -35,7 +35,7 @@ fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
             <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="../about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -73,9 +73,9 @@ fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
     <section id="inet-ntoa"><h2>inet_ntoa 的不可重入性</h2>
 <p>在使用inet_ntoa时， 碰到一个很奇观的现象。</p>
 <p>代码如下：</p>
-<div class="code"><pre class="code text"><a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" href="#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1"></a>fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
-<a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" href="#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2"></a> inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
-<a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" href="#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3"></a> inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
+<div class="code"><pre class="code text"><a id="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-1" name="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-1" href="#rest_code_23f56d19ebd24e0a83d1553701d6ba7e-1"></a>fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
+<a id="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-2" name="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-2" href="#rest_code_23f56d19ebd24e0a83d1553701d6ba7e-2"></a> inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
+<a id="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-3" name="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-3" href="#rest_code_23f56d19ebd24e0a83d1553701d6ba7e-3"></a> inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
 </pre></div>
 <p>分析输出log， 发现除了to.sin_addr,
 其他参数都是正确的；to.sin_addr的输出值为from.sin_addr值；但使用gdb来debug发现，

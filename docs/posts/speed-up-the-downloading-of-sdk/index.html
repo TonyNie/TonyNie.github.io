@@ -10,12 +10,12 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/posts/speed-up-the-downloading-of-sdk/">
+<link rel="canonical" href="https://blog.cloudnie.org/posts/speed-up-the-downloading-of-sdk/">
 <!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
 <link rel="prev" href="../media_trap/" title="多媒体开发注意事项" type="text/html">
 <meta property="og:site_name" content="凡云的博客">
 <meta property="og:title" content="repo sync 加速">
-<meta property="og:url" content="http://blog.cloudnie.ort/posts/speed-up-the-downloading-of-sdk/">
+<meta property="og:url" content="https://blog.cloudnie.org/posts/speed-up-the-downloading-of-sdk/">
 <meta property="og:description" content="项目是用 repo 来管理 SDK，随着 SDK 中包含的仓库越来越多，以及单个仓库的体积越来越大，下载 SDK 的时间越来越长，目前已经超过了 15 分钟。
 有没有办法加速 SDK 的下载？ 答案是有的，就是利用  repo 命令的 --reference 参数，可以将下载时间优化到 1 分钟左右。
 该方法需要先创建本地 SDK mirror，然后在执行 repo init 命令的时候设定 --">
@@ -32,7 +32,7 @@
             <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="../about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -73,21 +73,21 @@
 <p>该方法需要先创建本地 SDK mirror，然后在执行 repo init 命令的时候设定 --reference 参数。
 SDK mirror 只需要创建一次，未来 sync 代码时可以重复使用。</p>
 <p>创建 SDK mirror:</p>
-<div class="code"><pre class="code text"><a id="rest_code_889b2214ea394a119eb969156ae294f6-1" name="rest_code_889b2214ea394a119eb969156ae294f6-1" href="#rest_code_889b2214ea394a119eb969156ae294f6-1"></a>mkdir sdk_repo_mirror
-<a id="rest_code_889b2214ea394a119eb969156ae294f6-2" name="rest_code_889b2214ea394a119eb969156ae294f6-2" href="#rest_code_889b2214ea394a119eb969156ae294f6-2"></a>cd sdk_repo_mirror
-<a id="rest_code_889b2214ea394a119eb969156ae294f6-3" name="rest_code_889b2214ea394a119eb969156ae294f6-3" href="#rest_code_889b2214ea394a119eb969156ae294f6-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --mirror
-<a id="rest_code_889b2214ea394a119eb969156ae294f6-4" name="rest_code_889b2214ea394a119eb969156ae294f6-4" href="#rest_code_889b2214ea394a119eb969156ae294f6-4"></a>repo sync --no-tags;
+<div class="code"><pre class="code text"><a id="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-1" name="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-1" href="#rest_code_cf638f38682c4ef4b71e0e4e005ce73a-1"></a>mkdir sdk_repo_mirror
+<a id="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-2" name="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-2" href="#rest_code_cf638f38682c4ef4b71e0e4e005ce73a-2"></a>cd sdk_repo_mirror
+<a id="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-3" name="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-3" href="#rest_code_cf638f38682c4ef4b71e0e4e005ce73a-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --mirror
+<a id="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-4" name="rest_code_cf638f38682c4ef4b71e0e4e005ce73a-4" href="#rest_code_cf638f38682c4ef4b71e0e4e005ce73a-4"></a>repo sync --no-tags;
 </pre></div>
 <p>Download SDK Source:</p>
-<div class="code"><pre class="code text"><a id="rest_code_6b670f79662b4107ac220bdfe07e3934-1" name="rest_code_6b670f79662b4107ac220bdfe07e3934-1" href="#rest_code_6b670f79662b4107ac220bdfe07e3934-1"></a>mkdir sdk_work
-<a id="rest_code_6b670f79662b4107ac220bdfe07e3934-2" name="rest_code_6b670f79662b4107ac220bdfe07e3934-2" href="#rest_code_6b670f79662b4107ac220bdfe07e3934-2"></a>cd sdk_work
-<a id="rest_code_6b670f79662b4107ac220bdfe07e3934-3" name="rest_code_6b670f79662b4107ac220bdfe07e3934-3" href="#rest_code_6b670f79662b4107ac220bdfe07e3934-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --reference=YOUR_SDK_MIRROR_PATH
-<a id="rest_code_6b670f79662b4107ac220bdfe07e3934-4" name="rest_code_6b670f79662b4107ac220bdfe07e3934-4" href="#rest_code_6b670f79662b4107ac220bdfe07e3934-4"></a>repo sync
+<div class="code"><pre class="code text"><a id="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-1" name="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-1" href="#rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-1"></a>mkdir sdk_work
+<a id="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-2" name="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-2" href="#rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-2"></a>cd sdk_work
+<a id="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-3" name="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-3" href="#rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-3"></a>repo init -u ssh://YOUR_ACOUNT@GERRIT_HOST/manifest --reference=YOUR_SDK_MIRROR_PATH
+<a id="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-4" name="rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-4" href="#rest_code_b0d2d7d9ef1f4b22bb655ecdf463c4a2-4"></a>repo sync
 </pre></div>
 <p>repo 仓库中的注释:</p>
-<div class="code"><pre class="code text"><a id="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-1" name="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-1" href="#rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-1"></a>The --reference option can be used to point to a directory that has the content of a --mirror sync. This will make the working
-<a id="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-2" name="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-2" href="#rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-2"></a>directory use as much data as possible from the local reference directory when fetching from the server. This will make the sync
-<a id="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-3" name="rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-3" href="#rest_code_3498eb2e3da94222bc7c89dd4d1ea1e9-3"></a>go a lot faster by reducing data traffic on the network.
+<div class="code"><pre class="code text"><a id="rest_code_efe14b60a98f4c8da6282107131fa13a-1" name="rest_code_efe14b60a98f4c8da6282107131fa13a-1" href="#rest_code_efe14b60a98f4c8da6282107131fa13a-1"></a>The --reference option can be used to point to a directory that has the content of a --mirror sync. This will make the working
+<a id="rest_code_efe14b60a98f4c8da6282107131fa13a-2" name="rest_code_efe14b60a98f4c8da6282107131fa13a-2" href="#rest_code_efe14b60a98f4c8da6282107131fa13a-2"></a>directory use as much data as possible from the local reference directory when fetching from the server. This will make the sync
+<a id="rest_code_efe14b60a98f4c8da6282107131fa13a-3" name="rest_code_efe14b60a98f4c8da6282107131fa13a-3" href="#rest_code_efe14b60a98f4c8da6282107131fa13a-3"></a>go a lot faster by reducing data traffic on the network.
 </pre></div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">

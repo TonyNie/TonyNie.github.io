@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/index-2.html">
+<link rel="canonical" href="https://blog.cloudnie.org/index-2.html">
 <link rel="prev" href="index-3.html" type="text/html">
 <link rel="next" href="index-1.html" type="text/html">
 <!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
@@ -24,7 +24,7 @@
             <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="posts/about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="posts/about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -86,18 +86,18 @@
 <p>System IPC (message queue, share memory 等等) 在创建时, 必须指定一个 KEY 值, 这个 KEY 来自于 ftok.</p>
 <p>debug 发现, 调用ftok产生的 KEY, 每次都不一样.</p>
 <p>查看fotk的 source code(glibc 2.20)</p>
-<div class="code"><pre class="code text"><a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-1" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-1" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-1"></a>key_t ftok (const char *pathname, int proj_id) {
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-2" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-2" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-2"></a>        struct stat64 st;
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-3" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-3" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-3"></a>        key_t key;
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-4" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-4" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-4"></a>
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-5" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-5" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-5"></a>        if (__xstat64 (_STAT_VER, pathname, &amp;st) &lt; 0)
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-6" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-6" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-6"></a>                return (key_t) -1;
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-7" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-7" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-7"></a>
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-8" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-8" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-8"></a>        key = ((st.st_ino &amp; 0xffff) | ((st.st_dev &amp; 0xff) &lt;&lt; 16)
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-9" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-9" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-9"></a>                | ((proj_id &amp; 0xff) &lt;&lt; 24));
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-10" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-10" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-10"></a>
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-11" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-11" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-11"></a>        return key;
-<a id="rest_code_22ed7ddeb6b642598f8266561926e6aa-12" name="rest_code_22ed7ddeb6b642598f8266561926e6aa-12" href="posts/ftok/#rest_code_22ed7ddeb6b642598f8266561926e6aa-12"></a>}
+<div class="code"><pre class="code text"><a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-1" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-1" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-1"></a>key_t ftok (const char *pathname, int proj_id) {
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-2" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-2" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-2"></a>        struct stat64 st;
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-3" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-3" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-3"></a>        key_t key;
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-4" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-4" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-4"></a>
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-5" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-5" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-5"></a>        if (__xstat64 (_STAT_VER, pathname, &amp;st) &lt; 0)
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-6" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-6" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-6"></a>                return (key_t) -1;
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-7" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-7" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-7"></a>
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-8" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-8" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-8"></a>        key = ((st.st_ino &amp; 0xffff) | ((st.st_dev &amp; 0xff) &lt;&lt; 16)
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-9" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-9" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-9"></a>                | ((proj_id &amp; 0xff) &lt;&lt; 24));
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-10" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-10" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-10"></a>
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-11" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-11" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-11"></a>        return key;
+<a id="rest_code_7f7c93b7570f4481b7065b3fe0946621-12" name="rest_code_7f7c93b7570f4481b7065b3fe0946621-12" href="posts/ftok/#rest_code_7f7c93b7570f4481b7065b3fe0946621-12"></a>}
 </pre></div>
 <p>这样看, KEY 值与文件系统所在的 device id 和 文件节点号 有关, 如果 <em>pathname</em> 没有被删除, 则key值应该维持不变.</p>
 <p>最终发现, <em>pathname</em> 在出错处理时被删除, 从而导致 KEY 值不固定.</p>
@@ -107,11 +107,11 @@ KEY 的产生. (笔者所在的项目中, <em>pathname</em> 位于 ramfs)</p>
 <p>另外, 在 glibc 2.20 的 ftok 实现中, 只是使用了inode number 的低 16 位, 如果文件系统中包含大量的文件, 就会存在两个文件的 inode_number
 低 16 位 相同; 此时, 这两个文件对应的 KEY 值 就会相同, 违背了 不同的文件产生不同的 KEY 的原则.</p>
 <p><em>Linux programmer's Manual</em> 是这样说的:</p>
-<div class="code"><pre class="code text"><a id="rest_code_3637e913ff9b469aaac6529365fae76d-1" name="rest_code_3637e913ff9b469aaac6529365fae76d-1" href="posts/ftok/#rest_code_3637e913ff9b469aaac6529365fae76d-1"></a>Of course no guarantee can be given that the resulting key_t is unique.
-<a id="rest_code_3637e913ff9b469aaac6529365fae76d-2" name="rest_code_3637e913ff9b469aaac6529365fae76d-2" href="posts/ftok/#rest_code_3637e913ff9b469aaac6529365fae76d-2"></a>Typically, a best effort attempt combines the given proj_id byte,
-<a id="rest_code_3637e913ff9b469aaac6529365fae76d-3" name="rest_code_3637e913ff9b469aaac6529365fae76d-3" href="posts/ftok/#rest_code_3637e913ff9b469aaac6529365fae76d-3"></a>the lower 16  bits  of the inode number, and the lower 8 bits of
-<a id="rest_code_3637e913ff9b469aaac6529365fae76d-4" name="rest_code_3637e913ff9b469aaac6529365fae76d-4" href="posts/ftok/#rest_code_3637e913ff9b469aaac6529365fae76d-4"></a>the device number into a 32-bit result.  Collisions may easily happen,
-<a id="rest_code_3637e913ff9b469aaac6529365fae76d-5" name="rest_code_3637e913ff9b469aaac6529365fae76d-5" href="posts/ftok/#rest_code_3637e913ff9b469aaac6529365fae76d-5"></a>for example between files on /dev/hda1 and files on /dev/sda1.
+<div class="code"><pre class="code text"><a id="rest_code_2fbe0165f04647fbb022109c2dc49ff9-1" name="rest_code_2fbe0165f04647fbb022109c2dc49ff9-1" href="posts/ftok/#rest_code_2fbe0165f04647fbb022109c2dc49ff9-1"></a>Of course no guarantee can be given that the resulting key_t is unique.
+<a id="rest_code_2fbe0165f04647fbb022109c2dc49ff9-2" name="rest_code_2fbe0165f04647fbb022109c2dc49ff9-2" href="posts/ftok/#rest_code_2fbe0165f04647fbb022109c2dc49ff9-2"></a>Typically, a best effort attempt combines the given proj_id byte,
+<a id="rest_code_2fbe0165f04647fbb022109c2dc49ff9-3" name="rest_code_2fbe0165f04647fbb022109c2dc49ff9-3" href="posts/ftok/#rest_code_2fbe0165f04647fbb022109c2dc49ff9-3"></a>the lower 16  bits  of the inode number, and the lower 8 bits of
+<a id="rest_code_2fbe0165f04647fbb022109c2dc49ff9-4" name="rest_code_2fbe0165f04647fbb022109c2dc49ff9-4" href="posts/ftok/#rest_code_2fbe0165f04647fbb022109c2dc49ff9-4"></a>the device number into a 32-bit result.  Collisions may easily happen,
+<a id="rest_code_2fbe0165f04647fbb022109c2dc49ff9-5" name="rest_code_2fbe0165f04647fbb022109c2dc49ff9-5" href="posts/ftok/#rest_code_2fbe0165f04647fbb022109c2dc49ff9-5"></a>for example between files on /dev/hda1 and files on /dev/sda1.
 </pre></div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/gcc/" class="u-url">gcc 常用实例</a></h1>
@@ -460,11 +460,11 @@ KEY 的产生. (笔者所在的项目中, <em>pathname</em> 位于 ramfs)</p>
     <blockquote>
 <p>C语言中默认类型转换绝对是一个坑. 最近项目中有以下一段code, 隐藏了一个很严重的BUG.</p>
 </blockquote>
-<div class="code"><pre class="code text"><a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1" href="posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-1"></a>int v4l2_ioctl(int requet, void *arg) {
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2" href="posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-2"></a>        if (UVCIOC_CTRL_QUERY == request) {
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3" href="posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-3"></a>        /* do something */
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4" href="posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-4"></a>        }
-<a id="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" name="rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5" href="posts/cast_int_to_long_unsigned_int/#rest_code_5e01566edf5a41f89cbeb9b1645ceac0-5"></a>}
+<div class="code"><pre class="code text"><a id="rest_code_7373668eed4c40168de0ae1d518c2943-1" name="rest_code_7373668eed4c40168de0ae1d518c2943-1" href="posts/cast_int_to_long_unsigned_int/#rest_code_7373668eed4c40168de0ae1d518c2943-1"></a>int v4l2_ioctl(int requet, void *arg) {
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-2" name="rest_code_7373668eed4c40168de0ae1d518c2943-2" href="posts/cast_int_to_long_unsigned_int/#rest_code_7373668eed4c40168de0ae1d518c2943-2"></a>        if (UVCIOC_CTRL_QUERY == request) {
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-3" name="rest_code_7373668eed4c40168de0ae1d518c2943-3" href="posts/cast_int_to_long_unsigned_int/#rest_code_7373668eed4c40168de0ae1d518c2943-3"></a>        /* do something */
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-4" name="rest_code_7373668eed4c40168de0ae1d518c2943-4" href="posts/cast_int_to_long_unsigned_int/#rest_code_7373668eed4c40168de0ae1d518c2943-4"></a>        }
+<a id="rest_code_7373668eed4c40168de0ae1d518c2943-5" name="rest_code_7373668eed4c40168de0ae1d518c2943-5" href="posts/cast_int_to_long_unsigned_int/#rest_code_7373668eed4c40168de0ae1d518c2943-5"></a>}
 </pre></div>
 <p>实际执行过程发现, <em>UVCIOC_CTRL_QUERY == request</em> 永远为false, 即使request == UVCIOC_CTRL_QUERY.</p>
 <dl class="simple">
@@ -487,16 +487,16 @@ KEY 的产生. (笔者所在的项目中, <em>pathname</em> 位于 ramfs)</p>
 }</pre>
 <p>编译, 运行, 得到的结果是 <strong>different</strong>,
 应该是默认转换出了问题. 查看UVCIOC_CTRL_QUERY的定义, 所用到的宏主要定义在 <em>&lt;linux/uvcvideo.h&gt;</em> 和 <em>&lt;sys/ioctl.h&gt;</em>.</p>
-<div class="code"><pre class="code text"><a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-1" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-1"></a>#define _IOC_TYPECHECK(t) (sizeof(t))
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-2" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-2"></a># define _IOC_WRITE     1U
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-3" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-3"></a># define _IOC_READ      2U
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-4" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-4"></a>#define _IOC(dir,type,nr,size) \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-5" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-5"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-6" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-6"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-7" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-7"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-8" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-8"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT))
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-9" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-9"></a>#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
-<a id="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" name="rest_code_d34c594b059e49f0926d367c8ee46eeb-10" href="posts/cast_int_to_long_unsigned_int/#rest_code_d34c594b059e49f0926d367c8ee46eeb-10"></a>#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
+<div class="code"><pre class="code text"><a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-1" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-1" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-1"></a>#define _IOC_TYPECHECK(t) (sizeof(t))
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-2" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-2" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-2"></a># define _IOC_WRITE     1U
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-3" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-3" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-3"></a># define _IOC_READ      2U
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-4" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-4" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-4"></a>#define _IOC(dir,type,nr,size) \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-5" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-5" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-5"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-6" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-6" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-6"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-7" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-7" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-7"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-8" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-8" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-8"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT))
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-9" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-9" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-9"></a>#define _IOWR(type,nr,size)     _IOC(_IOC_READ|_IOC_WRITE,(type),(nr),(_IOC_TYPECHECK(size)))
+<a id="rest_code_eeb8718f27d34debaa8ad887e7fd4601-10" name="rest_code_eeb8718f27d34debaa8ad887e7fd4601-10" href="posts/cast_int_to_long_unsigned_int/#rest_code_eeb8718f27d34debaa8ad887e7fd4601-10"></a>#define UVCIOC_CTRL_QUERY       _IOWR('u', 0x21, struct uvc_xu_control_query)
 </pre></div>
 <p>将UVCIOC_CTRL_QUERY 展开, 得到的定义是:</p>
 <blockquote>
@@ -529,12 +529,12 @@ KEY 的产生. (笔者所在的项目中, <em>pathname</em> 位于 ramfs)</p>
 </blockquote>
 <p>所以将 <em>requet</em> 定义为unsigned int 也不合适.</p>
 <p>无论在64位还是32位的机器上, _IOC的定义应该为uint32_t, 所以_IOC的定义应该加强制类型转换.</p>
-<div class="code"><pre class="code text"><a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1" href="posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-1"></a>#define _IOC(dir,type,nr,size) \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2" href="posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-2"></a>        (uint32_t) (    \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3" href="posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-3"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4" href="posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-4"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5" href="posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-5"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
-<a id="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" name="rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6" href="posts/cast_int_to_long_unsigned_int/#rest_code_58f6bdd1a5eb4b108d048fd37c8847f4-6"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT)))
+<div class="code"><pre class="code text"><a id="rest_code_345c148a4c4545f69c66c7d6e9368008-1" name="rest_code_345c148a4c4545f69c66c7d6e9368008-1" href="posts/cast_int_to_long_unsigned_int/#rest_code_345c148a4c4545f69c66c7d6e9368008-1"></a>#define _IOC(dir,type,nr,size) \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-2" name="rest_code_345c148a4c4545f69c66c7d6e9368008-2" href="posts/cast_int_to_long_unsigned_int/#rest_code_345c148a4c4545f69c66c7d6e9368008-2"></a>        (uint32_t) (    \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-3" name="rest_code_345c148a4c4545f69c66c7d6e9368008-3" href="posts/cast_int_to_long_unsigned_int/#rest_code_345c148a4c4545f69c66c7d6e9368008-3"></a>        (((dir)  &lt;&lt; _IOC_DIRSHIFT) | \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-4" name="rest_code_345c148a4c4545f69c66c7d6e9368008-4" href="posts/cast_int_to_long_unsigned_int/#rest_code_345c148a4c4545f69c66c7d6e9368008-4"></a>         ((type) &lt;&lt; _IOC_TYPESHIFT) | \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-5" name="rest_code_345c148a4c4545f69c66c7d6e9368008-5" href="posts/cast_int_to_long_unsigned_int/#rest_code_345c148a4c4545f69c66c7d6e9368008-5"></a>         ((nr)   &lt;&lt; _IOC_NRSHIFT) | \
+<a id="rest_code_345c148a4c4545f69c66c7d6e9368008-6" name="rest_code_345c148a4c4545f69c66c7d6e9368008-6" href="posts/cast_int_to_long_unsigned_int/#rest_code_345c148a4c4545f69c66c7d6e9368008-6"></a>         ((size) &lt;&lt; _IOC_SIZESHIFT)))
 </pre></div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/write-blog-with-restructuredtext/" class="u-url">使用nikola生成静态博客</a></h1>

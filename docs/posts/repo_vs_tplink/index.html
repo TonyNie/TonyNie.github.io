@@ -10,13 +10,13 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/posts/repo_vs_tplink/">
+<link rel="canonical" href="https://blog.cloudnie.org/posts/repo_vs_tplink/">
 <!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
 <link rel="prev" href="../talking-from-dead-lock/" title="从一个死锁问题说起" type="text/html">
 <link rel="next" href="../media_trap/" title="多媒体开发注意事项" type="text/html">
 <meta property="og:site_name" content="凡云的博客">
 <meta property="og:title" content="Repo VS TPLink">
-<meta property="og:url" content="http://blog.cloudnie.ort/posts/repo_vs_tplink/">
+<meta property="og:url" content="https://blog.cloudnie.org/posts/repo_vs_tplink/">
 <meta property="og:description" content="Repo 和 TPLink 是两个风马牛不相及的事物; 前者是 google 开发的用来管理 多个 git 仓库的工具；
 后者是国内一家知名的网络设备商。
 但笔者最近碰到一个非常诡异的问题，如果目录的名字出现 tplink 字符串，就会导致 Repo 工作异常；
@@ -34,7 +34,7 @@
             <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="../about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -74,23 +74,23 @@
 <p>但笔者最近碰到一个非常诡异的问题，如果目录的名字出现 tplink 字符串，就会导致 <a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 工作异常；
 如果将目录 tplink 更改为其他名字，比如 tp 或者 test 等等，<a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 就工作正常；
 笔者一度怀疑 Repo 的开发者是否和 TPLink 公司有些过节，因此挖一个坑。</p>
-<div class="code"><pre class="code text"><a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-1" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-1" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-1"></a># mkdir tplink
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-2" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-2" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-2"></a># cd tplink
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-3" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-3" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-3"></a># repo init -u ssh://username@reposerver.com:29418/menifest.git
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-4" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-4" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-4"></a>......
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-5" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-5" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-5"></a>
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-6" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-6" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-6"></a>bind: atch: Cannot assign requested address
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-7" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-7" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-7"></a>ssh: connect to host 29418 port 22: Cannot assign requested address
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-8" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-8" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-8"></a>fatal: Could not read from remote repository.
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-9" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-9" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-9"></a>
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-10" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-10" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-10"></a>Please make sure you have the correct access rights
-<a id="rest_code_41bd87b2bea34c719e39a18faef8bfdc-11" name="rest_code_41bd87b2bea34c719e39a18faef8bfdc-11" href="#rest_code_41bd87b2bea34c719e39a18faef8bfdc-11"></a>and the repository exists.
+<div class="code"><pre class="code text"><a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-1" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-1" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-1"></a># mkdir tplink
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-2" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-2" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-2"></a># cd tplink
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-3" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-3" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-3"></a># repo init -u ssh://username@reposerver.com:29418/menifest.git
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-4" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-4" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-4"></a>......
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-5" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-5" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-5"></a>
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-6" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-6" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-6"></a>bind: atch: Cannot assign requested address
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-7" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-7" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-7"></a>ssh: connect to host 29418 port 22: Cannot assign requested address
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-8" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-8" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-8"></a>fatal: Could not read from remote repository.
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-9" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-9" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-9"></a>
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-10" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-10" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-10"></a>Please make sure you have the correct access rights
+<a id="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-11" name="rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-11" href="#rest_code_dc72c7f7cbc54d31b9ae73d52b3a8e45-11"></a>and the repository exists.
 </pre></div>
 <p>抱着吃瓜群众看热闹的心理，笔者想找到那个和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 过节的程序员，和他聊聊人生。</p>
 <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 在实际运作过程中，首先创建一个共享的 SSH 隧道，后续运行的 ssh 命令将复用这个隧道,类似于开来一个本地代理。</p>
 <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 设置了环境变量 GIT_SSH, 其定义为:</p>
-<div class="code"><pre class="code text"><a id="rest_code_68a27930913941008eba8e92d02e5858-1" name="rest_code_68a27930913941008eba8e92d02e5858-1" href="#rest_code_68a27930913941008eba8e92d02e5858-1"></a>#!/bin/sh
-<a id="rest_code_68a27930913941008eba8e92d02e5858-2" name="rest_code_68a27930913941008eba8e92d02e5858-2" href="#rest_code_68a27930913941008eba8e92d02e5858-2"></a>exec ssh -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"
+<div class="code"><pre class="code text"><a id="rest_code_1a7c1070be4c4ee5b7548b4c79f4f53c-1" name="rest_code_1a7c1070be4c4ee5b7548b4c79f4f53c-1" href="#rest_code_1a7c1070be4c4ee5b7548b4c79f4f53c-1"></a>#!/bin/sh
+<a id="rest_code_1a7c1070be4c4ee5b7548b4c79f4f53c-2" name="rest_code_1a7c1070be4c4ee5b7548b4c79f4f53c-2" href="#rest_code_1a7c1070be4c4ee5b7548b4c79f4f53c-2"></a>exec ssh -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"
 </pre></div>
 <p><a class="reference external" href="https://source.android.com/source/using-repo.html">Repo</a> 设置 GIT_SSH 变量的原因是为了减少建立 SSH 隧道的次数；repo 通常要管理几十个甚至上百个 git 仓库；
 如果克隆每个仓库都建立一次 SSH 隧道，会明显增加时间消耗。</p>
@@ -99,87 +99,87 @@
 <ol class="arabic simple">
 <li><p>打开共享 SSH 隧道</p></li>
 </ol>
-<div class="code"><pre class="code text"><a id="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-1" name="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-1" href="#rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-1"></a>#mkdir /tmp/ssh
-<a id="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-2" name="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-2" href="#rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-2"></a>#ssh -v -M -N -p 22 -o 'ControlPath /tmp/ssh/test_git_ssh' tony@192.168.3.8
-<a id="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-3" name="rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-3" href="#rest_code_86dc78bfbecb4d04a6e807039c4ba1e4-3"></a>###// 此处打开了 -v 选项，用来查看 ssh log 信息
+<div class="code"><pre class="code text"><a id="rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-1" name="rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-1" href="#rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-1"></a>#mkdir /tmp/ssh
+<a id="rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-2" name="rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-2" href="#rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-2"></a>#ssh -v -M -N -p 22 -o 'ControlPath /tmp/ssh/test_git_ssh' tony@192.168.3.8
+<a id="rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-3" name="rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-3" href="#rest_code_49e5ec5cf16d4f36b1cbf0464c268f78-3"></a>###// 此处打开了 -v 选项，用来查看 ssh log 信息
 </pre></div>
 <ol class="arabic simple" start="2">
 <li><p>使用共享的 SSH 隧道 （正常）</p></li>
 </ol>
-<div class="code"><pre class="code text"><a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-1" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-1" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-1"></a>#mkdir ~/work/check_git/nolink
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-2" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-2" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-2"></a>#cd ~/work/check_git/nolink
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-3" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-3" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-3"></a>#echo '#!/bin/sh' &gt; git_ssh
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-4" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-4" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-5" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-5" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-5"></a>#chmod a+x git_ssh
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-6" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-6" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/nolink/git_ssh'
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-7" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-7" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-8" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-8" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-8"></a>#pwd
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-9" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-9" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-9"></a>/home/tony_nie/work/check_git/nolink
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-10" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-10" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-11" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-11" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-11"></a>Cloning into 'test_git'...
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-12" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-12" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-12"></a>remote: Counting objects: 6, done.
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-13" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-13" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-13"></a>remote: Compressing objects: 100% (3/3), done.
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-14" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-14" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-14"></a>remote: Total 6 (delta 0), reused 6 (delta 0)
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-15" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-15" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-15"></a>Receiving objects: 100% (6/6), done.
-<a id="rest_code_c716553e14aa4b3fafb269a6c51bdd77-16" name="rest_code_c716553e14aa4b3fafb269a6c51bdd77-16" href="#rest_code_c716553e14aa4b3fafb269a6c51bdd77-16"></a>Checking connectivity... done.
+<div class="code"><pre class="code text"><a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-1" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-1" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-1"></a>#mkdir ~/work/check_git/nolink
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-2" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-2" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-2"></a>#cd ~/work/check_git/nolink
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-3" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-3" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-3"></a>#echo '#!/bin/sh' &gt; git_ssh
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-4" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-4" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-5" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-5" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-5"></a>#chmod a+x git_ssh
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-6" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-6" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/nolink/git_ssh'
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-7" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-7" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-8" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-8" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-8"></a>#pwd
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-9" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-9" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-9"></a>/home/tony_nie/work/check_git/nolink
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-10" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-10" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-11" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-11" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-11"></a>Cloning into 'test_git'...
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-12" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-12" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-12"></a>remote: Counting objects: 6, done.
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-13" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-13" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-13"></a>remote: Compressing objects: 100% (3/3), done.
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-14" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-14" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-14"></a>remote: Total 6 (delta 0), reused 6 (delta 0)
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-15" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-15" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-15"></a>Receiving objects: 100% (6/6), done.
+<a id="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-16" name="rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-16" href="#rest_code_b51e2cd3bf5e47b6b00a6a12a2c46514-16"></a>Checking connectivity... done.
 </pre></div>
 <ol class="arabic simple" start="3">
 <li><p>使用共享的 SSH 隧道 （失败）</p></li>
 </ol>
-<div class="code"><pre class="code text"><a id="rest_code_37cec30cc130455e995f828fa997ebe3-1" name="rest_code_37cec30cc130455e995f828fa997ebe3-1" href="#rest_code_37cec30cc130455e995f828fa997ebe3-1"></a>#mkdir ~/work/check_git/tplink
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-2" name="rest_code_37cec30cc130455e995f828fa997ebe3-2" href="#rest_code_37cec30cc130455e995f828fa997ebe3-2"></a>#cd ~/work/check_git/tplink
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-3" name="rest_code_37cec30cc130455e995f828fa997ebe3-3" href="#rest_code_37cec30cc130455e995f828fa997ebe3-3"></a>#echo '#!/bin/sh' &gt; git_ssh
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-4" name="rest_code_37cec30cc130455e995f828fa997ebe3-4" href="#rest_code_37cec30cc130455e995f828fa997ebe3-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-5" name="rest_code_37cec30cc130455e995f828fa997ebe3-5" href="#rest_code_37cec30cc130455e995f828fa997ebe3-5"></a>#chmod a+x git_ssh
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-6" name="rest_code_37cec30cc130455e995f828fa997ebe3-6" href="#rest_code_37cec30cc130455e995f828fa997ebe3-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/tplink/git_ssh'
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-7" name="rest_code_37cec30cc130455e995f828fa997ebe3-7" href="#rest_code_37cec30cc130455e995f828fa997ebe3-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-8" name="rest_code_37cec30cc130455e995f828fa997ebe3-8" href="#rest_code_37cec30cc130455e995f828fa997ebe3-8"></a>#pwd
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-9" name="rest_code_37cec30cc130455e995f828fa997ebe3-9" href="#rest_code_37cec30cc130455e995f828fa997ebe3-9"></a>/home/tony_nie/work/check_git/tplink
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-10" name="rest_code_37cec30cc130455e995f828fa997ebe3-10" href="#rest_code_37cec30cc130455e995f828fa997ebe3-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-11" name="rest_code_37cec30cc130455e995f828fa997ebe3-11" href="#rest_code_37cec30cc130455e995f828fa997ebe3-11"></a>Cloning into 'test_git'...
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-12" name="rest_code_37cec30cc130455e995f828fa997ebe3-12" href="#rest_code_37cec30cc130455e995f828fa997ebe3-12"></a>bash: tony@192.168.3.8: command not found
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-13" name="rest_code_37cec30cc130455e995f828fa997ebe3-13" href="#rest_code_37cec30cc130455e995f828fa997ebe3-13"></a>fatal: Could not read from remote repository.
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-14" name="rest_code_37cec30cc130455e995f828fa997ebe3-14" href="#rest_code_37cec30cc130455e995f828fa997ebe3-14"></a>
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-15" name="rest_code_37cec30cc130455e995f828fa997ebe3-15" href="#rest_code_37cec30cc130455e995f828fa997ebe3-15"></a>Please make sure you have the correct access rights
-<a id="rest_code_37cec30cc130455e995f828fa997ebe3-16" name="rest_code_37cec30cc130455e995f828fa997ebe3-16" href="#rest_code_37cec30cc130455e995f828fa997ebe3-16"></a>and the repository exists.
+<div class="code"><pre class="code text"><a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-1" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-1" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-1"></a>#mkdir ~/work/check_git/tplink
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-2" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-2" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-2"></a>#cd ~/work/check_git/tplink
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-3" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-3" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-3"></a>#echo '#!/bin/sh' &gt; git_ssh
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-4" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-4" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-4"></a>#echo 'exec ssh  -o "ControlMaster no" -o "ControlPath $REPO_SSH_SOCK" "$@"' &gt;&gt; git_ssh
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-5" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-5" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-5"></a>#chmod a+x git_ssh
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-6" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-6" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-6"></a>#export GIT_SSH='/home/tony_nie/work/check_git/tplink/git_ssh'
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-7" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-7" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-7"></a>#export REPO_SSH_SOCK='/tmp/ssh/test_git_ssh'
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-8" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-8" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-8"></a>#pwd
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-9" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-9" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-9"></a>/home/tony_nie/work/check_git/tplink
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-10" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-10" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-10"></a>#git clone ssh://tony@192.168.3.8:22/Users/tony/code/check_git/test_git
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-11" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-11" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-11"></a>Cloning into 'test_git'...
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-12" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-12" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-12"></a>bash: tony@192.168.3.8: command not found
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-13" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-13" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-13"></a>fatal: Could not read from remote repository.
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-14" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-14" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-14"></a>
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-15" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-15" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-15"></a>Please make sure you have the correct access rights
+<a id="rest_code_5b130cdfefe44a1a96bda031dc795e77-16" name="rest_code_5b130cdfefe44a1a96bda031dc795e77-16" href="#rest_code_5b130cdfefe44a1a96bda031dc795e77-16"></a>and the repository exists.
 </pre></div>
 <p>执行 git clone 命令时可以看到共享隧道有 log 信息输出。</p>
 <p>正常：</p>
-<div class="code"><pre class="code text"><a id="rest_code_b15f53f2677445689fa23e5236187d60-1" name="rest_code_b15f53f2677445689fa23e5236187d60-1" href="#rest_code_b15f53f2677445689fa23e5236187d60-1"></a>debug1: multiplexing control connection
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-2" name="rest_code_b15f53f2677445689fa23e5236187d60-2" href="#rest_code_b15f53f2677445689fa23e5236187d60-2"></a>debug1: channel 1: new [mux-control]
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-3" name="rest_code_b15f53f2677445689fa23e5236187d60-3" href="#rest_code_b15f53f2677445689fa23e5236187d60-3"></a>debug1: channel 2: new [client-session]
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-4" name="rest_code_b15f53f2677445689fa23e5236187d60-4" href="#rest_code_b15f53f2677445689fa23e5236187d60-4"></a>debug1: Sending environment.
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-5" name="rest_code_b15f53f2677445689fa23e5236187d60-5" href="#rest_code_b15f53f2677445689fa23e5236187d60-5"></a>debug1: Sending env LC_ALL = en_US.UTF-8
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-6" name="rest_code_b15f53f2677445689fa23e5236187d60-6" href="#rest_code_b15f53f2677445689fa23e5236187d60-6"></a>debug1: Sending env LANG = zh_CN.UTF-8
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-7" name="rest_code_b15f53f2677445689fa23e5236187d60-7" href="#rest_code_b15f53f2677445689fa23e5236187d60-7"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-8" name="rest_code_b15f53f2677445689fa23e5236187d60-8" href="#rest_code_b15f53f2677445689fa23e5236187d60-8"></a>debug1: Sending command: git-upload-pack '/home/tony_nie/work/test_git'
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-9" name="rest_code_b15f53f2677445689fa23e5236187d60-9" href="#rest_code_b15f53f2677445689fa23e5236187d60-9"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-10" name="rest_code_b15f53f2677445689fa23e5236187d60-10" href="#rest_code_b15f53f2677445689fa23e5236187d60-10"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-11" name="rest_code_b15f53f2677445689fa23e5236187d60-11" href="#rest_code_b15f53f2677445689fa23e5236187d60-11"></a>debug1: channel 2: free: client-session, nchannels 3
-<a id="rest_code_b15f53f2677445689fa23e5236187d60-12" name="rest_code_b15f53f2677445689fa23e5236187d60-12" href="#rest_code_b15f53f2677445689fa23e5236187d60-12"></a>debug1: channel 1: free: mux-control, nchannels 2
+<div class="code"><pre class="code text"><a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-1" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-1" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-1"></a>debug1: multiplexing control connection
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-2" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-2" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-2"></a>debug1: channel 1: new [mux-control]
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-3" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-3" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-3"></a>debug1: channel 2: new [client-session]
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-4" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-4" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-4"></a>debug1: Sending environment.
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-5" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-5" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-5"></a>debug1: Sending env LC_ALL = en_US.UTF-8
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-6" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-6" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-6"></a>debug1: Sending env LANG = zh_CN.UTF-8
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-7" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-7" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-7"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-8" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-8" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-8"></a>debug1: Sending command: git-upload-pack '/home/tony_nie/work/test_git'
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-9" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-9" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-9"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-10" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-10" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-10"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-11" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-11" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-11"></a>debug1: channel 2: free: client-session, nchannels 3
+<a id="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-12" name="rest_code_c72cddc66e5f47b0ab38c07caa6ba248-12" href="#rest_code_c72cddc66e5f47b0ab38c07caa6ba248-12"></a>debug1: channel 1: free: mux-control, nchannels 2
 </pre></div>
 <p>异常：</p>
-<div class="code"><pre class="code text"><a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-1" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-1" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-1"></a>debug1: multiplexing control connection
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-2" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-2" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-2"></a>debug1: channel 1: new [mux-control]
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-3" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-3" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-3"></a>debug1: channel 2: new [client-session]
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-4" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-4" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-4"></a>debug1: Sending environment.
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-5" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-5" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-5"></a>debug1: Sending env LC_PAPER = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-6" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-6" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-6"></a>debug1: Sending env LC_ADDRESS = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-7" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-7" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-7"></a>debug1: Sending env LC_MONETARY = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-8" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-8" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-8"></a>debug1: Sending env LC_NUMERIC = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-9" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-9" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-9"></a>debug1: Sending env LC_ALL = en_US.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-10" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-10" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-10"></a>debug1: Sending env LC_TELEPHONE = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-11" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-11" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-11"></a>debug1: Sending env LC_IDENTIFICATION = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-12" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-12" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-12"></a>debug1: Sending env LANG = en_US.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-13" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-13" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-13"></a>debug1: Sending env LC_MEASUREMENT = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-14" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-14" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-14"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-15" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-15" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-15"></a>debug1: Sending env LC_TIME = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-16" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-16" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-16"></a>debug1: Sending env LC_NAME = zh_CN.UTF-8
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-17" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-17" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-17"></a>debug1: Sending command: tony@192.168.3.8 git-upload-pack '/Users/tony/code/check_git/test_git'
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-18" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-18" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-18"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-19" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-19" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-19"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-20" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-20" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-20"></a>debug1: channel 2: free: client-session, nchannels 3
-<a id="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-21" name="rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-21" href="#rest_code_1d7bb9d3a5ba45e988dbef357e511f2d-21"></a>debug1: channel 1: free: mux-control, nchannels 2
+<div class="code"><pre class="code text"><a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-1" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-1" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-1"></a>debug1: multiplexing control connection
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-2" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-2" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-2"></a>debug1: channel 1: new [mux-control]
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-3" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-3" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-3"></a>debug1: channel 2: new [client-session]
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-4" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-4" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-4"></a>debug1: Sending environment.
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-5" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-5" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-5"></a>debug1: Sending env LC_PAPER = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-6" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-6" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-6"></a>debug1: Sending env LC_ADDRESS = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-7" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-7" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-7"></a>debug1: Sending env LC_MONETARY = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-8" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-8" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-8"></a>debug1: Sending env LC_NUMERIC = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-9" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-9" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-9"></a>debug1: Sending env LC_ALL = en_US.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-10" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-10" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-10"></a>debug1: Sending env LC_TELEPHONE = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-11" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-11" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-11"></a>debug1: Sending env LC_IDENTIFICATION = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-12" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-12" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-12"></a>debug1: Sending env LANG = en_US.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-13" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-13" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-13"></a>debug1: Sending env LC_MEASUREMENT = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-14" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-14" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-14"></a>debug1: Sending env LC_CTYPE = en_US.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-15" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-15" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-15"></a>debug1: Sending env LC_TIME = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-16" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-16" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-16"></a>debug1: Sending env LC_NAME = zh_CN.UTF-8
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-17" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-17" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-17"></a>debug1: Sending command: tony@192.168.3.8 git-upload-pack '/Users/tony/code/check_git/test_git'
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-18" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-18" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-18"></a>debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-19" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-19" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-19"></a>debug1: client_input_channel_req: channel 2 rtype eow@openssh.com reply 0
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-20" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-20" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-20"></a>debug1: channel 2: free: client-session, nchannels 3
+<a id="rest_code_3a47cbaf0bfe432fbb977211089bf484-21" name="rest_code_3a47cbaf0bfe432fbb977211089bf484-21" href="#rest_code_3a47cbaf0bfe432fbb977211089bf484-21"></a>debug1: channel 1: free: mux-control, nchannels 2
 </pre></div>
 <p>发现如果GIT_SSH 环境变量中如果包含 tplink 字样就会出错； 和 repo 没有关系哎。难道是
 git 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</a> 有过节？</p>
@@ -208,28 +208,28 @@ git 和 <a class="reference external" href="http://www.tp-link.com/en/">TPLink</
 }</pre>
 <p>很明显在判断 是否 putty 时，出了问题；认为GIT_SSH 环境变量出现 plink 就为 putty  :&gt; &lt;:</p>
 <p>git v2.5</p>
-<div class="code"><pre class="code text"><a id="rest_code_bee7774442f744d1b662132b4115b39a-1" name="rest_code_bee7774442f744d1b662132b4115b39a-1" href="#rest_code_bee7774442f744d1b662132b4115b39a-1"></a>ssh = getenv("GIT_SSH_COMMAND");
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-2" name="rest_code_bee7774442f744d1b662132b4115b39a-2" href="#rest_code_bee7774442f744d1b662132b4115b39a-2"></a>if (ssh) {
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-3" name="rest_code_bee7774442f744d1b662132b4115b39a-3" href="#rest_code_bee7774442f744d1b662132b4115b39a-3"></a>        conn-&gt;use_shell = 1;
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-4" name="rest_code_bee7774442f744d1b662132b4115b39a-4" href="#rest_code_bee7774442f744d1b662132b4115b39a-4"></a>        putty = 0;
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-5" name="rest_code_bee7774442f744d1b662132b4115b39a-5" href="#rest_code_bee7774442f744d1b662132b4115b39a-5"></a>} else {
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-6" name="rest_code_bee7774442f744d1b662132b4115b39a-6" href="#rest_code_bee7774442f744d1b662132b4115b39a-6"></a>        const char *base;
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-7" name="rest_code_bee7774442f744d1b662132b4115b39a-7" href="#rest_code_bee7774442f744d1b662132b4115b39a-7"></a>        char *ssh_dup;
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-8" name="rest_code_bee7774442f744d1b662132b4115b39a-8" href="#rest_code_bee7774442f744d1b662132b4115b39a-8"></a>
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-9" name="rest_code_bee7774442f744d1b662132b4115b39a-9" href="#rest_code_bee7774442f744d1b662132b4115b39a-9"></a>        ssh = getenv("GIT_SSH");
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-10" name="rest_code_bee7774442f744d1b662132b4115b39a-10" href="#rest_code_bee7774442f744d1b662132b4115b39a-10"></a>        if (!ssh)
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-11" name="rest_code_bee7774442f744d1b662132b4115b39a-11" href="#rest_code_bee7774442f744d1b662132b4115b39a-11"></a>        ssh = "ssh";
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-12" name="rest_code_bee7774442f744d1b662132b4115b39a-12" href="#rest_code_bee7774442f744d1b662132b4115b39a-12"></a>
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-13" name="rest_code_bee7774442f744d1b662132b4115b39a-13" href="#rest_code_bee7774442f744d1b662132b4115b39a-13"></a>        ssh_dup = xstrdup(ssh);
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-14" name="rest_code_bee7774442f744d1b662132b4115b39a-14" href="#rest_code_bee7774442f744d1b662132b4115b39a-14"></a>        base = basename(ssh_dup);
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-15" name="rest_code_bee7774442f744d1b662132b4115b39a-15" href="#rest_code_bee7774442f744d1b662132b4115b39a-15"></a>
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-16" name="rest_code_bee7774442f744d1b662132b4115b39a-16" href="#rest_code_bee7774442f744d1b662132b4115b39a-16"></a>        tortoiseplink = !strcasecmp(base, "tortoiseplink") ||
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-17" name="rest_code_bee7774442f744d1b662132b4115b39a-17" href="#rest_code_bee7774442f744d1b662132b4115b39a-17"></a>                !strcasecmp(base, "tortoiseplink.exe");
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-18" name="rest_code_bee7774442f744d1b662132b4115b39a-18" href="#rest_code_bee7774442f744d1b662132b4115b39a-18"></a>        putty = !strcasecmp(base, "plink") ||
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-19" name="rest_code_bee7774442f744d1b662132b4115b39a-19" href="#rest_code_bee7774442f744d1b662132b4115b39a-19"></a>                !strcasecmp(base, "plink.exe") || tortoiseplink;
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-20" name="rest_code_bee7774442f744d1b662132b4115b39a-20" href="#rest_code_bee7774442f744d1b662132b4115b39a-20"></a>
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-21" name="rest_code_bee7774442f744d1b662132b4115b39a-21" href="#rest_code_bee7774442f744d1b662132b4115b39a-21"></a>        free(ssh_dup);
-<a id="rest_code_bee7774442f744d1b662132b4115b39a-22" name="rest_code_bee7774442f744d1b662132b4115b39a-22" href="#rest_code_bee7774442f744d1b662132b4115b39a-22"></a>}
+<div class="code"><pre class="code text"><a id="rest_code_91021fbde6b34090976ea8c549f6c56f-1" name="rest_code_91021fbde6b34090976ea8c549f6c56f-1" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-1"></a>ssh = getenv("GIT_SSH_COMMAND");
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-2" name="rest_code_91021fbde6b34090976ea8c549f6c56f-2" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-2"></a>if (ssh) {
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-3" name="rest_code_91021fbde6b34090976ea8c549f6c56f-3" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-3"></a>        conn-&gt;use_shell = 1;
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-4" name="rest_code_91021fbde6b34090976ea8c549f6c56f-4" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-4"></a>        putty = 0;
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-5" name="rest_code_91021fbde6b34090976ea8c549f6c56f-5" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-5"></a>} else {
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-6" name="rest_code_91021fbde6b34090976ea8c549f6c56f-6" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-6"></a>        const char *base;
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-7" name="rest_code_91021fbde6b34090976ea8c549f6c56f-7" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-7"></a>        char *ssh_dup;
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-8" name="rest_code_91021fbde6b34090976ea8c549f6c56f-8" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-8"></a>
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-9" name="rest_code_91021fbde6b34090976ea8c549f6c56f-9" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-9"></a>        ssh = getenv("GIT_SSH");
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-10" name="rest_code_91021fbde6b34090976ea8c549f6c56f-10" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-10"></a>        if (!ssh)
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-11" name="rest_code_91021fbde6b34090976ea8c549f6c56f-11" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-11"></a>        ssh = "ssh";
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-12" name="rest_code_91021fbde6b34090976ea8c549f6c56f-12" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-12"></a>
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-13" name="rest_code_91021fbde6b34090976ea8c549f6c56f-13" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-13"></a>        ssh_dup = xstrdup(ssh);
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-14" name="rest_code_91021fbde6b34090976ea8c549f6c56f-14" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-14"></a>        base = basename(ssh_dup);
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-15" name="rest_code_91021fbde6b34090976ea8c549f6c56f-15" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-15"></a>
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-16" name="rest_code_91021fbde6b34090976ea8c549f6c56f-16" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-16"></a>        tortoiseplink = !strcasecmp(base, "tortoiseplink") ||
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-17" name="rest_code_91021fbde6b34090976ea8c549f6c56f-17" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-17"></a>                !strcasecmp(base, "tortoiseplink.exe");
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-18" name="rest_code_91021fbde6b34090976ea8c549f6c56f-18" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-18"></a>        putty = !strcasecmp(base, "plink") ||
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-19" name="rest_code_91021fbde6b34090976ea8c549f6c56f-19" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-19"></a>                !strcasecmp(base, "plink.exe") || tortoiseplink;
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-20" name="rest_code_91021fbde6b34090976ea8c549f6c56f-20" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-20"></a>
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-21" name="rest_code_91021fbde6b34090976ea8c549f6c56f-21" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-21"></a>        free(ssh_dup);
+<a id="rest_code_91021fbde6b34090976ea8c549f6c56f-22" name="rest_code_91021fbde6b34090976ea8c549f6c56f-22" href="#rest_code_91021fbde6b34090976ea8c549f6c56f-22"></a>}
 </pre></div>
 <p>还好 v2.5 修正了这个问题。</p>
 <p>看来不是 repo 和 TPLink 有过节，而是 git 1.9.1 和 TPLink 开了个玩笑 :)</p>

@@ -10,13 +10,13 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/posts/talking-from-dead-lock/">
+<link rel="canonical" href="https://blog.cloudnie.org/posts/talking-from-dead-lock/">
 <!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
 <link rel="prev" href="../file-time-at-fat32/" title="FAT32 文件系统时间戳问题" type="text/html">
 <link rel="next" href="../repo_vs_tplink/" title="Repo VS TPLink" type="text/html">
 <meta property="og:site_name" content="凡云的博客">
 <meta property="og:title" content="从一个死锁问题说起">
-<meta property="og:url" content="http://blog.cloudnie.ort/posts/talking-from-dead-lock/">
+<meta property="og:url" content="https://blog.cloudnie.org/posts/talking-from-dead-lock/">
 <meta property="og:description" content="碰到一个死锁问题，A 进程一直持有锁。
 加锁和解锁代码如下：
 fd = open(PATH, O_RDRW);
@@ -44,7 +44,7 @@ out:
             <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="../about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -82,20 +82,20 @@ out:
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <p>碰到一个死锁问题，A 进程一直持有锁。</p>
 <p>加锁和解锁代码如下：</p>
-<div class="code"><pre class="code text"><a id="rest_code_7d45990d744641688d8f0cd129180e69-1" name="rest_code_7d45990d744641688d8f0cd129180e69-1" href="#rest_code_7d45990d744641688d8f0cd129180e69-1"></a>fd = open(PATH, O_RDRW);
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-2" name="rest_code_7d45990d744641688d8f0cd129180e69-2" href="#rest_code_7d45990d744641688d8f0cd129180e69-2"></a>if (fd &lt; 0)
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-3" name="rest_code_7d45990d744641688d8f0cd129180e69-3" href="#rest_code_7d45990d744641688d8f0cd129180e69-3"></a>        goto out;
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-4" name="rest_code_7d45990d744641688d8f0cd129180e69-4" href="#rest_code_7d45990d744641688d8f0cd129180e69-4"></a>ret = flock(fd, LOCK_SH);
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-5" name="rest_code_7d45990d744641688d8f0cd129180e69-5" href="#rest_code_7d45990d744641688d8f0cd129180e69-5"></a>if (ret &lt; 0)
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-6" name="rest_code_7d45990d744641688d8f0cd129180e69-6" href="#rest_code_7d45990d744641688d8f0cd129180e69-6"></a>        goto out;
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-7" name="rest_code_7d45990d744641688d8f0cd129180e69-7" href="#rest_code_7d45990d744641688d8f0cd129180e69-7"></a>
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-8" name="rest_code_7d45990d744641688d8f0cd129180e69-8" href="#rest_code_7d45990d744641688d8f0cd129180e69-8"></a>/* do something */
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-9" name="rest_code_7d45990d744641688d8f0cd129180e69-9" href="#rest_code_7d45990d744641688d8f0cd129180e69-9"></a>
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-10" name="rest_code_7d45990d744641688d8f0cd129180e69-10" href="#rest_code_7d45990d744641688d8f0cd129180e69-10"></a>out:
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-11" name="rest_code_7d45990d744641688d8f0cd129180e69-11" href="#rest_code_7d45990d744641688d8f0cd129180e69-11"></a>        if (fd &gt; 0) {
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-12" name="rest_code_7d45990d744641688d8f0cd129180e69-12" href="#rest_code_7d45990d744641688d8f0cd129180e69-12"></a>                flock(fd, LOCK_UN);
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-13" name="rest_code_7d45990d744641688d8f0cd129180e69-13" href="#rest_code_7d45990d744641688d8f0cd129180e69-13"></a>                close(fd);
-<a id="rest_code_7d45990d744641688d8f0cd129180e69-14" name="rest_code_7d45990d744641688d8f0cd129180e69-14" href="#rest_code_7d45990d744641688d8f0cd129180e69-14"></a>        }
+<div class="code"><pre class="code text"><a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-1" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-1" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-1"></a>fd = open(PATH, O_RDRW);
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-2" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-2" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-2"></a>if (fd &lt; 0)
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-3" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-3" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-3"></a>        goto out;
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-4" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-4" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-4"></a>ret = flock(fd, LOCK_SH);
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-5" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-5" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-5"></a>if (ret &lt; 0)
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-6" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-6" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-6"></a>        goto out;
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-7" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-7" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-7"></a>
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-8" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-8" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-8"></a>/* do something */
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-9" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-9" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-9"></a>
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-10" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-10" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-10"></a>out:
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-11" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-11" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-11"></a>        if (fd &gt; 0) {
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-12" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-12" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-12"></a>                flock(fd, LOCK_UN);
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-13" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-13" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-13"></a>                close(fd);
+<a id="rest_code_d54fdf9e023b4f2c86613868d68e5faa-14" name="rest_code_d54fdf9e023b4f2c86613868d68e5faa-14" href="#rest_code_d54fdf9e023b4f2c86613868d68e5faa-14"></a>        }
 </pre></div>
 <p>追送代码发现，出现了加锁而没有释放锁的情况；唯一的可能性就是 fd &gt; 0 不成立。
 但加锁成功，说明 fd 不会小于 0；所以 fd == 0.</p>
@@ -104,16 +104,16 @@ out:
 close 掉了。daemon 程序通常会将 0， 1，2 重新定向于 /dev/null, 但我们并没有这样处理。
 通过 proc 文件系统查看 fd 的使用情况。</p>
 <p>正常情况：</p>
-<div class="code"><pre class="code text"><a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-1" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-1" href="#rest_code_fb9083caba2944c9ac8ee89834b5e372-1"></a># ls -lh /proc/1845/fd/*
-<a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-2" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-2" href="#rest_code_fb9083caba2944c9ac8ee89834b5e372-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/console
-<a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-3" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-3" href="#rest_code_fb9083caba2944c9ac8ee89834b5e372-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
-<a id="rest_code_fb9083caba2944c9ac8ee89834b5e372-4" name="rest_code_fb9083caba2944c9ac8ee89834b5e372-4" href="#rest_code_fb9083caba2944c9ac8ee89834b5e372-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
+<div class="code"><pre class="code text"><a id="rest_code_743f9a26d0794af4acba25a23a1a40c9-1" name="rest_code_743f9a26d0794af4acba25a23a1a40c9-1" href="#rest_code_743f9a26d0794af4acba25a23a1a40c9-1"></a># ls -lh /proc/1845/fd/*
+<a id="rest_code_743f9a26d0794af4acba25a23a1a40c9-2" name="rest_code_743f9a26d0794af4acba25a23a1a40c9-2" href="#rest_code_743f9a26d0794af4acba25a23a1a40c9-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/console
+<a id="rest_code_743f9a26d0794af4acba25a23a1a40c9-3" name="rest_code_743f9a26d0794af4acba25a23a1a40c9-3" href="#rest_code_743f9a26d0794af4acba25a23a1a40c9-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
+<a id="rest_code_743f9a26d0794af4acba25a23a1a40c9-4" name="rest_code_743f9a26d0794af4acba25a23a1a40c9-4" href="#rest_code_743f9a26d0794af4acba25a23a1a40c9-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
 </pre></div>
 <p>异常情况：</p>
-<div class="code"><pre class="code text"><a id="rest_code_c9847aaa3fd0478da23243a62246eb90-1" name="rest_code_c9847aaa3fd0478da23243a62246eb90-1" href="#rest_code_c9847aaa3fd0478da23243a62246eb90-1"></a># ls -lh /proc/1845/fd/*
-<a id="rest_code_c9847aaa3fd0478da23243a62246eb90-2" name="rest_code_c9847aaa3fd0478da23243a62246eb90-2" href="#rest_code_c9847aaa3fd0478da23243a62246eb90-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/conf/myfile
-<a id="rest_code_c9847aaa3fd0478da23243a62246eb90-3" name="rest_code_c9847aaa3fd0478da23243a62246eb90-3" href="#rest_code_c9847aaa3fd0478da23243a62246eb90-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
-<a id="rest_code_c9847aaa3fd0478da23243a62246eb90-4" name="rest_code_c9847aaa3fd0478da23243a62246eb90-4" href="#rest_code_c9847aaa3fd0478da23243a62246eb90-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
+<div class="code"><pre class="code text"><a id="rest_code_c4d6f738126b47e7b27d1cf3949adae7-1" name="rest_code_c4d6f738126b47e7b27d1cf3949adae7-1" href="#rest_code_c4d6f738126b47e7b27d1cf3949adae7-1"></a># ls -lh /proc/1845/fd/*
+<a id="rest_code_c4d6f738126b47e7b27d1cf3949adae7-2" name="rest_code_c4d6f738126b47e7b27d1cf3949adae7-2" href="#rest_code_c4d6f738126b47e7b27d1cf3949adae7-2"></a>lr-x------    1 root     root          64 Oct 25 17:50 1845/fd/0 -&gt; /var/conf/myfile
+<a id="rest_code_c4d6f738126b47e7b27d1cf3949adae7-3" name="rest_code_c4d6f738126b47e7b27d1cf3949adae7-3" href="#rest_code_c4d6f738126b47e7b27d1cf3949adae7-3"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/1 -&gt; /dev/console
+<a id="rest_code_c4d6f738126b47e7b27d1cf3949adae7-4" name="rest_code_c4d6f738126b47e7b27d1cf3949adae7-4" href="#rest_code_c4d6f738126b47e7b27d1cf3949adae7-4"></a>lrwx------    1 root     root          64 Oct 25 18:49 1845/fd/2 -&gt; /dev/console
 </pre></div>
 <p>很明显标准输入被 close 了，然后进程重新 open 文件时就得到了值为 0 的 fd.</p>
 <p>谁关闭了标准输入？ 为什么？</p>

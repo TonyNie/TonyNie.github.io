@@ -10,13 +10,13 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/posts/%20FFmpeg/">
+<link rel="canonical" href="https://blog.cloudnie.org/posts/%20FFmpeg/">
 <!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="CloudNie">
 <link rel="prev" href="../inet_ntoa/" title="inet_ntoa不可重入性" type="text/html">
 <link rel="next" href="../dispatch/" title="未派遣证明" type="text/html">
 <meta property="og:site_name" content="凡云的博客">
 <meta property="og:title" content="FFmpeg 之FFM">
-<meta property="og:url" content="http://blog.cloudnie.ort/posts/%20FFmpeg/">
+<meta property="og:url" content="https://blog.cloudnie.org/posts/%20FFmpeg/">
 <meta property="og:description" content="FFmpeg 之 FFM
 FFmpeg 提供了ffm muxer和demuxer， 从ffmpeg和fferver的code看，
 ffm是作为缓冲来使用的，即起到漏斗的作用。
@@ -35,7 +35,7 @@ ffm muxer 和 demuxer的实现是不完整的， 从 ffserver.c 可以看出来�
             <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="../about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="../about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -85,11 +85,11 @@ ffm是作为缓冲来使用的，即起到漏斗的作用。</p>
 <p>因为ffm的write 是同步做的，所以肯定会导致V4L2丢帧;  对H264来说，丢帧就会导致很长一段时间不能正常解码。</p>
 <p>当前ffm的IO文件位于 /tmp/h264.ffm, 对于tmpfs来说，写的速度应该非常快才对。</p>
 <p>使用df命令查看了当前OS的文件系统挂载情况：</p>
-<div class="code"><pre class="code text"><a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1" href="../%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1"></a> /dev/sda1 33032012 8790252 22563784 29% /
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2" href="../%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2"></a>udev 922740 4 922736 1% /dev
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3" href="../%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3"></a>tmpfs 186308 1948 184360 2% /run
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4" href="../%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4"></a>none 5120 0 5120 0% /run/lock
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5" href="../%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5"></a>none 931536 152 931384 1% /run/shm
+<div class="code"><pre class="code text"><a id="rest_code_40964dcca30d42d7804f65fa57a53e06-1" name="rest_code_40964dcca30d42d7804f65fa57a53e06-1" href="../%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-1"></a> /dev/sda1 33032012 8790252 22563784 29% /
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-2" name="rest_code_40964dcca30d42d7804f65fa57a53e06-2" href="../%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-2"></a>udev 922740 4 922736 1% /dev
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-3" name="rest_code_40964dcca30d42d7804f65fa57a53e06-3" href="../%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-3"></a>tmpfs 186308 1948 184360 2% /run
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-4" name="rest_code_40964dcca30d42d7804f65fa57a53e06-4" href="../%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-4"></a>none 5120 0 5120 0% /run/lock
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-5" name="rest_code_40964dcca30d42d7804f65fa57a53e06-5" href="../%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-5"></a>none 931536 152 931384 1% /run/shm
 </pre></div>
 <p>问题找到了。tmpfs 挂载于 /run, 而不是/tmp.</p>
 <p>修改ffm的IO文件位置， OK， 问题解决。</p>

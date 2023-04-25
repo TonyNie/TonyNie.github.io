@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="rss.xml">
-<link rel="canonical" href="http://blog.cloudnie.ort/index-1.html">
+<link rel="canonical" href="https://blog.cloudnie.org/index-1.html">
 <link rel="prev" href="index-2.html" type="text/html">
 <!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
 </head>
@@ -23,7 +23,7 @@
             <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
             <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
             <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
-            <li><a href="posts/about_me.html" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="posts/about_me/index.html" title="About me"><i class="fa fa-user"></i></a></li>
             <li><a href="https://twitter.com/caicai0119" title="My Twitter"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/TonyNie" title="My Github"><i class="fab fa-github"></i></a></li>
     
@@ -186,11 +186,11 @@ ffm是作为缓冲来使用的，即起到漏斗的作用。</p>
 <p>因为ffm的write 是同步做的，所以肯定会导致V4L2丢帧;  对H264来说，丢帧就会导致很长一段时间不能正常解码。</p>
 <p>当前ffm的IO文件位于 /tmp/h264.ffm, 对于tmpfs来说，写的速度应该非常快才对。</p>
 <p>使用df命令查看了当前OS的文件系统挂载情况：</p>
-<div class="code"><pre class="code text"><a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1" href="posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-1"></a> /dev/sda1 33032012 8790252 22563784 29% /
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2" href="posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-2"></a>udev 922740 4 922736 1% /dev
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3" href="posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-3"></a>tmpfs 186308 1948 184360 2% /run
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4" href="posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-4"></a>none 5120 0 5120 0% /run/lock
-<a id="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5" name="rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5" href="posts/%20FFmpeg/#rest_code_d910a31b4ce74fe7a72aa01b14bfb95e-5"></a>none 931536 152 931384 1% /run/shm
+<div class="code"><pre class="code text"><a id="rest_code_40964dcca30d42d7804f65fa57a53e06-1" name="rest_code_40964dcca30d42d7804f65fa57a53e06-1" href="posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-1"></a> /dev/sda1 33032012 8790252 22563784 29% /
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-2" name="rest_code_40964dcca30d42d7804f65fa57a53e06-2" href="posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-2"></a>udev 922740 4 922736 1% /dev
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-3" name="rest_code_40964dcca30d42d7804f65fa57a53e06-3" href="posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-3"></a>tmpfs 186308 1948 184360 2% /run
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-4" name="rest_code_40964dcca30d42d7804f65fa57a53e06-4" href="posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-4"></a>none 5120 0 5120 0% /run/lock
+<a id="rest_code_40964dcca30d42d7804f65fa57a53e06-5" name="rest_code_40964dcca30d42d7804f65fa57a53e06-5" href="posts/%20FFmpeg/#rest_code_40964dcca30d42d7804f65fa57a53e06-5"></a>none 931536 152 931384 1% /run/shm
 </pre></div>
 <p>问题找到了。tmpfs 挂载于 /run, 而不是/tmp.</p>
 <p>修改ffm的IO文件位置， OK， 问题解决。</p>
@@ -214,9 +214,9 @@ ffm是作为缓冲来使用的，即起到漏斗的作用。</p>
     <section id="inet-ntoa"><h2>inet_ntoa 的不可重入性</h2>
 <p>在使用inet_ntoa时， 碰到一个很奇观的现象。</p>
 <p>代码如下：</p>
-<div class="code"><pre class="code text"><a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1" href="posts/inet_ntoa/#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-1"></a>fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
-<a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2" href="posts/inet_ntoa/#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-2"></a> inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
-<a id="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" name="rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3" href="posts/inet_ntoa/#rest_code_1e91c99c5ac640ec812ea7aa2895ebad-3"></a> inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
+<div class="code"><pre class="code text"><a id="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-1" name="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-1" href="posts/inet_ntoa/#rest_code_23f56d19ebd24e0a83d1553701d6ba7e-1"></a>fprintf(stdout, "recv from %s:%d %d and send to %s:%d %d\\n",
+<a id="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-2" name="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-2" href="posts/inet_ntoa/#rest_code_23f56d19ebd24e0a83d1553701d6ba7e-2"></a> inet\_ntoa(from.sin\_addr), ntohs(from.sin\_port), len,
+<a id="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-3" name="rest_code_23f56d19ebd24e0a83d1553701d6ba7e-3" href="posts/inet_ntoa/#rest_code_23f56d19ebd24e0a83d1553701d6ba7e-3"></a> inet\_ntoa(to.sin\_addr), ntohs(to.sin\_port), s);
 </pre></div>
 <p>分析输出log， 发现除了to.sin_addr,
 其他参数都是正确的；to.sin_addr的输出值为from.sin_addr值；但使用gdb来debug发现，
@@ -437,7 +437,7 @@ BBS是理想的信息场所. 爱人在吉大BBS牡丹园看到一个诚做家教
 </div>
     </header><div class="e-content entry-content">
     <p>喜欢动物, 热爱技术, 有理想有追求的程序员.</p>
-<img alt="../images/dog.jpg" class="align-center" src="posts/images/dog.jpg">
+<img alt="../..//images/dog.jpg" class="align-center" src="images/dog.jpg">
 </div>
     </article>
 </div>

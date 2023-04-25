@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 杂谈)</title><link>http://blog.cloudnie.ort/</link><description></description><atom:link href="http://blog.cloudnie.ort/categories/cat_za-tan.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sun, 23 Apr 2023 13:40:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>武侠小说中派，帮和教的区别</title><link>http://blog.cloudnie.ort/posts/wuxia/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 杂谈)</title><link>https://blog.cloudnie.org/</link><description></description><atom:link href="https://blog.cloudnie.org/categories/cat_za-tan.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 25 Apr 2023 05:50:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>武侠小说中派，帮和教的区别</title><link>https://blog.cloudnie.org/posts/wuxia/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？&lt;/p&gt;
 &lt;section id="section-1"&gt;
 &lt;h2&gt;派&lt;/h2&gt;
 &lt;p&gt;派是以某一种或一类武功为基础而形成的组织；成员修习本组织的特色武功，比如武当派，少林派，华山派，
@@ -21,4 +21,4 @@
 &lt;section id="section-4"&gt;
 &lt;h2&gt;其他&lt;/h2&gt;
 &lt;p&gt;除了派、帮和教以外，还有门、镖局等等。&lt;/p&gt;
-&lt;/section&gt;</description><category>杂谈</category><guid>http://blog.cloudnie.ort/posts/wuxia/</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item></channel></rss>
+&lt;/section&gt;</description><category>杂谈</category><guid>https://blog.cloudnie.org/posts/wuxia/</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item></channel></rss>

@@ -6,511 +6,259 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>http://blog.cloudnie.ort/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/2014/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/2014/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/2015/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/2015/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/2016/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/2016/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/2017/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/2017/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/archive.html</loc>
-  <lastmod>2023-04-23T13:47:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/archive.html</loc>
+  <lastmod>2023-04-25T05:50:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_c-c%2B%2B.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_c/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_c.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_c/c%2B%2B/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_c/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_develop-tools/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_c/c%2B%2B/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_multimedia/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_cc%2B%2B.html</loc>
-  <lastmod>2017-01-28T13:30:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_network/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_develop-tools.html</loc>
-  <lastmod>2017-09-05T07:36:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_other/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_develop-tools/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_unix/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_multimedia.html</loc>
-  <lastmod>2017-09-05T08:12:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cat_za-tan/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_multimedia/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/cc%2B%2B/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_network.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/develop-tools/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_network/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/file-system/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_other.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/git/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_other/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/io/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_unix.html</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/kitten/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_unix/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/multimedia/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_za-tan.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/network/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cat_za-tan/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/other/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cc%2B%2B.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/repo/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/cc%2B%2B/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/system-call/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/develop-tools.html</loc>
-  <lastmod>2017-09-05T07:36:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/unix/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/develop-tools/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/categories/za-tan/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/file-system.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/galleries/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/file-system/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/galleries/me/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/git.html</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/index-1.html</loc>
+  <lastmod>2023-04-25T05:50:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/git/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/index-2.html</loc>
+  <lastmod>2023-04-25T05:50:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/io.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/index-3.html</loc>
+  <lastmod>2023-04-25T05:50:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/io/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/%20FFmpeg/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/kitten.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/%20fingernail_of_kitten/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/kitten/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/multimedia.html</loc>
-  <lastmod>2017-09-05T08:12:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/about_me/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/multimedia/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/c-unit-test/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/network.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/cast_int_to_long_unsigned_int/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/network/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/dispatch/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/other.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/file-time-at-fat32/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/other/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/ftok/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/repo-git.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/gcc/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/repo.html</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/git/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/repo/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/inet_ntoa/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/system-call.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/inotify-and-sendfile/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/system-call/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/intellignece_of_kitten/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/unix-io.html</loc>
-  <lastmod>2016-03-06T13:23:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/ipv4_number/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/unix.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/ketten-and-me/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/unix/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/kitten/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/za-tan.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/loopdev_and_NFS/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/categories/za-tan/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/media_trap/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/galleries/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/repo_vs_tplink/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/galleries/me/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/speed-up-the-downloading-of-sdk/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/index-1.html</loc>
-  <lastmod>2023-04-23T13:47:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/ssh/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/index-2.html</loc>
-  <lastmod>2023-04-23T13:47:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/talking-from-dead-lock/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/index-3.html</loc>
-  <lastmod>2023-04-23T13:47:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/the-spirit-cat/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/%20FFmpeg/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/think_in_cat/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/%20fingernail_of_kitten/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/tmux/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/FFmpeg.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/ubuntu/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/virtualbox/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/OMG%2C%20My%20linode%20is%20blocked%20by%20GFW/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/write-blog-with-restructuredtext/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/about_me.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/wuxia/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
-  <loc>http://blog.cloudnie.ort/posts/about_me/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/c-unit-test.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/c-unit-test/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/cast_int_to_long_unsigned_int/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/dispatch.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/dispatch/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/file-time-at-fat32.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/file-time-at-fat32/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/fingernail_of_kitten.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ftok.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ftok/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/gcc.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/gcc/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/gfw.html</loc>
-  <lastmod>2015-06-14T14:18:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/git.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/git/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/inet_ntoa.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/inet_ntoa/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/inotify-and-sendfile.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/inotify-and-sendfile/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/intellignece_of_kitten.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/intellignece_of_kitten/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ipv4_number.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ipv4_number/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ketten-and-me.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ketten-and-me/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/kitten.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/kitten/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/loopdev_and_NFS.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/loopdev_and_NFS/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/media_trap.html</loc>
-  <lastmod>2017-09-05T08:12:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/media_trap/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/repo_vs_tplink.html</loc>
-  <lastmod>2017-09-05T07:36:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/repo_vs_tplink/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/speed-up-the-downloading-of-sdk.html</loc>
-  <lastmod>2017-09-05T11:26:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/speed-up-the-downloading-of-sdk/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ssh.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ssh/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/talking-from-dead-lock.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/talking-from-dead-lock/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/the-spirit-cat.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/the-spirit-cat/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/think_in_cat.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/think_in_cat/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/tmux.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/tmux/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ubuntu.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/ubuntu/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/virtualbox.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/virtualbox/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/write-blog-with-restructuredtext.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/write-blog-with-restructuredtext/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/wuxia.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/wuxia/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/yitianji.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/zhenzhen.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/posts/zhenzhen/</loc>
-  <lastmod>2023-04-23T13:40:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/stories/dao.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/stories/dao/</loc>
-  <lastmod>2023-04-23T13:05:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/stories/fitment.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/stories/fitment/</loc>
-  <lastmod>2023-04-23T13:05:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/stories/growth.html</loc>
-  <lastmod>2017-09-05T07:35:00Z</lastmod>
- </url>
- <url>
-  <loc>http://blog.cloudnie.ort/stories/growth/</loc>
-  <lastmod>2023-04-23T13:05:00Z</lastmod>
+  <loc>https://blog.cloudnie.org/posts/zhenzhen/</loc>
+  <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
 </urlset>

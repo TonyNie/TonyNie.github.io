@@ -1,4 +1,4 @@
-Sitemap: http://blog.cloudnie.ort/sitemapindex.xml
+Sitemap: https://blog.cloudnie.org/sitemapindex.xml
 
 User-Agent: *
-Host: blog.cloudnie.ort
+Host: blog.cloudnie.org
