@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客 (关于文章 tools)</title><link>https://blog.cloudnie.org/</link><description></description><atom:link href="https://blog.cloudnie.org/categories/tools.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sat, 20 May 2023 13:45:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一些 PDF</title><link>https://blog.cloudnie.org/posts/pdf/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;最近整理一些工具的用法, 分别是:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://blog.cloudnie.org/pdfs/tmux.pdf"&gt;tmux 使用笔记&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.cloudnie.org/pdfs/unix_tools.pdf"&gt;Linux/Unix 常用命令&lt;/a&gt; 持续更新&lt;/li&gt;
+&lt;/ol&gt;</description><category>tools</category><guid>https://blog.cloudnie.org/posts/pdf/</guid><pubDate>Sat, 20 May 2023 13:39:12 GMT</pubDate></item></channel></rss>

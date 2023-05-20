@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客</title><link>https://blog.cloudnie.org/</link><description>涛声依旧</description><atom:link href="https://blog.cloudnie.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sat, 20 May 2023 09:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>松下冰箱维权记录</title><link>https://blog.cloudnie.org/posts/refrigerator/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;2023/01/04 在某东买了一台松下冰箱, 型号为: NR-NB57WPA-T, 噪音冰箱偏大, 在此记录一下漫漫维权路.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客</title><link>https://blog.cloudnie.org/</link><description>涛声依旧</description><atom:link href="https://blog.cloudnie.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sat, 20 May 2023 13:45:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一些 PDF</title><link>https://blog.cloudnie.org/posts/pdf/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;最近整理一些工具的用法, 分别是:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://blog.cloudnie.org/pdfs/tmux.pdf"&gt;tmux 使用笔记&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.cloudnie.org/pdfs/unix_tools.pdf"&gt;Linux/Unix 常用命令&lt;/a&gt; 持续更新&lt;/li&gt;
+&lt;/ol&gt;</description><category>tools</category><guid>https://blog.cloudnie.org/posts/pdf/</guid><pubDate>Sat, 20 May 2023 13:39:12 GMT</pubDate></item><item><title>松下冰箱维权记录</title><link>https://blog.cloudnie.org/posts/refrigerator/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;2023/01/04 在某东买了一台松下冰箱, 型号为: NR-NB57WPA-T, 噪音冰箱偏大, 在此记录一下漫漫维权路.&lt;/p&gt;
 &lt;p&gt;在开始之前, 让我们先理清楚维权过程中出现的各个角色:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;某东, 中国头部电商企业, 我购买冰箱的平台, 有不作为的嫌疑&lt;/li&gt;
@@ -366,26 +370,4 @@ interface 出来。&lt;/p&gt;
 &lt;p&gt;SSH_AUTH_SOCK 代表一个 unix domain socket 文件，由 sshd 创建 shell 时指定， 是 ssh-client 和 sshd 做 ssh-agent forwarding 的桥梁；shell 退出时失效； 但是 tmux 在 session 保存了该变量。
 当再次 attach 时 （tmux detach, 退出 shell，登录 shell， tmux attach), tmux session 中保存的 SSH_AUTH_SOCK 还是第一次登录时 sshd 分配的，已经失效，应该使用当前登录 shell 环境变量中保存的值。&lt;/p&gt;
 &lt;p&gt;但是 tmux 的 update-environment 和 set-environment 在 attach session 好像不会生效，即使重新 load 配置文件也
-没有效果。暂时只能采用 &lt;a class="reference external" href="http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach"&gt;stackexchange&lt;/a&gt; 的方案。&lt;/p&gt;</description><category>develop tools</category><guid>https://blog.cloudnie.org/posts/tmux/</guid><pubDate>Fri, 04 Dec 2015 15:29:38 GMT</pubDate></item><item><title>武侠小说中派，帮和教的区别</title><link>https://blog.cloudnie.org/posts/wuxia/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;武侠小说会有很多帮派， 尤其是金庸的小说；帮和派， 以及教有什么区别呢？&lt;/p&gt;
-&lt;section id="section-1"&gt;
-&lt;h2&gt;派&lt;/h2&gt;
-&lt;p&gt;派是以某一种或一类武功为基础而形成的组织；成员修习本组织的特色武功，比如武当派，少林派，华山派，
-峨眉派, 逍遥派等等， 这些派都有独特的武功绝技， 比如武当的太极拳和太极剑， 少林的七十二绝技，
-华山剑法，峨眉剑法，逍遥派的北冥神功; 总部多位于山上, 首领为掌门。&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="section-2"&gt;
-&lt;h2&gt;帮&lt;/h2&gt;
-&lt;p&gt;帮是以某一种谋生手段为基础为形成的组织; 成员以相同的职业为生, 比如丐帮的弟子，以乞讨为生;
-盐帮，以贩卖盐为生计；帮内的成员的武功比较杂，但帮主通常具有武功绝技; 总部多位于城市或者乡镇，
-首领为帮主。&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="section-3"&gt;
-&lt;h2&gt;教&lt;/h2&gt;
-&lt;p&gt;教是以某一种信仰而形成的组织, 成员在信仰上比较统一；比如全真教，明教等等；全真教的弟子会
-修习全真教的武功，所以教全真派也说的过去；明教的弟子武功就比较杂乱，但教主具有独特的武功绝技，
-九阳神功，而四大护法的武功路数完全不一样; 总部通常位于偏远的地区， 首领为教主。&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="section-4"&gt;
-&lt;h2&gt;其他&lt;/h2&gt;
-&lt;p&gt;除了派、帮和教以外，还有门、镖局等等。&lt;/p&gt;
-&lt;/section&gt;</description><category>杂谈</category><guid>https://blog.cloudnie.org/posts/wuxia/</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item></channel></rss>
+没有效果。暂时只能采用 &lt;a class="reference external" href="http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach"&gt;stackexchange&lt;/a&gt; 的方案。&lt;/p&gt;</description><category>develop tools</category><guid>https://blog.cloudnie.org/posts/tmux/</guid><pubDate>Fri, 04 Dec 2015 15:29:38 GMT</pubDate></item></channel></rss>
