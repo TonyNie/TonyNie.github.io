@@ -1,5 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客</title><link>https://blog.cloudnie.org/</link><description>涛声依旧</description><atom:link href="https://blog.cloudnie.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Tue, 25 Apr 2023 05:50:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>repo sync 加速</title><link>https://blog.cloudnie.org/posts/speed-up-the-downloading-of-sdk/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;项目是用 repo 来管理 SDK，随着 SDK 中包含的仓库越来越多，以及单个仓库的体积越来越大，下载 SDK 的时间越来越长，目前已经超过了 15 分钟。
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>凡云的博客</title><link>https://blog.cloudnie.org/</link><description>涛声依旧</description><atom:link href="https://blog.cloudnie.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><lastBuildDate>Sat, 20 May 2023 09:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>松下冰箱维权记录</title><link>https://blog.cloudnie.org/posts/refrigerator/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;2023/01/04 在某东买了一台松下冰箱, 型号为: NR-NB57WPA-T, 噪音冰箱偏大, 在此记录一下漫漫维权路.&lt;/p&gt;
+&lt;p&gt;在开始之前, 让我们先理清楚维权过程中出现的各个角色:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;某东, 中国头部电商企业, 我购买冰箱的平台, 有不作为的嫌疑&lt;/li&gt;
+&lt;li&gt;京东松下官方旗舰店, 松下在京东的门面, 代表松下销售和售后&lt;/li&gt;
+&lt;li&gt;苏州兴隆裕商贸有限公司, 不确定和松下的关系, 但承接京东松下官方旗舰店派单任务, 比如上门检测和维修&lt;/li&gt;
+&lt;li&gt;松下官方售后, 通过 4008111315 联系, 貌似工作人员都在杭州&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;沟通记录&lt;/h2&gt;
+&lt;h3&gt;2 月 18 号 第一次报修&lt;/h3&gt;
+&lt;p&gt;向京东松下官方旗舰店反馈噪音有点大, 先简单沟通; 没有请他们派人上门, 自己先观察了一下.&lt;/p&gt;
+&lt;h3&gt;3 月 9 号&lt;/h3&gt;
+&lt;p&gt;联系京东松下官方旗舰店, 请客服安排师傅上门查看.
+师傅上门后主观判断了一下,觉得正常.
+附带请师傅把冰箱门调整了一下, 原来两个门没有对齐, 一高一矮.&lt;/p&gt;
+&lt;h3&gt;3 月 18 号,&lt;/h3&gt;
+&lt;p&gt;感觉噪音还是很大, 再次联系客服, 建议他们带工具来实际测量.&lt;/p&gt;
+&lt;h3&gt;3 月 19 号&lt;/h3&gt;
+&lt;p&gt;师傅 带了分贝仪上门, 测量时仅测量冰箱正前方离门 1米处的噪音, 噪音小于 39db.&lt;/p&gt;
+&lt;p&gt;在我的要求下, 测了后方, 即使在 冰箱后方 1米处, 也是超过 40 的.
+期间上网查了一下冰箱噪音问题, 正好也有消费者反馈, 松下只量测冰箱正前方. 这是比较有争议的地方, 松下只量测冰箱正前方. &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cloudnie.org/galleries/gm1352.jpeg" width="300" height="200" alt="检测师傅使用的分贝仪" align="center"&gt;&lt;/p&gt;
+&lt;h3&gt;3 月 28 号&lt;/h3&gt;
+&lt;p&gt;第四次联系京东松下官方旗舰店客服, 咨询结果. 售后反馈他们的师傅上门检测冰箱没有问题. 并且贴了检测结果. 售后给我的检测结果果然只有冰箱正前方, 而没有后面检测结果. &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cloudnie.org/galleries/report.jpg" width="300" height="150" alt="测试报告" align="center"&gt;&lt;/p&gt;
+&lt;p&gt;对于只检测冰箱正前方的做法, 我是不认可的. 因为冰箱厚度将近 1 米, 再向前 1 米, 就是接近 2 米的距离. 我开始追问他们的测试方法和测试结果有没有国家标准依据. 从这个时候我开始认为松下的售后表现的很不专业.&lt;/p&gt;
+&lt;p&gt;售后发了一张图给我, 一次说明他们是按照国家标准来测量的. &lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cloudnie.org/galleries/standard.jpg" width="300" height="150" alt="客服给出的测量标准" align="center"&gt;&lt;/p&gt;
+&lt;p&gt;关于这张图,我是有两个疑问的 第一个是参考了哪部标准 第二个是噪音标准为什么会这么低. 我买的冰箱是风冷式, 且体积大于 250 升, 所以依据这个标准, 噪音不超过 52 都是正常的. 
+不过松下的产品铭牌上标注是 39 分贝.&lt;/p&gt;
+&lt;p&gt;此后针对 测量标准问题, 和售后交涉了好多次, 都给不出标准名字. 不过我发现一个重大问题, 从这张图上看, 国家标准规定, 噪音要测试 4 个面, 前后左右, 而不是正前方. 
+其实我想问的就是, 上门测量噪音时, 仅检测冰箱正前方 1 米的噪音, 而不检测过其他地方, 这个方法是谁规定的. 但松下售后一直没有给出明确答复, 或者有其他苦衷.&lt;/p&gt;
+&lt;h3&gt;2023/04/15&lt;/h3&gt;
+&lt;p&gt;打松下 400 电话, 咨询客服人员 冰箱噪音测试标准问题, 线上人员不知道, 计划核实后回电话给我. 客服人员表示, 这块冰箱的噪音标准是 39db&lt;/p&gt;
+&lt;h3&gt;2023/04/18&lt;/h3&gt;
+&lt;p&gt;再次拨打400, 客服人员表示前两天有回电话给我, 但我没接到(非常抱歉, 有时陌生电话会被漏掉),  关于噪音测试标准的问题, 客服读了一段内部测试流程, 具体符合国家的哪个标准, 表示不知道. &lt;/p&gt;
+&lt;h3&gt;2023/04/19&lt;/h3&gt;
+&lt;p&gt;毛主席教导我们, 自己动手,丰衣足食.
+上网查了一下找到一个标准, GB 19606-2004&lt;/p&gt;
+&lt;p&gt;该标准引用了GB/T 4214.1-2000  &amp;lt;声学 家用电器及类似用途器具噪声测试方法&amp;gt; , 但这个标准废弃了&lt;/p&gt;
+&lt;p&gt;现在使用标准: GB/T 8059-2016 
+测量方法: GB/T 4214.1-2017&lt;/p&gt;
+&lt;p&gt;从这两个标准可以看出,  售后发出来的那张图, 基本符合国家标准.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关于测试距离, GB/T 4214.1-2017 建议是 1 米, 但最低要检测四个或六个面. &lt;/li&gt;
+&lt;li&gt;分贝标注, 风冷式, 超过 250 升, 52db, 国家的标准好低哇 😓&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;买了一个分贝仪, 
+对兴隆裕商贸有限公司的检测结果存疑, 决定买一个分贝仪. 嗯, 就是这么尴尬, 为了证明在某东上买的冰箱有问题, 我又在某东上买了一个分贝仪.&lt;/p&gt;
+&lt;h3&gt;2023/04/20&lt;/h3&gt;
+&lt;p&gt;松下 400 回拨电话, 表示只测试正前方是因为家居环境不符合测量标准, 冰箱空载等一系列理由. 
+总结一下就是: 松下的产品在实验室检测, 是四个面, 那是符合中国人民共和国标准的; 家居场景不具备检测条件, 所以松下只检测正前方. &lt;/p&gt;
+&lt;p&gt;对于某些不容易移动的产品, 比如空调或者嵌在墙体内的冰柜, 因为位置关系, 仅测量正前方1 米处噪音, 我是可以理解的.
+但这款冰箱底部装有轮子, 很容易移动, 松下仍然坚持仅测量正前方 1 米除的噪音, 我是相当的不理解.
+说好的匠人精神呢? &lt;/p&gt;
+&lt;h3&gt;2023/04/21&lt;/h3&gt;
+&lt;p&gt;购买了的分贝仪到货, 实际测量发现, 冰箱工作在某个状态下, 噪音比较大. 某个状态下, 稳定在 40 左右, 超过了松下宣称的39.
+但这个状态不太好把握, 我甚至一度怀疑当时测量是否引入了噪音.&lt;/p&gt;
+&lt;p&gt;冰箱前方和左侧 1 米处的噪音的确低些, 偶尔会超过 39; 而冰箱后方和右侧 1 米处的造影的确比较高, 基本上只要压缩机工作, 分贝仪显示的值都是超过 40 分贝的.&lt;/p&gt;
+&lt;p&gt;上传了我的测试结果到京东后台, 我猜他们不会承认的.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cloudnie.org/galleries/work.jpeg" width="200" height="350" alt="客服给出的测量标准" align="center"&gt;
+&lt;img src="https://blog.cloudnie.org/galleries/idle.jpeg" width="200" height="350" alt="客服给出的测量标准" align="center"&gt;&lt;/p&gt;
+&lt;h3&gt;2023/05/07&lt;/h3&gt;
+&lt;p&gt;京东上退换货的服务单被 松下 旗舰店给关闭了, 意思是不超过 55 分别都算合格. 这是旗舰店售后人员不专业的有一个地方, 55 或 52 是国家标准, 但产品
+手册上标注的是 39 分贝哇. &lt;/p&gt;
+&lt;p&gt;服务单被关闭之后, 多了一个京东介入选项. 果断选择京东介入.&lt;/p&gt;
+&lt;p&gt;和京东的客服沟通了一下, 表达了我的诉求, 换货. 京东表示先和松下沟通, 建议我也找松下 400 再安排量测 噪音值.&lt;/p&gt;
+&lt;h3&gt;2023/05/16&lt;/h3&gt;
+&lt;p&gt;京东介入还没有任何回应, 再次打电话给京东; 京东客服表示售后反馈我的测试条件不符合需求, 所以不能作为依据. 
+说实话, 兴隆裕商贸有限公司派来小哥的测试手法, 自认为还没有我专业. 
+京东客服表示会代我提服务单. &lt;/p&gt;
+&lt;h3&gt;2023/05/17&lt;/h3&gt;
+&lt;p&gt;苏州兴隆裕商贸有限公司打电话约时间, 因工作日不方便, 便约到周六下午 2 点. 工作人员表示考核有要求, 能否先取消京东上的服务单, 然后在周六之前再补一个服务单. 我个人觉得反复取消服务单不好, 就拒绝了这个提议. 没想到这一拒绝, 给了我莫大打击. &lt;/p&gt;
+&lt;p&gt;挂了电话之后, 我把冰箱推了出来, 又检测了冰箱前后左右 4 个面.  正前方 38 点多, 不到 39, 一直没有找到稳定超过 40 哪个点; 其他三个面都超过了 39.&lt;/p&gt;
+&lt;h3&gt;2023/05/20&lt;/h3&gt;
+&lt;p&gt;上午 9 点多有接到京东 950618 的电话,  客服问我松下已取消服务单, 我是否知道. 当时有点懵, 表示和苏州兴隆裕商贸有限公司约的时间是下午 2 点(我估计此时客服也有点懵). 果不然, 伏笔在下午.&lt;/p&gt;
+&lt;p&gt;中午的时候我爱人给苏州兴隆裕商贸有限公司打了电话, 问他们大约什么时候到, 方便我们准备一下.苏州兴隆裕商贸有限公司客服告知单子已取消, 因为他们领导觉得来过很多次了, 检测没有问题, 不用再来. 醉了醉了, 首先你们只检测了一次, 另外你不来了好歹通知我一声. 一声不响的就不来而不告知, 是什么行为?&lt;/p&gt;
+&lt;p&gt;至此, 突然有点心灰意冷.&lt;/p&gt;
+&lt;h2&gt;总结&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;国家制定的家电噪音标准, 都需要一定的检测条件, 家居环境不符合, 因为有背景噪音; 松下仅检测冰箱正前方 1 米处噪音的行为, 我觉得是耍流氓.&lt;/li&gt;
+&lt;li&gt;某东有不作为嫌疑. 在我三番五次报修的情况下, 京东没有主动介入; 并且在我要求京东接入的情况下, 仍然是派任务单给松下旗舰店; 并且个人以为, 在
+家用电器销量如此大的情况下, 京东应该有自己的检测标准, 而不是放任各大厂商自己来.&lt;/li&gt;
+&lt;li&gt;松下也很拉胯, 最起码松下中国很拉胯, 说好的匠人精神呢? 松下官方旗舰店和苏州兴隆裕商贸有限公司的人员, 服务很不专业&lt;/li&gt;
+&lt;li&gt;任何个体在松下这个庞然大物之前都显的那么渺小, 除了选择用脚投票, 别无他法&lt;/li&gt;
+&lt;li&gt;不确定是松下哪位小哥了, 当时双发情绪都没有管控好, 导致我说了一句:"既然你什么都不知道, 来干什么". 非常抱歉. 截止目前为止, 和我打交道的都是
+中国人, 无论是哪方员工, 我和他们都没有个人利益冲突, 相忘于江湖吧. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我突然能理解罗永浩砸冰箱的行为了. 如果有一天实在受不了, 附近正好有一家松下电器研究院, 就送给他们吧.
+最终选择放弃, 随他去吧, 主要原因:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;松下公司制定的检测方法, 只测量冰箱正前方. 这是一个耍流氓又恶心人的规则. 普通人又无法撼动.&lt;/li&gt;
+&lt;li&gt;在冰箱正前方, 我不能稳定复现 超过 39 分贝的情况&lt;/li&gt;
+&lt;li&gt;相同环境下, 我个人请购的分贝仪德力西1130 测量值比, 比苏州兴隆裕商贸有限公司使用的 标智 GM1352 测量值高, 还不少. 谁对谁错?&lt;/li&gt;
+&lt;/ol&gt;</description><category>杂谈</category><guid>https://blog.cloudnie.org/posts/refrigerator/</guid><pubDate>Sat, 20 May 2023 06:11:42 GMT</pubDate></item><item><title>repo sync 加速</title><link>https://blog.cloudnie.org/posts/speed-up-the-downloading-of-sdk/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;项目是用 repo 来管理 SDK，随着 SDK 中包含的仓库越来越多，以及单个仓库的体积越来越大，下载 SDK 的时间越来越长，目前已经超过了 15 分钟。
 有没有办法加速 SDK 的下载？ 答案是有的，就是利用  repo 命令的 --reference 参数，可以将下载时间优化到 1 分钟左右。&lt;/p&gt;
 &lt;p&gt;该方法需要先创建本地 SDK mirror，然后在执行 repo init 命令的时候设定 --reference 参数。
 SDK mirror 只需要创建一次，未来 sync 代码时可以重复使用。&lt;/p&gt;
@@ -294,28 +388,4 @@ interface 出来。&lt;/p&gt;
 &lt;section id="section-4"&gt;
 &lt;h2&gt;其他&lt;/h2&gt;
 &lt;p&gt;除了派、帮和教以外，还有门、镖局等等。&lt;/p&gt;
-&lt;/section&gt;</description><category>杂谈</category><guid>https://blog.cloudnie.org/posts/wuxia/</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item><item><title>单元测试之 C 语言</title><link>https://blog.cloudnie.org/posts/c-unit-test/</link><dc:creator>CloudNie</dc:creator><description>&lt;p&gt;目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。&lt;/p&gt;
-&lt;section id="static"&gt;
-&lt;h2&gt;如何测试 static 函数&lt;/h2&gt;
-&lt;p&gt;当产品代码和单元测试代码隔离时， 测试 static 的函数需要些技巧；有同学认为
-可以不对 static 的函数不进行测试，只要对其调用者做单元测试就可以了。但对于嵌套比较
-深的 static 函数来说， 测试用例不是太好构造。&lt;/p&gt;
-&lt;p&gt;解决办法：&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在单元测试代码中 include 产品代码的源文件&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;三种方法中我比较推荐第3中方法; 好处时不影响产品代码，又可以具有较好的 coding style; 麻烦的地方在于
-building 过程中定位 warning 或者 error 不是太直接。&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="main"&gt;
-&lt;h2&gt;如何处理 main 函数所在的文件&lt;/h2&gt;
-&lt;p&gt;如果产品代码和单元测试代码是隔离开来的，通常就各自拥有自己的 main 的函数；
-在 build 单元测试代码时就会出现冲突。&lt;/p&gt;
-&lt;p&gt;解决办法：&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/section&gt;</description><category>C/C++</category><guid>https://blog.cloudnie.org/posts/c-unit-test/</guid><pubDate>Sat, 21 Nov 2015 02:44:59 GMT</pubDate></item></channel></rss>
+&lt;/section&gt;</description><category>杂谈</category><guid>https://blog.cloudnie.org/posts/wuxia/</guid><pubDate>Tue, 01 Dec 2015 14:32:03 GMT</pubDate></item></channel></rss>

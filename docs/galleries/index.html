@@ -46,6 +46,30 @@
 <li><a href="me/">📂 me</a></li>
             </ul>
 <div id="gallery_container"></div>
+<noscript>
+<ul class="thumbnails">
+<li>
+<a href="gm1352.jpeg" class="thumbnail image-reference" title="Gm1352">
+            <img src="gm1352.thumbnail.jpeg" alt="Gm1352" loading="lazy"></a>
+        </li>
+<li>
+<a href="report.jpg" class="thumbnail image-reference" title="Report">
+            <img src="report.thumbnail.jpg" alt="Report" loading="lazy"></a>
+        </li>
+<li>
+<a href="standard.jpg" class="thumbnail image-reference" title="Standard">
+            <img src="standard.thumbnail.jpg" alt="Standard" loading="lazy"></a>
+        </li>
+<li>
+<a href="idle.jpeg" class="thumbnail image-reference" title="Idle">
+            <img src="idle.thumbnail.jpeg" alt="Idle" loading="lazy"></a>
+        </li>
+<li>
+<a href="work.jpeg" class="thumbnail image-reference" title="Work">
+            <img src="work.thumbnail.jpeg" alt="Work" loading="lazy"></a>
+</li>
+</ul>
+</noscript>
 
              
         <footer id="footer"><p>Contents © 2023         <a href="mailto:cloudnie@gmail.com">CloudNie</a> </p>
@@ -56,7 +80,7 @@
     luxon.Settings.defaultLocale = "zh-CN";
     fancydates(4, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
     </script><!-- end fancy dates --><script src="../assets/js/justified-layout.min.js"></script><script src="../assets/js/gallery.min.js"></script><script>
-var jsonContent = [];
+var jsonContent = [{"height": 180, "size": {"h": 180, "w": 135}, "title": "Gm1352", "url": "gm1352.jpeg", "url_thumb": "gm1352.thumbnail.jpeg", "width": 135}, {"height": 103, "size": {"h": 103, "w": 180}, "title": "Report", "url": "report.jpg", "url_thumb": "report.thumbnail.jpg", "width": 180}, {"height": 103, "size": {"h": 103, "w": 180}, "title": "Standard", "url": "standard.jpg", "url_thumb": "standard.thumbnail.jpg", "width": 180}, {"height": 180, "size": {"h": 180, "w": 81}, "title": "Idle", "url": "idle.jpeg", "url_thumb": "idle.thumbnail.jpeg", "width": 81}, {"height": 180, "size": {"h": 180, "w": 81}, "title": "Work", "url": "work.jpeg", "url_thumb": "work.thumbnail.jpeg", "width": 81}];
 var thumbnailSize = 180;
 renderGallery(jsonContent, thumbnailSize);
 window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnailSize)});

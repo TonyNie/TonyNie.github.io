@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://blog.cloudnie.org/</loc>
-  <lastmod>2023-04-24T01:41:00Z</lastmod>
+  <lastmod>2023-05-20T09:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.cloudnie.org/2014/</loc>
@@ -26,8 +26,12 @@
   <lastmod>2023-04-24T01:41:00Z</lastmod>
  </url>
  <url>
+  <loc>https://blog.cloudnie.org/2023/</loc>
+  <lastmod>2023-05-20T09:39:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://blog.cloudnie.org/archive.html</loc>
-  <lastmod>2023-04-25T05:50:00Z</lastmod>
+  <lastmod>2023-05-20T09:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.cloudnie.org/categories/</loc>
@@ -119,7 +123,7 @@
  </url>
  <url>
   <loc>https://blog.cloudnie.org/galleries/</loc>
-  <lastmod>2023-04-24T01:41:00Z</lastmod>
+  <lastmod>2023-05-20T09:30:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.cloudnie.org/galleries/me/</loc>
@@ -135,7 +139,11 @@
  </url>
  <url>
   <loc>https://blog.cloudnie.org/index-3.html</loc>
-  <lastmod>2023-04-25T05:50:00Z</lastmod>
+  <lastmod>2023-05-20T09:39:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.cloudnie.org/pages/refrigerator/</loc>
+  <lastmod>2023-05-20T06:15:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.cloudnie.org/posts/%20FFmpeg/</loc>
@@ -212,6 +220,10 @@
  <url>
   <loc>https://blog.cloudnie.org/posts/media_trap/</loc>
   <lastmod>2023-04-24T01:41:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.cloudnie.org/posts/refrigerator/</loc>
+  <lastmod>2023-05-20T09:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.cloudnie.org/posts/repo_vs_tplink/</loc>

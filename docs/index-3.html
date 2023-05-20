@@ -38,7 +38,42 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ubuntu/" class="u-url">Stable Ubuntu 14.04</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/c-unit-test/" class="u-url">单元测试之 C 语言</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/c-unit-test/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-11-21T10:44:59+08:00" title="2015-11-21 10:44">2015-11-21 10:44</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                CloudNie
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+    
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>目前关于 C 单元测试的书籍和资料比较少， 在这里分享一下我的想法。</p>
+<section id="static"><h2>如何测试 static 函数</h2>
+<p>当产品代码和单元测试代码隔离时， 测试 static 的函数需要些技巧；有同学认为
+可以不对 static 的函数不进行测试，只要对其调用者做单元测试就可以了。但对于嵌套比较
+深的 static 函数来说， 测试用例不是太好构造。</p>
+<p>解决办法：</p>
+<ol class="arabic simple">
+<li><p>使用宏来代替 static 关键字， 根据不同的场合对宏进行赋值；</p></li>
+<li><p>在单元测试代码中 include 产品代码的源文件</p></li>
+<li><p>利用工具将待测试的产品代码源文件和单元测试源文件合并在一起生成新的文件；编译时选择新生成的文件</p></li>
+</ol>
+<p>三种方法中我比较推荐第3中方法; 好处时不影响产品代码，又可以具有较好的 coding style; 麻烦的地方在于
+building 过程中定位 warning 或者 error 不是太直接。</p>
+</section><section id="main"><h2>如何处理 main 函数所在的文件</h2>
+<p>如果产品代码和单元测试代码是隔离开来的，通常就各自拥有自己的 main 的函数；
+在 build 单元测试代码时就会出现冲突。</p>
+<p>解决办法：</p>
+<ol class="arabic simple">
+<li><p>修改 link 脚本， 将单元测试的入口函数指定为 unit_test_main 或者其他;</p></li>
+<li><p>利用工具将产品代码 main 函数所在的文件 copy 一份， 同时将其中的 main 函数重新命名生成新的文件；building 时选择新生成的文件;</p></li>
+</ol></section>
+</div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ubuntu/" class="u-url">Stable Ubuntu 14.04</a></h1>
         <div class="metadata">
             <p class="dateline"><a href="posts/ubuntu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2015-07-29T20:19:23+08:00" title="2015-07-29 20:19">2015-07-29 20:19</time></a></p>
             <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
